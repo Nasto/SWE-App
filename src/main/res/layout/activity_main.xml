@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bitte Probandencode eingeben."
+        android:text="Bitte Probandencode eingeben:"
         android:textSize="35dp"
         android:id="@+id/textView"/>
 
@@ -19,32 +19,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText"
-            android:layout_below="@+id/textView"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_marginTop="21dp"
             android:capitalize="characters"
             android:digits="5"
             android:text="00000"
-            android:layout_alignRight="@+id/textView"
-            android:textSize="50dp"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Penis-Button"
-            android:id="@+id/button"
-            android:layout_below="@+id/editText"
+            android:textSize="50dp"
+            android:layout_marginTop="68dp"
+            android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"/>
+            android:editable="true"/>
 
-    <Button
-            style="?android:attr/buttonStyleSmall"
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button2"
-            android:layout_below="@+id/button"
-            android:layout_alignRight="@+id/button"
-            android:layout_marginTop="15dp"/>
+            android:id="@+id/editText2"
+            android:text="1. Ziffer: Dritter Buchstabe des Vornamens der Mutter"
+            android:phoneNumber="false"
+            android:textStyle="italic"
+            android:layout_marginTop="47dp"
+            android:layout_below="@+id/editText"
+            android:layout_alignLeft="@+id/textView2"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:text="2. Ziffer: Dritter Buchstabe des Vornamens des Vaters"
+            android:textStyle="italic"
+            android:layout_below="@+id/editText2"
+            android:layout_alignParentRight="true"
+            android:layout_alignLeft="@+id/textView"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:text="3. Ziffer: Dritter Buchstabe des Geburtsortes"
+            android:textStyle="italic"
+            android:layout_below="@+id/textView2"
+            android:layout_alignLeft="@+id/textView2"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:text="4. Ziffer: Dritter Buchstabe der aktuellen Straße (Hauptwohnsitz)"
+            android:textStyle="italic"
+            android:layout_below="@+id/textView3"
+            android:layout_alignLeft="@+id/textView3"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:text="5. Ziffer: Dritter Buchstabe des Geburtsmonats"
+            android:textStyle="italic"
+            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/textView4"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="38dp"
+            android:textStyle="bold"
+            />
 
 </RelativeLayout>
