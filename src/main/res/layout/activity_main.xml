@@ -21,6 +21,11 @@
             android:id="@+id/editText"
             android:layout_below="@+id/textView"
             android:layout_alignLeft="@+id/textView"
-            android:layout_marginTop="21dp"/>
+            android:layout_marginTop="21dp"
+            android:capitalize="characters"
+            android:digits="5"
+            android:text="00000"
+            android:layout_alignRight="@+id/textView"
+            android:textSize="50dp"/>
 
 </RelativeLayout>
