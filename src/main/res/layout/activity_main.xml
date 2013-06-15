@@ -13,7 +13,10 @@
         android:layout_height="wrap_content"
         android:text="Bitte Probandencode eingeben:"
         android:textSize="35dp"
-        android:id="@+id/textView"/>
+        android:id="@+id/textView"
+        android:layout_marginTop="63dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -39,7 +42,8 @@
             android:textStyle="italic"
             android:layout_marginTop="47dp"
             android:layout_below="@+id/editText"
-            android:layout_alignLeft="@+id/textView2"/>
+            android:layout_alignLeft="@+id/textView2"
+            android:textSize="20dp"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -49,7 +53,8 @@
             android:textStyle="italic"
             android:layout_below="@+id/editText2"
             android:layout_alignParentRight="true"
-            android:layout_alignLeft="@+id/textView"/>
+            android:layout_alignLeft="@+id/textView"
+            android:textSize="20dp"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -58,7 +63,8 @@
             android:text="3. Ziffer: Dritter Buchstabe des Geburtsortes"
             android:textStyle="italic"
             android:layout_below="@+id/textView2"
-            android:layout_alignLeft="@+id/textView2"/>
+            android:layout_alignLeft="@+id/textView2"
+            android:textSize="20dp"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -67,7 +73,8 @@
             android:text="4. Ziffer: Dritter Buchstabe der aktuellen Straße (Hauptwohnsitz)"
             android:textStyle="italic"
             android:layout_below="@+id/textView3"
-            android:layout_alignLeft="@+id/textView3"/>
+            android:layout_alignLeft="@+id/textView3"
+            android:textSize="20dp"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -76,7 +83,8 @@
             android:text="5. Ziffer: Dritter Buchstabe des Geburtsmonats"
             android:textStyle="italic"
             android:layout_below="@+id/textView4"
-            android:layout_alignLeft="@+id/textView4"/>
+            android:layout_alignLeft="@+id/textView4"
+            android:textSize="20dp"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -86,7 +94,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="38dp"
-            android:textStyle="bold"
-            />
+            android:textSize="35dp"/>
 
 </RelativeLayout>
