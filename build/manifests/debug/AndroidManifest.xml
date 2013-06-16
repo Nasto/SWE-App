@@ -10,6 +10,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:label="timeSelector" android:name="yoloswagswag.swe_app.timeSelector"/>
     </application>
 
 </manifest>

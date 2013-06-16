@@ -29,10 +29,14 @@ public class MainActivity extends Activity {
 
     /* Called when the user clicks the Send button */
     public void okMessage(View view) {
+
         Intent intent = new Intent(this, timeSelector.class);
+
         EditText codeEdit =(EditText) findViewById(R.id.codeEdit);
         TextView error =(TextView) findViewById(R.id.errorMessage);
+
         String code = codeEdit.getText().toString();
+
         if(code.length()==5){
             startActivity(intent);
             error.setText("");
