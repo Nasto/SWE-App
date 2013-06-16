@@ -1,3 +1,4 @@
+.idea/
 /.idea/.name
 /.idea/compiler.xml
 /.idea/copyright/profiles_settings.xml
@@ -8,6 +9,7 @@
 /.idea/scopes/scope_settings.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+build/
 /build/manifests/debug/debug.iml
 /build/manifests/debug/gen/yoloswagswag/swe_app/BuildConfig.java
 /build/manifests/debug/gen/yoloswagswag/swe_app/Manifest.java
