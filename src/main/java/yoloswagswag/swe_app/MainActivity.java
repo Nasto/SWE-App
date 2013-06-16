@@ -32,10 +32,9 @@ public class MainActivity extends Activity {
 
         Intent intent = new Intent(this, timeSelector.class);
 
-        EditText codeEdit =(EditText) findViewById(R.id.codeEdit);
         TextView error =(TextView) findViewById(R.id.errorMessage);
 
-        String code = codeEdit.getText().toString();
+        String code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
             startActivity(intent);
