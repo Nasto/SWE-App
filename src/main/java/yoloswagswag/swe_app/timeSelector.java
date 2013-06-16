@@ -91,7 +91,53 @@ public class timeSelector extends Activity {
                 time = 3;
                 break;
         }
-        timeSelector[currentDay][slot] = time;
 
+        int oldtime = timeSelector[currentDay][slot];
+
+        /* determine the slot */
+        switch(slot){
+            case 0:
+                switch(oldtime){
+                    case 0:
+                        /* btn09 umfaerben */
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+                }
+            case 1:
+                switch(oldtime){
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+                }
+            case 2:
+                switch(oldtime){
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+                }
+            case 3:
+                switch(oldtime){
+                    case 0:
+
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+                }
+        }
+
+        timeSelector[currentDay][slot] = time;
     }
 }
