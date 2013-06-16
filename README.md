@@ -15,7 +15,7 @@ ToDo:
 			* OK-Button Übergang Chill-Screen
 
 *Umfragebildschirm:	* bei der 1. Abfrage anderer Text(da keine vorherige Beantwortung der Umfrage)
--------------------	* Anzeige der Zeit(letzter Umfrageaufruf)
+-------------------	* Anzeige der Zeit(letzter beantworteter Umfrageaufruf)
 			* Kontaktzeit überprüfen mit Zeitraum der letzten Umfrage (ggf. Fehlermeldung)
 			* OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)
 			* Abbrechen-Button Übergang Chill-Screen (Abbruch Werte in .csv speichern)
