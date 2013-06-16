@@ -15,6 +15,7 @@ ToDo:
 * farbliche Unterlegung der ausgewählten Tage/Zeiten
 * für gesamte Woche übernehmen vom jetzigen ausgewählten/eingestellten Tag
 * OK-Button Übergang Chill-Screen
+* Einschränkung dass er Zeiten nicht in Vergangenheit umsetzen darf
 
 <dt>Umfragebildschirm:</dt>	
 * bei der 1. Abfrage anderer Text(da keine vorherige Beantwortung der Umfrage)
