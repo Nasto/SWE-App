@@ -1,6 +1,7 @@
 package yoloswagswag.swe_app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,11 @@ public class timeSelector extends Activity {
             timeSelector[i][2] = 1;
             timeSelector[i][3] = 1;
         }
+    }
+
+    public void okTime(View view){
+        /* nur, wenn die Zeiten korrekt gewaehlt wurden*/
+        startActivity(new Intent(this, chillActivity.class));
     }
 
     public void timeSelect(View view){

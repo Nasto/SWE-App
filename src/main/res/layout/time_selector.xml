@@ -237,6 +237,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="OK"
+            android:onClick="okTime"
             android:id="@+id/button"
             android:textSize="50dp"
             android:layout_marginTop="40dp"
