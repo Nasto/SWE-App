@@ -21,6 +21,10 @@ Ideen dazu
 * als int/string in globalen Settings speichern
 	* bei bedarf holen und in Date parsen
 
+
+
+---------
+
 * eigene Zeit-Klasse schreiben
 	* comparable
 	* mit/ohne Datum enthalten
