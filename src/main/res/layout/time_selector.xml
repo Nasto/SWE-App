@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnMon"
-                android:id="@+id/btnMon"
+                android:id="@+id/buttonMon"
                 android:textSize="35dp"/>
 
         <Button
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnTue"
-                android:id="@+id/btnTue"
+                android:id="@+id/buttonTue"
                 android:textSize="35dp"/>
 
         <Button
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnWed"
-                android:id="@+id/btnWed"
+                android:id="@+id/buttonWed"
                 android:textSize="35dp"/>
 
         <Button
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnThu"
-                android:id="@+id/btnThe"
+                android:id="@+id/buttonThe"
                 android:textSize="35dp"/>
 
         <Button
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnFri"
-                android:id="@+id/btnFri"
+                android:id="@+id/buttonFri"
                 android:textSize="35dp"/>
 
         <Button
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnSat"
-                android:id="@+id/btnSat"
+                android:id="@+id/buttonSat"
                 android:textSize="35dp"/>
 
         <Button
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnSun"
-                android:id="@+id/btnSun"
+                android:id="@+id/buttonSun"
                 android:textSize="35dp"/>
     </LinearLayout>
 
