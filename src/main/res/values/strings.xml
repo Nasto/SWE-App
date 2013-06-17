@@ -33,4 +33,5 @@
     <string name="chill_time_left">0:15</string>
     <string name="chill_time">17:00Uhr</string>
     <string name="umfrage_time">17:00Uhr</string>
+    <string name="btnOK">OK</string>
 </resources>

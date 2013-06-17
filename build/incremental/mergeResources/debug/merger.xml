@@ -63,9 +63,9 @@
             <file
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values/strings.xml"
                 qualifiers="" >
-                <string name="action_settings" >Settings
-                </string>
                 <string name="btnSun" >So
+                </string>
+                <string name="action_settings" >Settings
                 </string>
                 <string name="btnMon" >Mo
                 </string>
@@ -81,17 +81,17 @@
                 </string>
                 <string name="btnTue" >Di
                 </string>
-                <string name="btn20" >20:00
-                </string>
                 <string name="btnWed" >Mi
+                </string>
+                <string name="btn20" >20:00
                 </string>
                 <string name="btn21" >21:00
                 </string>
                 <string name="btn22" >22:00
                 </string>
-                <string name="btn09" >09:00
-                </string>
                 <string name="btn23" >23:00
+                </string>
+                <string name="btn09" >09:00
                 </string>
                 <string name="btn14" >14:00
                 </string>
@@ -101,27 +101,42 @@
                 </string>
                 <string name="btn15" >15:00
                 </string>
-                <string name="btn18" >18:00
-                </string>
                 <string name="btn10" >10:00
                 </string>
-                <string name="btn17" >17:00
+                <string name="btn18" >18:00
                 </string>
                 <string name="btnSat" >Sa
                 </string>
-                <string name="btn12" >12:00
+                <string name="btn17" >17:00
                 </string>
-                <string name="btn11" >11:00
+                <string name="btn12" >12:00
                 </string>
                 <string name="btnThu" >Do
                 </string>
                 <string name="app_name" >SWE-App
+                </string>
+                <string name="btn11" >11:00
                 </string>
                 <string name="btn19" >19:00
                 </string>
                 <string name="umfrage_time" >17:00Uhr
                 </string>
             </file>
+            <file
+                name="time_selector"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/time_selector.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="umfragebildschirm"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/umfragebildschirm.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="chill_screen"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/chill_screen.xml"
+                qualifiers=""
+                type="layout" />
             <file
                 name="activity_main"
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/activity_main.xml"
@@ -156,26 +171,6 @@
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi"
                 type="drawable" />
-            <file
-                name="time_selector"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/time_selector.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="umfragebildschirm"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/umfragebildschirm.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="Umfragebildschirm"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/Umfragebildschirm.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="chill_screen"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/chill_screen.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/rs/debug" />
     </dataSet>

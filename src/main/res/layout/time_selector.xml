@@ -97,7 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn09"
-                    android:id="@+id/btn09"
+                    android:id="@+id/button09"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -105,7 +106,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn10"
-                    android:id="@+id/btn10"
+                    android:id="@+id/button10"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -113,7 +115,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn11"
-                    android:id="@+id/btn11"
+                    android:id="@+id/button11"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -121,7 +124,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn12"
-                    android:id="@+id/btn12"
+                    android:id="@+id/button12"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
         </TableRow>
 
@@ -135,7 +139,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn13"
-                    android:id="@+id/btn13"
+                    android:id="@+id/button13"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -143,7 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn14"
-                    android:id="@+id/btn14"
+                    android:id="@+id/button14"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -151,7 +157,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn15"
-                    android:id="@+id/btn15"
+                    android:id="@+id/button15"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
         </TableRow>
@@ -166,7 +173,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn16"
-                    android:id="@+id/btn16"
+                    android:id="@+id/button16"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -174,7 +182,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn17"
-                    android:id="@+id/btn17"
+                    android:id="@+id/button17"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -182,7 +191,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn18"
-                    android:id="@+id/btn18"
+                    android:id="@+id/button18"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -190,7 +200,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn19"
-                    android:id="@+id/btn19"
+                    android:id="@+id/button19"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
         </TableRow>
 
@@ -204,7 +215,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn20"
-                    android:id="@+id/btn20"
+                    android:id="@+id/button20"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -212,7 +224,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn21"
-                    android:id="@+id/btn21"
+                    android:id="@+id/button21"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -220,7 +233,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn22"
-                    android:id="@+id/btn22"
+                    android:id="@+id/button22"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
 
             <Button
@@ -228,7 +242,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/btn23"
-                    android:id="@+id/btn23"
+                    android:id="@+id/button23"
+                    android:onClick="timeSelect"
                     android:textSize="35dp"/>
         </TableRow>
     </TableLayout>
@@ -236,9 +251,9 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
+            android:text="@string/btnOK"
             android:onClick="okTime"
-            android:id="@+id/button"
+            android:id="@+id/okButton"
             android:textSize="50dp"
             android:layout_marginTop="40dp"
             />
