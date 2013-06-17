@@ -25,6 +25,9 @@
         <activity
                 android:name=".timeSelector"
                 android:label="timeSelector"/>
+        <activity
+                android:name=".chillActivity"
+                android:label="chillActivity"/>
     </application>
 
 </manifest>
