@@ -98,7 +98,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/btn09"
                     android:id="@+id/btn09"
-                    android:textSize="35dp"/>
+                    android:textSize="35dp"
+                    />
 
             <Button
                     style="?android:attr/buttonStyleSmall"
