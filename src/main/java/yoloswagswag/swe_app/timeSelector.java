@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 
@@ -38,7 +39,7 @@ public class timeSelector extends Activity {
         int day = currentDate.get(Calendar.DAY_OF_MONTH);
 
 
-        File f = new File("/data/data/"+getPackageName()+"/shared_prefs/"+PREFS_NAME+".xml");
+        File f= new File("/data/data/"+getPackageName()+"/shared_prefs/"+PREFS_NAME+".xml");
 
         /* check for previous settings */
         if(f.exists()){
@@ -117,17 +118,20 @@ public class timeSelector extends Activity {
         /* store chosen times in settings */
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-
         for(int i=0;i<timeSelector.length;i++){
             for (int j=0;j<timeSelector[i].length;j++){
                 editor.putInt("day"+i+"slot"+j, timeSelector[i][j].get(Calendar.HOUR_OF_DAY));
             }
         }
-        
+        editor.commit();
+
         if (!this.isTaskRoot())
             this.finish();
-        else
+        else {
             startActivity(new Intent(this, chillActivity.class));
+            this.finish();
+        }
+
     }
 
     public void daySelect(View view){

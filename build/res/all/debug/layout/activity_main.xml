@@ -38,8 +38,10 @@
             android:editable="true"
             android:inputType="textCapCharacters"
             android:maxLength="5"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:textAlignment="center"/>
+            android:digits="abcdefghijklmnopqrstuvwxyzäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:focusable="true"/>
 
     <TextView
             android:layout_width="wrap_content"
