@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class timeSelector extends Activity {
@@ -40,7 +38,7 @@ public class timeSelector extends Activity {
         int day = currentDate.get(Calendar.DAY_OF_MONTH);
 
 
-        File f = new File("/data/data/yoloswagswag.swe-app/shared_prefs/"+PREFS_NAME+".xml");
+        File f = new File("/data/data/"+getPackageName()+"/shared_prefs/"+PREFS_NAME+".xml");
 
         /* check for previous settings */
         if(f.exists()){
@@ -161,49 +159,49 @@ public class timeSelector extends Activity {
 
         switch(view.getId()){
             case R.id.button09:
-                timeSelector[selectedDay][0].set(Calendar.HOUR_OF_DAY, 9);
+                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 9);
                 break;
             case R.id.button10:
-                timeSelector[selectedDay][0].set(Calendar.HOUR_OF_DAY, 10);
+                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 10);
                 break;
             case R.id.button11:
-                timeSelector[selectedDay][0].set(Calendar.HOUR_OF_DAY, 11);
+                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 11);
                 break;
             case R.id.button12:
-                timeSelector[selectedDay][0].set(Calendar.HOUR_OF_DAY, 12);
+                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 12);
                 break;
             case R.id.button13:
-                timeSelector[selectedDay][1].set(Calendar.HOUR_OF_DAY, 13);
+                timeSelector[selectedDay-1][1].set(Calendar.HOUR_OF_DAY, 13);
                 break;
             case R.id.button14:
-                timeSelector[selectedDay][1].set(Calendar.HOUR_OF_DAY, 14);
+                timeSelector[selectedDay-1][1].set(Calendar.HOUR_OF_DAY, 14);
                 break;
             case R.id.button15:
-                timeSelector[selectedDay][1].set(Calendar.HOUR_OF_DAY, 15);
+                timeSelector[selectedDay-1][1].set(Calendar.HOUR_OF_DAY, 15);
                 break;
             case R.id.button16:
-                timeSelector[selectedDay][2].set(Calendar.HOUR_OF_DAY, 16);
+                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 16);
                 break;
             case R.id.button17:
-                timeSelector[selectedDay][2].set(Calendar.HOUR_OF_DAY, 17);
+                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 17);
                 break;
             case R.id.button18:
-                timeSelector[selectedDay][2].set(Calendar.HOUR_OF_DAY, 18);
+                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 18);
                 break;
             case R.id.button19:
-                timeSelector[selectedDay][2].set(Calendar.HOUR_OF_DAY, 19);
+                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 19);
                 break;
             case R.id.button20:
-                timeSelector[selectedDay][3].set(Calendar.HOUR_OF_DAY, 20);
+                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 20);
                 break;
             case R.id.button21:
-                timeSelector[selectedDay][3].set(Calendar.HOUR_OF_DAY, 21);
+                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 21);
                 break;
             case R.id.button22:
-                timeSelector[selectedDay][3].set(Calendar.HOUR_OF_DAY, 22);
+                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 22);
                 break;
             case R.id.button23:
-                timeSelector[selectedDay][3].set(Calendar.HOUR_OF_DAY, 23);
+                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 23);
                 break;
         }
         setButtonColors();
@@ -211,10 +209,10 @@ public class timeSelector extends Activity {
 
     public void setButtonColors(){
         /* fetch the button to be colored green and pass it's index to colorButton */
-        colorButton(timeSelector[selectedDay][0].get(Calendar.HOUR_OF_DAY)-9);
-        colorButton(timeSelector[selectedDay][1].get(Calendar.HOUR_OF_DAY)-9);
-        colorButton(timeSelector[selectedDay][2].get(Calendar.HOUR_OF_DAY)-9);
-        colorButton(timeSelector[selectedDay][3].get(Calendar.HOUR_OF_DAY)-9);
+        colorButton(timeSelector[selectedDay-1][0].get(Calendar.HOUR_OF_DAY)-9);
+        colorButton(timeSelector[selectedDay-1][1].get(Calendar.HOUR_OF_DAY)-9);
+        colorButton(timeSelector[selectedDay-1][2].get(Calendar.HOUR_OF_DAY)-9);
+        colorButton(timeSelector[selectedDay-1][3].get(Calendar.HOUR_OF_DAY)-9);
     }
 
     public void colorButton(int buttonIndex){

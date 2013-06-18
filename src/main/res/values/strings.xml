@@ -34,4 +34,11 @@
     <string name="chill_time">17:00Uhr</string>
     <string name="umfrage_time">17:00Uhr</string>
     <string name="btnOK">OK</string>
+    <string name="firstChar">1. Ziffer: Dritter Buchstabe des Vornamens der Mutter</string>
+    <string name="secondChar">2. Ziffer: Dritter Buchstabe des Vornamens des Vaters</string>
+    <string name="thirdChar">3. Ziffer: Dritter Buchstabe des Geburtsortes</string>
+    <string name="fourthChar">4. Ziffer: Dritter Buchstabe der aktuellen Straße (Hauptwohnsitz)
+    </string>
+    <string name="fifthChar">5. Ziffer: Dritter Buchstabe des Geburtsmonats</string>
+    <string name="enterCode">Bitte Probandencode eingeben:</string>
 </resources>

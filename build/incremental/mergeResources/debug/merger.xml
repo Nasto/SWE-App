@@ -67,6 +67,12 @@
                 </string>
                 <string name="btnSun" >So
                 </string>
+                <string name="enterCode" >Bitte Probandencode eingeben:
+                </string>
+                <string name="fourthChar" >4. Ziffer: Dritter Buchstabe der aktuellen Straße (Hauptwohnsitz)
+                </string>
+                <string name="thirdChar" >3. Ziffer: Dritter Buchstabe des Geburtsortes
+                </string>
                 <string name="btnMon" >Mo
                 </string>
                 <string name="hello_world" >Hello world!
@@ -79,11 +85,15 @@
                 </string>
                 <string name="chill_time_left" >0:15
                 </string>
+                <string name="secondChar" >2. Ziffer: Dritter Buchstabe des Vornamens des Vaters
+                </string>
                 <string name="btnTue" >Di
                 </string>
-                <string name="btn20" >20:00
+                <string name="fifthChar" >5. Ziffer: Dritter Buchstabe des Geburtsmonats
                 </string>
                 <string name="btnWed" >Mi
+                </string>
+                <string name="btn20" >20:00
                 </string>
                 <string name="btn21" >21:00
                 </string>
@@ -101,13 +111,13 @@
                 </string>
                 <string name="btn15" >15:00
                 </string>
-                <string name="btn10" >10:00
-                </string>
                 <string name="btn18" >18:00
                 </string>
-                <string name="btnSat" >Sa
+                <string name="btn10" >10:00
                 </string>
                 <string name="btn17" >17:00
+                </string>
+                <string name="btnSat" >Sa
                 </string>
                 <string name="btn12" >12:00
                 </string>
@@ -118,6 +128,8 @@
                 <string name="app_name" >SWE-App
                 </string>
                 <string name="btnThu" >Do
+                </string>
+                <string name="firstChar" >1. Ziffer: Dritter Buchstabe des Vornamens der Mutter
                 </string>
                 <string name="btnOK" >OK
                 </string>
