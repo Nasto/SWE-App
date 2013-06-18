@@ -11,6 +11,7 @@
             </intent-filter>
         </activity>
         <activity android:label="timeSelector" android:name="yoloswagswag.swe_app.timeSelector"/>
+        <activity android:label="chillActivity" android:name="yoloswagswag.swe_app.chillActivity"/>
     </application>
 
 </manifest>

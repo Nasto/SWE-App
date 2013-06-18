@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class timeSelector extends Activity {
 
@@ -94,10 +96,15 @@ public class timeSelector extends Activity {
                     day = 1-i;
                 }
 
+                //Log.v("test", String.valueOf(i));
                 /* default selected timeslots */
+                timeSelector[i][0] = new GregorianCalendar();
                 timeSelector[i][0].set(year, month, day+i, 9, 0);
+                timeSelector[i][1] = new GregorianCalendar();
                 timeSelector[i][1].set(year, month, day+i, 13, 0);
+                timeSelector[i][2] = new GregorianCalendar();
                 timeSelector[i][2].set(year, month, day+i, 16, 0);
+                timeSelector[i][3] = new GregorianCalendar();
                 timeSelector[i][3].set(year, month, day+i, 20, 0);
             }
 
@@ -108,8 +115,8 @@ public class timeSelector extends Activity {
     }
 
     public void okTime(View view){
-        /* store chosen times in settings */
 
+        /* store chosen times in settings */
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
 
@@ -215,22 +222,22 @@ public class timeSelector extends Activity {
         int i=0;
         if (buttonIndex<4){
             for (;i<=3;i++)
-                timeButtons[i].setBackgroundColor(0xff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0x99cc00);
+                timeButtons[i].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
         }else if (buttonIndex<7){
             for (;i<=2;i++)
-                timeButtons[i+4].setBackgroundColor(0xff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0x99cc00);
+                timeButtons[i+4].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
 
         }else if (buttonIndex<11){
             for (;i<=3;i++)
-                timeButtons[i+7].setBackgroundColor(0xff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0x99cc00);
+                timeButtons[i+7].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
 
         }else {
             for (;i<=3;i++)
-                timeButtons[i+11].setBackgroundColor(0xff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0x99cc00);
+                timeButtons[i+11].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
 
         }
 
