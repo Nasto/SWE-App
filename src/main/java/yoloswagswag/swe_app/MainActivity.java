@@ -30,16 +30,18 @@ public class MainActivity extends Activity {
     /* Called when the user clicks the Send button */
     public void okMessage(View view) {
 
-        Intent intent = new Intent(this, timeSelector.class);
 
         TextView error =(TextView) findViewById(R.id.errorMessage);
 
         String code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
-            startActivity(intent);
+            /* create code+".csv" file */
+            startActivity(new Intent(this, timeSelector.class));
             error.setText("");
+            finish();
         }
+
         else error.setText("Ihr Code muss aus 5 Zeichen bestehen!");
 
     }

@@ -123,8 +123,11 @@ public class timeSelector extends Activity {
                 editor.putInt("day"+i+"slot"+j, timeSelector[i][j].get(Calendar.HOUR_OF_DAY));
             }
         }
-
-        startActivity(new Intent(this, chillActivity.class));
+        
+        if (!this.isTaskRoot())
+            this.finish();
+        else
+            startActivity(new Intent(this, chillActivity.class));
     }
 
     public void daySelect(View view){
@@ -239,5 +242,14 @@ public class timeSelector extends Activity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+    // Wenn es nicht der knoten ist, soll es geschlossen werden
+        if (!this.isTaskRoot())
+            this.finish();
+        else
+            super.onBackPressed();
     }
 }
