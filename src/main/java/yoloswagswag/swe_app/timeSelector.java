@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,14 +40,28 @@ public class timeSelector extends Activity {
         int day = currentDate.get(Calendar.DAY_OF_MONTH);
 
 
-        File f= new File("/data/data/"+getPackageName()+"/shared_prefs/"+PREFS_NAME+".xml");
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        timeButtons[0] = (Button) findViewById(R.id.button09);
+        timeButtons[1] = (Button) findViewById(R.id.button10);
+        timeButtons[2] = (Button) findViewById(R.id.button11);
+        timeButtons[3] = (Button) findViewById(R.id.button12);
+        timeButtons[4] = (Button) findViewById(R.id.button13);
+        timeButtons[5] = (Button) findViewById(R.id.button14);
+        timeButtons[6] = (Button) findViewById(R.id.button15);
+        timeButtons[7] = (Button) findViewById(R.id.button16);
+        timeButtons[8] = (Button) findViewById(R.id.button17);
+        timeButtons[9] = (Button) findViewById(R.id.button18);
+        timeButtons[10] = (Button) findViewById(R.id.button19);
+        timeButtons[11] = (Button) findViewById(R.id.button20);
+        timeButtons[12] = (Button) findViewById(R.id.button21);
+        timeButtons[13] = (Button) findViewById(R.id.button22);
+        timeButtons[14] = (Button) findViewById(R.id.button23);
 
         /* check for previous settings */
-        if(f.exists()){
-            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        if(settings.contains("day6slot2")){
             for (int i=0;i<timeSelector.length;i++){
                 for (int j=0;j<timeSelector[i].length;j++){
-
 
                     /* avoid invalid values */
                     if ((day+i) > currentDate.getActualMaximum(Calendar.DAY_OF_MONTH)){
@@ -59,6 +74,7 @@ public class timeSelector extends Activity {
                         day = 1-i;
                     }
 
+                    timeSelector[i][j] = new GregorianCalendar();
                     timeSelector[i][j].set(year, month, day+i, settings.getInt("day"+i+"slot"+j,0),0);
                 }
             }
@@ -66,21 +82,6 @@ public class timeSelector extends Activity {
         }else{
 
             /* not previous settings -> initialise timeButtons */
-            timeButtons[0] = (Button) findViewById(R.id.button09);
-            timeButtons[1] = (Button) findViewById(R.id.button10);
-            timeButtons[2] = (Button) findViewById(R.id.button11);
-            timeButtons[3] = (Button) findViewById(R.id.button12);
-            timeButtons[4] = (Button) findViewById(R.id.button13);
-            timeButtons[5] = (Button) findViewById(R.id.button14);
-            timeButtons[6] = (Button) findViewById(R.id.button15);
-            timeButtons[7] = (Button) findViewById(R.id.button16);
-            timeButtons[8] = (Button) findViewById(R.id.button17);
-            timeButtons[9] = (Button) findViewById(R.id.button18);
-            timeButtons[10] = (Button) findViewById(R.id.button19);
-            timeButtons[11] = (Button) findViewById(R.id.button20);
-            timeButtons[12] = (Button) findViewById(R.id.button21);
-            timeButtons[13] = (Button) findViewById(R.id.button22);
-            timeButtons[14] = (Button) findViewById(R.id.button23);
 
             /* initialise */
             for(int i=0;i < timeSelector.length; i++){

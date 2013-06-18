@@ -39,7 +39,12 @@
     <string name="secondChar">2. Ziffer: Dritter Buchstabe des Vornamens des Vaters</string>
     <string name="thirdChar">3. Ziffer: Dritter Buchstabe des Geburtsortes</string>
     <string name="timeSelectText">Bitte vier verschiedene Uhrzeiten auswählen. Pro Zeile kann nur eine Uhrzeit ausgewählt werden!</string>
+    <string name="umfrage1">Wieviele Kontakte hatten Sie seit dem letzten Ausfüllen der Umfrage?</string>
+    <string name="umfrage2">Schätzen Sie außerdem die Dauer der Kontakte.</string>
+    <string name="umfrageFirst">Mit wie vielen Interaktionspartnern hatten Sie heute schon Kontakt? Schätzen Sie bitte zusätzlich die Gesamtdauer der Kontakte ein.</string>
     <string name="umfrage_time">17:00Uhr</string>
+    <string name="userinput_kontakt"></string>
+    <string name="userinput_zeit"></string>
 
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

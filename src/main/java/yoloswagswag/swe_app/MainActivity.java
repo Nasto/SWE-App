@@ -39,9 +39,11 @@ public class MainActivity extends Activity {
         f= new File(Environment.getExternalStorageDirectory(), code+".csv");
 
         if (f.exists() && code!=null){
-            startActivity(new Intent(this, timeSelector.class));
+            startActivity(new Intent(this, chillActivity.class));
             finish();
         }
+        settings.edit().clear();
+        settings.edit().commit();
     }
 
 
@@ -54,7 +56,6 @@ public class MainActivity extends Activity {
 
     /* Called when the user clicks the Send button */
     public void okMessage(View view) {
-
 
         TextView error =(TextView) findViewById(R.id.errorMessage);
 
