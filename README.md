@@ -6,25 +6,25 @@ ToDo:
 
 <dt>Probandencodeseite:</dt>	
 * Probandencode .csv speichern
-* keine Rückkehr auf diese Bildschirm möglich
+* ~~keine RÃ¼ckkehr auf diese Bildschirm mÃ¶glich~~
 
 <dt>Zeiteinstellungen:</dt>    
 * Admin Button zum resetten
 * Zeiten speichern in .csv
-* Zeiten für ganze Woche so übernehmen
-* farbliche Unterlegung der ausgewählten Tage/Zeiten
-* für gesamte Woche übernehmen vom jetzigen ausgewählten/eingestellten Tag
-* OK-Button Übergang Chill-Screen
-* Einschränkung dass er Zeiten nicht in Vergangenheit umsetzen darf
+* ~~farbliche Unterlegung der ausgewÃ¤hlten Tage/Zeiten~~
+* ~~ausgewÃ¤hlte Zeiten in SharedPreferences speicher und laden~~
+* fÃ¼r gesamte Woche Ã¼bernehmen vom jetzigen ausgewÃ¤hlten/eingestellten Tag
+* ~~OK-Button Ã¼bergang Chill-Screen~~
+* EinschrÃ¤nkung dass er Zeiten nicht in Vergangenheit umsetzen darf
 
 <dt>Umfragebildschirm:</dt>	
 * bei der 1. Abfrage anderer Text(da keine vorherige Beantwortung der Umfrage)
 * Anzeige der Zeit(letzter beantworteter Umfrageaufruf)
-* Kontaktzeit überprüfen mit Zeitraum der letzten Umfrage (ggf. Fehlermeldung)
-* OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)
-* Abbrechen-Button Übergang Chill-Screen (Abbruch Werte in .csv speichern)
-* falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Übergang in neuen Zeitraum
+* Kontaktzeit Ã¼berprÃ¼fen mit Zeitraum der letzten Umfrage (ggf. Fehlermeldung)
+* OK-Button Ãœbergang Chill-Screen (Eingaben in .csv speichern)
+* Abbrechen-Button Ãœbergang Chill-Screen (Abbruch Werte in .csv speichern)
+* falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Ãœbergang in neuen Zeitraum
 
 <dt>Chill-Screen:</dt>		
-* Nächste Erinnerungszeit anzeigen + Zeit bis dahin
-* Zeitplanändern-Button Übergang Zeiteinstellungen
+* NÃ¤chste Erinnerungszeit anzeigen + Zeit bis dahin
+* ~~Zeitplan Ã¤ndern-Button Ãœbergang Zeiteinstellungen~~
