@@ -25,8 +25,10 @@ public class MainActivity extends Activity {
     String code;
     public static final String USER_CODE_STORAGE ="userCodeStorage";
     public static final String START_TIME_STORAGE = "startCodeStorage";
+    public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     SharedPreferences userCodeSett;
     SharedPreferences startTimeSett;
+    SharedPreferences selectedTimesSett;
     File f;
     Calendar startTime;
 
@@ -36,6 +38,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
+        selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE,0);
 
         code = userCodeSett.getString("userCode",null);
 
@@ -47,6 +50,8 @@ public class MainActivity extends Activity {
         }
         userCodeSett.edit().clear();
         userCodeSett.edit().commit();
+        selectedTimesSett.edit().clear();
+        selectedTimesSett.edit().commit();
 
         startTime = new GregorianCalendar();
 
@@ -61,31 +66,32 @@ public class MainActivity extends Activity {
     }
 
     /* Called when the user clicks the Send button */
-    public void okMessage(View view) {
+    public void okMain(View view) {
 
-        TextView error =(TextView) findViewById(R.id.errorMessage);
+        TextView error = (TextView) findViewById(R.id.errorMessage);
 
         code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
-            SharedPreferences.Editor codeEditor = userCodeSett.edit();
+            startTimeSett = getSharedPreferences(START_TIME_STORAGE, 0);
             SharedPreferences.Editor timeEditor = startTimeSett.edit();
 
-            codeEditor.putString("userCode", code);
-            codeEditor.commit();
+            userCodeSett.edit().putString("userCode", code);
             timeEditor.putInt("startYear", startTime.get(Calendar.YEAR));
             timeEditor.putInt("startMonth", startTime.get(Calendar.MONTH));
             timeEditor.putInt("startDay", startTime.get(Calendar.DAY_OF_MONTH));
             timeEditor.putInt("startHour", startTime.get(Calendar.HOUR_OF_DAY));
-            timeEditor.commit();
+
 
             try {
+                (new File(Environment.getExternalStorageDirectory(), code+".csv")).createNewFile();
                 OutputStreamWriter out = new OutputStreamWriter(openFileOutput(code+".csv",0));
                 out.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY)+":"+startTime.get(Calendar.MINUTE)+
                         " "+startTime.get(Calendar.DAY_OF_MONTH)+"."+startTime.get(Calendar.MONTH)+"."+startTime.get(Calendar.YEAR)+"./n");
                 out.close();
+                Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();;
             } catch (IOException e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
             }
 
             startActivity(new Intent(this, timeSelector.class));

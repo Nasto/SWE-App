@@ -14,15 +14,15 @@ import java.util.GregorianCalendar;
 public class pollActivity extends Activity {
 
     public static final String LAST_TIME_STORAGE = "lastTimeStorage";
-    SharedPreferences lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
+    SharedPreferences lastTimeSett;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poll_screen);
 
+        lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
 
-
-        TextView pollText = (TextView) findViewById(R.string.pollText);
+        TextView pollText = (TextView) findViewById(R.id.pollText);
 
         if(lastTimeSett.contains("last")){
             pollText.setText(getString(R.id.pollText)+lastTimeSett.getString("last","XX:XX")+"Uhr?");

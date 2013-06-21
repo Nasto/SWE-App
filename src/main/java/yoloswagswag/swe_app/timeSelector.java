@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -39,6 +41,7 @@ public class timeSelector extends Activity {
 
         SharedPreferences selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE, 0);
 
+
         timeButtons[0] = (Button) findViewById(R.id.button09);
         timeButtons[1] = (Button) findViewById(R.id.button10);
         timeButtons[2] = (Button) findViewById(R.id.button11);
@@ -55,8 +58,10 @@ public class timeSelector extends Activity {
         timeButtons[13] = (Button) findViewById(R.id.button22);
         timeButtons[14] = (Button) findViewById(R.id.button23);
 
+
         /* check for previous userCodeSett */
-        if(selectedTimesSett.contains("day6slot2")){
+        if(selectedTimesSett.contains("day6slot3")){
+            Log.v("SharedPrefs","true");
             for (int i=0;i<timeSelector.length;i++){
                 for (int j=0;j<timeSelector[i].length;j++){
 
@@ -78,6 +83,7 @@ public class timeSelector extends Activity {
 
         }else{
 
+            Log.v("SharedPrefs","false");
             /* not previous userCodeSett -> initialise timeButtons */
 
             /* initialise */
@@ -96,7 +102,7 @@ public class timeSelector extends Activity {
                 //Log.v("test", String.valueOf(i));
                 /* default selected timeslots */
                 timeSelector[i][0] = new GregorianCalendar();
-                timeSelector[i][0].set(year, month, day+i, 9, 0);
+                timeSelector[i][0].set(year, month, day, 9, 0);
                 timeSelector[i][1] = new GregorianCalendar();
                 timeSelector[i][1].set(year, month, day+i, 13, 0);
                 timeSelector[i][2] = new GregorianCalendar();
@@ -215,26 +221,37 @@ public class timeSelector extends Activity {
     public void setButtonColors(){
         /* fetch the button to be colored green and pass it's index to colorButton */
         colorButton(timeSelector[selectedDay-1][0].get(Calendar.HOUR_OF_DAY)-9);
+        Log.v("line1", "success");
         colorButton(timeSelector[selectedDay-1][1].get(Calendar.HOUR_OF_DAY)-9);
+        Log.v("line2", "success");
         colorButton(timeSelector[selectedDay-1][2].get(Calendar.HOUR_OF_DAY)-9);
+        Log.v("line3", "success");
         colorButton(timeSelector[selectedDay-1][3].get(Calendar.HOUR_OF_DAY)-9);
+        Log.v("line4", "success");
     }
 
     public void colorButton(int buttonIndex){
         /* color all buttons in the line red and the selected one green */
         int i=0;
         if (buttonIndex<4){
-            for (;i<=3;i++)
-                timeButtons[i].setBackgroundColor((i!=buttonIndex) ? 0xffff4444 : 0xff99cc00);
+            for (;i<=3;i++){
+                Log.v("i", Integer.toString(i));
+                timeButtons[i].setBackgroundColor(0xffff4444);
+            }
+            Log.v("buttonIndex", Integer.toString(buttonIndex));
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
         }else if (buttonIndex<7){
             for (;i<=2;i++)
-                timeButtons[i+4].setBackgroundColor((i!=buttonIndex) ? 0xffff4444 : 0xff99cc00);
+                timeButtons[i+4].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
         }else if (buttonIndex<11){
             for (;i<=3;i++)
-                timeButtons[i+7].setBackgroundColor((i!=buttonIndex) ? 0xffff4444 : 0xff99cc00);
+                timeButtons[i+7].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
         }else {
             for (;i<=3;i++)
-                timeButtons[i+11].setBackgroundColor((i!=buttonIndex) ? 0xffff4444 : 0xff99cc00);
+                timeButtons[i+11].setBackgroundColor(0xffff4444);
+            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
         }
 
     }

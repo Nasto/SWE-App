@@ -57,9 +57,9 @@
                 </string>
                 <string name="btnTue" >Di
                 </string>
-                <string name="btn20" >20:00
-                </string>
                 <string name="btnWed" >Mi
+                </string>
+                <string name="btn20" >20:00
                 </string>
                 <string name="btn21" >21:00
                 </string>
@@ -125,11 +125,11 @@
                 </string>
                 <string name="pollTimeText" >Schätzen Sie außerdem die Dauer der Kontakte!
                 </string>
-                <string name="btnChangeTimes" >Zeitplan ändern
+                <string name="btnOK" >OK
                 </string>
                 <string name="umfrage_time" >17:00Uhr
                 </string>
-                <string name="btnOK" >OK
+                <string name="btnChangeTimes" >Zeitplan ändern
                 </string>
             </file>
             <file
