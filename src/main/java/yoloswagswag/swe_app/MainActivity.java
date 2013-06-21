@@ -34,17 +34,19 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
-
-        code = userCodeSett.getString("userCode",null);
 
         f= new File(Environment.getExternalStorageDirectory(), code+".csv");
+
+        userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
+        code = userCodeSett.getString("userCode",null);
 
         if (f.exists() && code!=null){
             startActivity(new Intent(this, chillActivity.class));
             finish();
         }
+
+        setContentView(R.layout.activity_main);
+
         userCodeSett.edit().clear();
         userCodeSett.edit().commit();
 
