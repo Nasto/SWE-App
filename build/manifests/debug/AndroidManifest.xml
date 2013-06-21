@@ -14,6 +14,7 @@
         </activity>
         <activity android:label="timeSelector" android:name="yoloswagswag.swe_app.timeSelector"/>
         <activity android:label="chillActivity" android:name="yoloswagswag.swe_app.chillActivity"/>
+        <activity android:name="yoloswagswag.swe_app.pollActivity"/>
     </application>
 
 </manifest>

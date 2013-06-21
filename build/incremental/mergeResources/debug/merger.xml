@@ -4,10 +4,20 @@
     <dataSet config="main" >
         <source path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res" >
             <file
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-sw720dp-land/dimens.xml"
-                qualifiers="sw720dp-land" >
-                <dimen name="activity_horizontal_margin" >128dp
-                </dimen>
+                name="main"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/menu/main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-v11/styles.xml"
+                qualifiers="v11" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo.Light" >
+
+                    <!-- API 11 theme customizations can go here. -->
+                </style>
             </file>
             <file
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-v14/styles.xml"
@@ -21,15 +31,107 @@
                 </style>
             </file>
             <file
-                name="ic_launcher"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-hdpi/ic_launcher.png"
-                qualifiers="hdpi"
-                type="drawable" />
-            <file
-                name="main"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/menu/main.xml"
-                qualifiers=""
-                type="menu" />
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values/strings.xml"
+                qualifiers="" >
+                <string name="userinput_zeit" ></string>
+                <string name="btnSun" >So
+                </string>
+                <string name="nextRemind" >Die nächste Erinnerung erfolgt um:
+                </string>
+                <string name="fourthChar" >4. Ziffer: Dritter Buchstabe der aktuellen Straße (Hauptwohnsitz)
+                </string>
+                <string name="umfrageFirst" >Mit wie vielen Interaktionspartnern hatten Sie heute schon Kontakt? Schätzen Sie bitte zusätzlich die Gesamtdauer der Kontakte ein.
+                </string>
+                <string name="timeLeft" >Verbleibende Zeit:
+                </string>
+                <string name="umfrage2" >Schätzen Sie außerdem die Dauer der Kontakte.
+                </string>
+                <string name="umfrage1" >Wieviele Kontakte hatten Sie seit dem letzten Ausfüllen der Umfrage?
+                </string>
+                <string name="btnMon" >Mo
+                </string>
+                <string name="userinput_kontakt" ></string>
+                <string name="btnFri" >Fr
+                </string>
+                <string name="chill_time_left" >0:15
+                </string>
+                <string name="btnTue" >Di
+                </string>
+                <string name="btnWed" >Mi
+                </string>
+                <string name="btn20" >20:00
+                </string>
+                <string name="btn21" >21:00
+                </string>
+                <string name="btn22" >22:00
+                </string>
+                <string name="btn23" >23:00
+                </string>
+                <string name="btn14" >14:00
+                </string>
+                <string name="btn13" >13:00
+                </string>
+                <string name="btn16" >16:00
+                </string>
+                <string name="btn15" >15:00
+                </string>
+                <string name="btn18" >18:00
+                </string>
+                <string name="btn17" >17:00
+                </string>
+                <string name="btn19" >19:00
+                </string>
+                <string name="btnThu" >Do
+                </string>
+                <string name="action_settings" >Settings
+                </string>
+                <string name="enterCode" >Bitte Probandencode eingeben:
+                </string>
+                <string name="pollFirstText" >Mit wie vielen Interaktionspartnern hatten Sie heute schon Kontakt?
+                </string>
+                <string name="pollTime" >Dauer
+                </string>
+                <string name="thirdChar" >3. Ziffer: Dritter Buchstabe des Geburtsortes
+                </string>
+                <string name="btnCancel" >Abbrechen
+                </string>
+                <string name="hello_world" >Hello world!
+                </string>
+                <string name="timeSelectText" >Bitte vier verschiedene Uhrzeiten auswählen. Pro Zeile kann nur eine Uhrzeit ausgewählt werden!
+                </string>
+                <string name="chill_time" >17:00Uhr
+                </string>
+                <string name="secondChar" >2. Ziffer: Dritter Buchstabe des Vornamens des Vaters
+                </string>
+                <string name="fifthChar" >5. Ziffer: Dritter Buchstabe des Geburtsmonats
+                </string>
+                <string name="pollText" >Wieviele Kontakte hatten Sie seit dem letzten Ausfüllen der Umfrage um 
+                </string>
+                <string name="btn09" >09:00
+                </string>
+                <string name="btn10" >10:00
+                </string>
+                <string name="btnSat" >Sa
+                </string>
+                <string name="btn12" >12:00
+                </string>
+                <string name="btn11" >11:00
+                </string>
+                <string name="app_name" >Umfrage
+                </string>
+                <string name="firstChar" >1. Ziffer: Dritter Buchstabe des Vornamens der Mutter
+                </string>
+                <string name="pollNumber" >Anzahl
+                </string>
+                <string name="pollTimeText" >Schätzen Sie außerdem die Dauer der Kontakte!
+                </string>
+                <string name="btnOK" >OK
+                </string>
+                <string name="umfrage_time" >17:00Uhr
+                </string>
+                <string name="btnChangeTimes" >Zeitplan ändern
+                </string>
+            </file>
             <file
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values/dimens.xml"
                 qualifiers="" >
@@ -61,128 +163,16 @@
                 </style>
             </file>
             <file
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values/strings.xml"
-                qualifiers="" >
-                <string name="userinput_zeit" ></string>
-                <string name="btnSun" >So
-                </string>
-                <string name="action_settings" >Settings
-                </string>
-                <string name="enterCode" >Bitte Probandencode eingeben:
-                </string>
-                <string name="umfrageFirst" >Mit wie vielen Interaktionspartnern hatten Sie heute schon Kontakt? Schätzen Sie bitte zusätzlich die Gesamtdauer der Kontakte ein.
-                </string>
-                <string name="fourthChar" >4. Ziffer: Dritter Buchstabe der aktuellen Straße (Hauptwohnsitz)
-                </string>
-                <string name="umfrage2" >Schätzen Sie außerdem die Dauer der Kontakte.
-                </string>
-                <string name="umfrage1" >Wieviele Kontakte hatten Sie seit dem letzten Ausfüllen der Umfrage?
-                </string>
-                <string name="thirdChar" >3. Ziffer: Dritter Buchstabe des Geburtsortes
-                </string>
-                <string name="userinput_kontakt" ></string>
-                <string name="btnMon" >Mo
-                </string>
-                <string name="hello_world" >Hello world!
-                </string>
-                <string name="timeSelectText" >Bitte vier verschiedene Uhrzeiten auswählen. Pro Zeile kann nur eine Uhrzeit ausgewählt werden!
-                </string>
-                <string name="btnFri" >Fr
-                </string>
-                <string name="chill_time" >17:00Uhr
-                </string>
-                <string name="secondChar" >2. Ziffer: Dritter Buchstabe des Vornamens des Vaters
-                </string>
-                <string name="chill_time_left" >0:15
-                </string>
-                <string name="btnTue" >Di
-                </string>
-                <string name="fifthChar" >5. Ziffer: Dritter Buchstabe des Geburtsmonats
-                </string>
-                <string name="btnWed" >Mi
-                </string>
-                <string name="btn20" >20:00
-                </string>
-                <string name="btn21" >21:00
-                </string>
-                <string name="btn22" >22:00
-                </string>
-                <string name="btn23" >23:00
-                </string>
-                <string name="btn09" >09:00
-                </string>
-                <string name="btn14" >14:00
-                </string>
-                <string name="btn13" >13:00
-                </string>
-                <string name="btn16" >16:00
-                </string>
-                <string name="btn15" >15:00
-                </string>
-                <string name="btn10" >10:00
-                </string>
-                <string name="btn18" >18:00
-                </string>
-                <string name="btnSat" >Sa
-                </string>
-                <string name="btn17" >17:00
-                </string>
-                <string name="btn12" >12:00
-                </string>
-                <string name="btnThu" >Do
-                </string>
-                <string name="app_name" >SWE-App
-                </string>
-                <string name="btn11" >11:00
-                </string>
-                <string name="btn19" >19:00
-                </string>
-                <string name="firstChar" >1. Ziffer: Dritter Buchstabe des Vornamens der Mutter
-                </string>
-                <string name="umfrage_time" >17:00Uhr
-                </string>
-                <string name="btnOK" >OK
-                </string>
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-sw720dp-land/dimens.xml"
+                qualifiers="sw720dp-land" >
+                <dimen name="activity_horizontal_margin" >128dp
+                </dimen>
             </file>
-            <file
-                name="time_selector"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/time_selector.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="umfragebildschirm"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/umfragebildschirm.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="chill_screen"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/chill_screen.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="activity_main"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/activity_main.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-sw600dp/dimens.xml"
-                qualifiers="sw600dp" />
             <file
                 name="ic_launcher"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-xxhdpi/ic_launcher.png"
-                qualifiers="xxhdpi"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi"
                 type="drawable" />
-            <file
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-v11/styles.xml"
-                qualifiers="v11" >
-
-                <style
-                    name="AppBaseTheme"
-                    parent="android:Theme.Holo.Light" >
-
-                    <!-- API 11 theme customizations can go here. -->
-                </style>
-            </file>
             <file
                 name="ic_launcher"
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-mdpi/ic_launcher.png"
@@ -193,6 +183,44 @@
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi"
                 type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="activity_main"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/activity_main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="umfragebildschirm"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/umfragebildschirm.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="Umfragebildschirm"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/Umfragebildschirm.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="time_selector"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/time_selector.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="chill_screen"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/chill_screen.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values-sw600dp/dimens.xml"
+                qualifiers="sw600dp" />
+            <file
+                name="poll_screen"
+                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/poll_screen.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/rs/debug" />
     </dataSet>
