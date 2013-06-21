@@ -11,7 +11,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/timeSelectText"
-            android:id="@+id/textView"
+            android:id="@+id/selectTimes"
             android:textSize="23dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"

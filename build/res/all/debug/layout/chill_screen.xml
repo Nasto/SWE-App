@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Die nächste Erinnerung erfolgt um:"
-            android:id="@+id/textView"
+            android:id="@+id/nextRemind"
             android:layout_marginTop="40dp"
             android:textSize="25dp"
             android:layout_alignParentTop="true"
@@ -22,10 +22,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Verbleibende Zeit:"
-            android:id="@+id/textView2"
+            android:id="@+id/timeLeft"
             android:textSize="25dp"
-            android:layout_below="@+id/textView3"
-            android:layout_alignLeft="@+id/textView3"
+            android:layout_below="@+id/nextTime"
+            android:layout_alignLeft="@+id/nextTime"
             android:layout_marginTop="50dp"/>
 
     <Button
@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:text="Zeitplan ändern"
             android:onClick="timeChange"
-            android:id="@+id/button"
+            android:id="@+id/changeTimesButton"
             android:textSize="30dp"
-            android:layout_below="@+id/textView4"
+            android:layout_below="@+id/nextTimeLeft"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"/>
 
@@ -43,10 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/chill_time"
-            android:id="@+id/textView3"
-            android:layout_below="@+id/textView"
-            android:layout_alignLeft="@+id/textView"
+            android:id="@+id/nextTime"
+            android:layout_below="@+id/nextRemind"
+            android:layout_alignLeft="@+id/nextRemind"
             android:layout_marginTop="30dp"
             android:textSize="36dp"/>
 
@@ -55,10 +54,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/chill_time_left"
-            android:id="@+id/textView4"
+            android:id="@+id/nextTimeLeft"
             android:layout_marginTop="30dp"
             android:textSize="35dp"
-            android:layout_below="@+id/textView2"
-            android:layout_alignLeft="@+id/textView2"/>
+            android:layout_below="@+id/timeLeft"
+            android:layout_alignLeft="@+id/timeLeft"/>
 
 </RelativeLayout>
