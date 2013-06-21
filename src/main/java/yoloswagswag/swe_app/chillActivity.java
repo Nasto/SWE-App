@@ -26,5 +26,11 @@ public class chillActivity extends Activity {
 
     public void timeChange(View view){
         startActivity(new Intent(this, timeSelector.class));
+        finish();
+    }
+
+    public void simulate(View view){
+        startActivity(new Intent(this, pollActivity.class));
+        finish();
     }
 }

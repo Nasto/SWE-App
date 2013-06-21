@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/pollText"
+            android:textSize="20dp"
+            android:text="@string/pollText"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="15dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/pollTime"
+            android:textSize="20dp"
+            android:text="@string/pollTimeText"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/pollNumber"
+            android:id="@+id/pollNr"
+            android:textSize="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/pollNrEdit"
+            android:layout_marginTop="10dp"
+            android:textSize="30dp"
+            android:digits="1234567890"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/pollTime"
+            android:id="@+id/pollDuration"
+            android:textSize="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/pollTimeEdit"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="40dp">
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnOK"
+                android:id="@+id/buttonOK"
+                android:layout_marginBottom="40dp"
+                android:textSize="30sp"
+                android:layout_gravity="left"
+                android:width="140dp"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnCancel"
+                android:id="@+id/buttonCancel"
+                android:textSize="30sp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="40dp"/>
+    </LinearLayout>
+
+</LinearLayout>

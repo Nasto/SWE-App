@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -9,55 +9,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Die nächste Erinnerung erfolgt um:"
+            android:text="@string/nextRemind"
             android:id="@+id/nextRemind"
             android:layout_marginTop="40dp"
             android:textSize="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="30dp"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Verbleibende Zeit:"
-            android:id="@+id/timeLeft"
-            android:textSize="25dp"
-            android:layout_below="@+id/nextTime"
-            android:layout_alignLeft="@+id/nextTime"
-            android:layout_marginTop="50dp"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Zeitplan ändern"
-            android:onClick="timeChange"
-            android:id="@+id/changeTimesButton"
-            android:textSize="30dp"
-            android:layout_below="@+id/nextTimeLeft"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"/>
+            android:layout_marginLeft="15dp"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/nextTime"
-            android:layout_below="@+id/nextRemind"
-            android:layout_alignLeft="@+id/nextRemind"
-            android:layout_marginTop="30dp"
-            android:textSize="36dp"/>
+            android:layout_marginTop="10dp"
+            android:textSize="36dp"
+            android:layout_gravity="center_horizontal"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/chill_time_left"
-            android:id="@+id/nextTimeLeft"
-            android:layout_marginTop="30dp"
-            android:textSize="35dp"
-            android:layout_below="@+id/timeLeft"
-            android:layout_alignLeft="@+id/timeLeft"/>
+            android:text="@string/timeLeft"
+            android:id="@+id/timeLeft"
+            android:textSize="25dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="15dp"/>
 
-</RelativeLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/nextTimeLeft"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:layout_gravity="center_horizontal"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnChangeTimes"
+            android:onClick="timeChange"
+            android:id="@+id/changeTimesButton"
+            android:textSize="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center_horizontal"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button"
+            android:onClick="simulate"
+            android:layout_gravity="center"/>
+
+</LinearLayout>
