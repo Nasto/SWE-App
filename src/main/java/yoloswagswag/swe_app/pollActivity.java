@@ -31,10 +31,13 @@ public class pollActivity extends Activity {
         currentTime = new GregorianCalendar();
         int i =0;
         int slotHour = selectedTimesStorage.getInt("day"+(currentTime.get(Calendar.DAY_OF_WEEK)-1)+"slot"+i, 0);
-        while(slotHour<=currentTime.get(Calendar.HOUR_OF_DAY))
+        while(slotHour<=currentTime.get(Calendar.HOUR_OF_DAY)&&i<4)
         {
             i++;
             slotHour=selectedTimesStorage.getInt("day"+(currentTime.get(Calendar.DAY_OF_WEEK)-1)+"slot"+i, 0);
+        }
+        if(i==4){
+            slotHour=selectedTimesStorage.getInt("day"+(currentTime.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
         }
         nextAlarmTime = new GregorianCalendar();
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
