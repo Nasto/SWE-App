@@ -25,6 +25,7 @@ ToDo:
 * Alarmton
 * erster Alarm muss initialisiert werden
 * Wecker update bei Zeitenänderung
+* Zeit seit letztem Klingeln, nicht seit letztem Ausfüllen
 
 <dt>Chill-Screen:</dt>		
 * ~~Nächste Erinnerungszeit anzeigen + Zeit bis dahin~~
