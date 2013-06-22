@@ -9,7 +9,7 @@ ToDo:
 * ~~keine Rückkehr auf diese Bildschirm möglich~~
 
 <dt>Zeiteinstellungen:</dt>
-* Admin Button zum resetten/Reset, falls keine CSV vorhanden
+* ~~Reset, falls keine CSV vorhanden~~
 * ~~farbliche Unterlegung der ausgewählten Tage/Zeiten~~
 * ~~ausgewählte Zeiten in SharedPreferences speicher und laden~~
 * ~~OK-Button übergang Chill-Screen~~
@@ -18,10 +18,13 @@ ToDo:
 <dt>Umfragebildschirm:</dt>	
 * ~~bei der 1. Abfrage anderer Text(da keine vorherige Beantwortung der Umfrage)~~
 * ~~Anzeige der Zeit(letzter beantworteter Umfrageaufruf)~~
-* Kontaktzeit überprüfen mit Zeitraum der letzten Umfrage (ggf. Fehlermeldung)
-* OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)
-* Abbrechen-Button Übergang Chill-Screen (Abbruch Werte in .csv speichern)
+* ~~Kontaktzeit überprüfen mit Zeitraum der letzten Umfrage (ggf. Fehlermeldung)~~
+* ~~OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)~~
+* ~~Abbrechen-Button Schließen der App (Abbruch Werte in .csv speichern)~~
 * falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Übergang in neuen Zeitraum
+* Alarmton
+* erster Alarm muss initialisiert werden
+* Wecker update bei Zeitenänderung
 
 <dt>Chill-Screen:</dt>		
 * ~~Nächste Erinnerungszeit anzeigen + Zeit bis dahin~~
