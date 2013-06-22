@@ -1,9 +1,9 @@
 # incremental data. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
-1371804321000 10476 0d264f9c24c52de576f5fb5a37ca9c5999452481 /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/time_selector.xml
+1371906191000 10636 22bbda619b3fa0c5f1f293ee9b59ad4d45182be0 /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/time_selector.xml
 1371798808000 7721 39b0f5a0570da92f471225402ad0ea6de30bf2be /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/drawable-hdpi/ic_launcher.png
-1371804927000 3729 286c9c0526b4fc72416fd3b874760ab2328973cf /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/activity_main.xml
+1371907422000 3701 367360cd574f2baa12fe6a32185f9bb50938359c /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/activity_main.xml
 1371798808000 12329 a8301606e15d4b6dccdd775cc273cfc51a552645 /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/drawable-xhdpi/ic_launcher.png
 1371804321000 2941 eafbce6a6042df4e56a446d7a84b53f95c48ac46 /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/values/values.xml
 1371804321000 2444 ba6079e3683cc4914fe2a6e1722ae06122732fa4 /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/chill_screen.xml
@@ -13,4 +13,4 @@
 1371798808000 217 f02e000d05a079992d2dba18039216c1e6b8784f /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/values-v14/values.xml
 1371798808000 244 045ff451db7cd8e61285502b8c9bbf7405f2078d /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/menu/main.xml
 1371798808000 203 19aedb7cdc3386344e36087b035a0a6b2b91d4cd /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/values-v11/values.xml
-1371823560000 3690 3177a3b93131c5db58be4479a0206b137b3d59f1 /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/poll_screen.xml
+1371887359000 3695 55f283971a239568967c20c639003b12f86c9b4f /home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/build/res/all/debug/layout/poll_screen.xml

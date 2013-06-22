@@ -3,12 +3,13 @@ package yoloswagswag.swe_app;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -16,9 +17,10 @@ public class timeSelector extends Activity {
 
     /* this is where the selected times are stored */
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
+    public static final String PAST_ALARMS_STORAGE = "pastAlarmsStorage";
 
     /* this is where the selected timeslots are stored */
-    Calendar[][] timeSelector = new Calendar[7][4];
+    int[][] timeSelector = new int[7][4];
 
     /* today */
     Calendar currentDate = new GregorianCalendar();
@@ -27,20 +29,13 @@ public class timeSelector extends Activity {
     int selectedDay = Calendar.MONDAY;
 
     Button[] timeButtons = new Button[15];
+    Button[] weekButtons = new Button[7];
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_selector);
 
-
-        /* need these for initialisation of timeSelector */
-        int year = currentDate.get(Calendar.YEAR);
-        int month = currentDate.get(Calendar.MONTH);
-        int day = currentDate.get(Calendar.DAY_OF_MONTH);
-
-
         SharedPreferences selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE, 0);
-
 
         timeButtons[0] = (Button) findViewById(R.id.button09);
         timeButtons[1] = (Button) findViewById(R.id.button10);
@@ -58,63 +53,44 @@ public class timeSelector extends Activity {
         timeButtons[13] = (Button) findViewById(R.id.button22);
         timeButtons[14] = (Button) findViewById(R.id.button23);
 
+        weekButtons[0] = (Button) findViewById(R.id.buttonSun);
+        weekButtons[1] = (Button) findViewById(R.id.buttonMon);
+        weekButtons[2] = (Button) findViewById(R.id.buttonTue);
+        weekButtons[3] = (Button) findViewById(R.id.buttonWed);
+        weekButtons[4] = (Button) findViewById(R.id.buttonThu);
+        weekButtons[5] = (Button) findViewById(R.id.buttonFri);
+        weekButtons[6] = (Button) findViewById(R.id.buttonSat);
+
 
         /* check for previous userCodeSett */
         if(selectedTimesSett.contains("day6slot3")){
             Log.v("SharedPrefs","true");
             for (int i=0;i<timeSelector.length;i++){
                 for (int j=0;j<timeSelector[i].length;j++){
-
-                    /* avoid invalid values */
-                    if ((day+i) > currentDate.getActualMaximum(Calendar.DAY_OF_MONTH)){
-                        if (month > currentDate.getActualMaximum(Calendar.MONTH)-1){
-                            month = 1;
-                            year++;
-                        } else {
-                            month++;
-                        }
-                        day = 1-i;
-                    }
-
-                    timeSelector[i][j] = new GregorianCalendar();
-                    timeSelector[i][j].set(year, month, day+i, selectedTimesSett.getInt("day"+i+"slot"+j,0),0);
+                    timeSelector[i][j] = selectedTimesSett.getInt("day"+i+"slot"+j,0);
                 }
             }
-
         }else{
-
             Log.v("SharedPrefs","false");
-            /* not previous userCodeSett -> initialise timeButtons */
+            /* no previous userCodeSett -> initialise timeButtons */
 
             /* initialise */
             for(int i=0;i < timeSelector.length; i++){
-                /* avoid invalid values */
-                if ((day+i) > currentDate.getActualMaximum(Calendar.DAY_OF_MONTH)){
-                    if (month > currentDate.getActualMaximum(Calendar.MONTH)-1){
-                        month = 1;
-                        year++;
-                    } else {
-                        month++;
-                    }
-                    day = 1-i;
-                }
 
                 //Log.v("test", String.valueOf(i));
                 /* default selected timeslots */
-                timeSelector[i][0] = new GregorianCalendar();
-                timeSelector[i][0].set(year, month, day, 9, 0);
-                timeSelector[i][1] = new GregorianCalendar();
-                timeSelector[i][1].set(year, month, day+i, 13, 0);
-                timeSelector[i][2] = new GregorianCalendar();
-                timeSelector[i][2].set(year, month, day+i, 16, 0);
-                timeSelector[i][3] = new GregorianCalendar();
-                timeSelector[i][3].set(year, month, day+i, 20, 0);
+                timeSelector[i][0] = 9;
+                timeSelector[i][1] = 13;
+                timeSelector[i][2] = 16;
+                timeSelector[i][3] = 20;
             }
 
         }
 
         /* and apply the selected times to the view */
         setButtonColors();
+
+        disableButtons();
     }
 
     public void okTime(View view){
@@ -124,7 +100,7 @@ public class timeSelector extends Activity {
         SharedPreferences.Editor editor = settings.edit();
         for(int i=0;i<timeSelector.length;i++){
             for (int j=0;j<timeSelector[i].length;j++){
-                editor.putInt("day"+i+"slot"+j, timeSelector[i][j].get(Calendar.HOUR_OF_DAY));
+                editor.putInt("day"+i+"slot"+j, timeSelector[i][j]);
             }
         }
         editor.commit();
@@ -139,6 +115,10 @@ public class timeSelector extends Activity {
     }
 
     public void daySelect(View view){
+
+        TextView date = (TextView) findViewById(R.id.chosenDate);
+        Calendar textDay = (Calendar) currentDate.clone();
+
         switch(view.getId()){
             case R.id.buttonMon:
                 selectedDay = Calendar.MONDAY;
@@ -161,99 +141,137 @@ public class timeSelector extends Activity {
             case R.id.buttonSun:
                 selectedDay = Calendar.SUNDAY;
                 break;
+            default:
+                break;
         }
-        /* show selected times for selected day */
+
+        while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
+            textDay.roll(Calendar.DAY_OF_MONTH,true);
+        }
+        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+textDay.get(Calendar.MONTH)+".");
+
+        /* update the shown buttons */
         setButtonColors();
+        disableButtons();
     }
 
     public void timeSelect(View view){
 
         switch(view.getId()){
             case R.id.button09:
-                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 9);
+                timeSelector[selectedDay-1][0] = 9;
                 break;
             case R.id.button10:
-                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 10);
+                timeSelector[selectedDay-1][0] = 10;
                 break;
             case R.id.button11:
-                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 11);
+                timeSelector[selectedDay-1][0] = 11;
                 break;
             case R.id.button12:
-                timeSelector[selectedDay-1][0].set(Calendar.HOUR_OF_DAY, 12);
+                timeSelector[selectedDay-1][0] = 12;
                 break;
             case R.id.button13:
-                timeSelector[selectedDay-1][1].set(Calendar.HOUR_OF_DAY, 13);
+                timeSelector[selectedDay-1][1] = 13;
                 break;
             case R.id.button14:
-                timeSelector[selectedDay-1][1].set(Calendar.HOUR_OF_DAY, 14);
+                timeSelector[selectedDay-1][1] = 14;
                 break;
             case R.id.button15:
-                timeSelector[selectedDay-1][1].set(Calendar.HOUR_OF_DAY, 15);
+                timeSelector[selectedDay-1][1] = 15;
                 break;
             case R.id.button16:
-                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 16);
+                timeSelector[selectedDay-1][2] = 16;
                 break;
             case R.id.button17:
-                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 17);
+                timeSelector[selectedDay-1][2] = 17;
                 break;
             case R.id.button18:
-                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 18);
+                timeSelector[selectedDay-1][2] = 18;
                 break;
             case R.id.button19:
-                timeSelector[selectedDay-1][2].set(Calendar.HOUR_OF_DAY, 19);
+                timeSelector[selectedDay-1][2] = 19;
                 break;
             case R.id.button20:
-                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 20);
+                timeSelector[selectedDay-1][3] = 20;
                 break;
             case R.id.button21:
-                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 21);
+                timeSelector[selectedDay-1][3] = 21;
                 break;
             case R.id.button22:
-                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 22);
+                timeSelector[selectedDay-1][3] = 22;
                 break;
             case R.id.button23:
-                timeSelector[selectedDay-1][3].set(Calendar.HOUR_OF_DAY, 23);
+                timeSelector[selectedDay-1][3] = 23;
+                break;
+            default:
                 break;
         }
         setButtonColors();
     }
 
     public void setButtonColors(){
-        /* fetch the button to be colored green and pass it's index to colorButton */
-        colorButton(timeSelector[selectedDay-1][0].get(Calendar.HOUR_OF_DAY)-9);
-        Log.v("line1", "success");
-        colorButton(timeSelector[selectedDay-1][1].get(Calendar.HOUR_OF_DAY)-9);
-        Log.v("line2", "success");
-        colorButton(timeSelector[selectedDay-1][2].get(Calendar.HOUR_OF_DAY)-9);
-        Log.v("line3", "success");
-        colorButton(timeSelector[selectedDay-1][3].get(Calendar.HOUR_OF_DAY)-9);
-        Log.v("line4", "success");
+        /* color all buttons in the line red and the selected one green */
+        for (Button timeButton : timeButtons){
+            timeButton.setBackgroundColor(0xffff4444);
+        }
+        timeButtons[timeSelector[selectedDay - 1][0] - 9].setBackgroundColor(0xff99cc00);
+        timeButtons[timeSelector[selectedDay - 1][1] - 9].setBackgroundColor(0xff99cc00);
+        timeButtons[timeSelector[selectedDay - 1][2] - 9].setBackgroundColor(0xff99cc00);
+        timeButtons[timeSelector[selectedDay - 1][3] - 9].setBackgroundColor(0xff99cc00);
+
+        for (Button weekButton : weekButtons) {
+            weekButton.setBackgroundColor(0xffff4444);
+        }
+        weekButtons[selectedDay-1].setBackgroundColor(0xff99cc00);
     }
 
-    public void colorButton(int buttonIndex){
-        /* color all buttons in the line red and the selected one green */
-        int i=0;
-        if (buttonIndex<4){
-            for (;i<=3;i++){
-                Log.v("i", Integer.toString(i));
-                timeButtons[i].setBackgroundColor(0xffff4444);
-            }
-            Log.v("buttonIndex", Integer.toString(buttonIndex));
-            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
-        }else if (buttonIndex<7){
-            for (;i<=2;i++)
-                timeButtons[i+4].setBackgroundColor(0xffff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
-        }else if (buttonIndex<11){
-            for (;i<=3;i++)
-                timeButtons[i+7].setBackgroundColor(0xffff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
-        }else {
-            for (;i<=3;i++)
-                timeButtons[i+11].setBackgroundColor(0xffff4444);
-            timeButtons[buttonIndex].setBackgroundColor(0xff99cc00);
-        }
+    private void disableButtons() {
 
+        SharedPreferences pastAlarmsSett = getSharedPreferences(PAST_ALARMS_STORAGE,0);
+
+        /* disable Buttons */
+        if(selectedDay == currentDate.get(Calendar.DAY_OF_WEEK)){
+            /* disable times in the past */
+            for(int i=0;i<timeButtons.length;i++){
+                if (i+9 <= currentDate.get(Calendar.HOUR_OF_DAY)){
+                    timeButtons[i].setTextColor(Color.GRAY);
+                    timeButtons[i].setClickable(false);
+                } else {
+                    timeButtons[i].setTextColor(Color.WHITE);
+                    timeButtons[i].setClickable(true);
+                }
+            }
+
+            /* disable timeslots which already have triggered an alarm */
+            if (pastAlarmsSett.getInt("day",0)==currentDate.get(Calendar.DAY_OF_WEEK)){
+                int disableSlots=0;
+                switch (pastAlarmsSett.getInt("slot",0)){
+                    case 1:
+                        disableSlots=3;
+                        break;
+                    case 2:
+                        disableSlots=6;
+                        break;
+                    case 3:
+                        disableSlots=10;
+                        break;
+                    case 4:
+                        disableSlots=14;
+                        break;
+                    default:
+                        break;
+                }
+                for (int i=0;i<=disableSlots;i++){
+                    timeButtons[i].setTextColor(Color.GRAY);
+                    timeButtons[i].setClickable(false);
+                }
+            }
+        } else {
+            for (Button timeButton : timeButtons) {
+                timeButton.setTextColor(Color.WHITE);
+                timeButton.setClickable(true);
+            }
+        }
     }
 
     @Override
