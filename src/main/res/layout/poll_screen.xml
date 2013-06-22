@@ -55,20 +55,34 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/pollTime"
             android:id="@+id/pollDuration"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"/>
 
-    <EditText
+    <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/pollTimeEdit"
-            android:textSize="25sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
+            android:layout_height="wrap_content">
+
+        <EditText
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/pollTimeEdit"
+                android:textSize="25sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+        <EditText
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/pollMinuteEdit"
+                android:layout_marginTop="5dp"
+                android:textIsSelectable="false"
+                android:textSize="25sp"
+                android:layout_weight="0.09"/>
+    </LinearLayout>
 
     <LinearLayout
             android:layout_width="fill_parent"
