@@ -1,35 +1,30 @@
 package yoloswagswag.swe_app;
 
 
-
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Activity;
 import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.lang.String;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.io.FileWriter;
 
 public class MainActivity extends Activity {
 
     String code;
     public static final String USER_CODE_STORAGE ="userCodeStorage";
-    public static final String START_TIME_STORAGE = "startTimeStorage";
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     SharedPreferences userCodeSett;
-    SharedPreferences startTimeSett;
     SharedPreferences selectedTimesSett;
     File f;
     Calendar startTime;
@@ -48,24 +43,20 @@ public class MainActivity extends Activity {
 
         userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
 
-        Log.v("filename", f.toString());
-        Log.v("file",""+f.exists());
-        if (code!=null)
-            Log.v("code", code);
-
         if (f.exists() && code!=null){
             startActivity(new Intent(this, chillActivity.class));
             finish();
+        } else {
+
+            setContentView(R.layout.activity_main);
+
+            userCodeSett.edit().clear();
+            userCodeSett.edit().commit();
+            selectedTimesSett.edit().clear();
+            selectedTimesSett.edit().commit();
+
+            startTime = new GregorianCalendar();
         }
-
-        setContentView(R.layout.activity_main);
-
-        userCodeSett.edit().clear();
-        userCodeSett.edit().commit();
-        selectedTimesSett.edit().clear();
-        selectedTimesSett.edit().commit();
-
-        startTime = new GregorianCalendar();
 
     }
 
@@ -85,16 +76,12 @@ public class MainActivity extends Activity {
         code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
-            startTimeSett = getSharedPreferences(START_TIME_STORAGE, 0);
-            SharedPreferences.Editor timeEditor = startTimeSett.edit();
-            userCodeSett = getSharedPreferences(USER_CODE_STORAGE,0);
+            userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
             SharedPreferences.Editor codeEditor = userCodeSett.edit();
 
             codeEditor.putString("userCode", code);
-            timeEditor.putInt("startYear", startTime.get(Calendar.YEAR));
-            timeEditor.putInt("startMonth", startTime.get(Calendar.MONTH));
-            timeEditor.putInt("startDay", startTime.get(Calendar.DAY_OF_MONTH));
-            timeEditor.putInt("startHour", startTime.get(Calendar.HOUR_OF_DAY));
+            codeEditor.commit();
+
 
 
             try {
@@ -107,7 +94,7 @@ public class MainActivity extends Activity {
                 writer.write("Code;Datum;Alarmzeit;Antwortzeit;Abbruch;Kontakte;Stunden;Minuten\n");
                 writer.flush();
                 writer.close();
-                Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();;
+                Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();
             } catch (IOException e){
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
             }
@@ -116,7 +103,8 @@ public class MainActivity extends Activity {
             finish();
         }
 
-        else error.setText("Ihr Code muss aus 5 Zeichen bestehen!");
+        else
+            Toast.makeText(this, "Ihr Code muss aus 5 Zeichen bestehen!", Toast.LENGTH_LONG).show();
 
     }
     

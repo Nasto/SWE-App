@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class chillActivity extends Activity {
                     for (int i = 0; i<=3; i++) {
                         if (hour < (selectedTimesSett.getInt("day"+day+"slot"+i,0))){
                             slot = selectedTimesSett.getInt("day"+day+"slot"+i,0);
+                            break;
                         }
                     }
                     if (slot != 0){
@@ -62,13 +64,12 @@ public class chillActivity extends Activity {
                     }
 
 
-                    now.setToNow();
                     if (slot == 0){
                         nextTimeLeft.setText((now.minute==0) ? (selectedTimesSett.getInt("day"+day+"slot"+slot,0))+(Math.abs(0-now.hour))+":00"
-                                : selectedTimesSett.getInt("day"+day+"slot"+slot,0)+(Math.abs(24-now.hour-1))+":"+(60-now.minute));
+                                : selectedTimesSett.getInt("day"+day+"slot"+slot,0)+(Math.abs(24-now.hour-1))+":"+((60-now.minute<10)? "0"+(60-now.minute) : 60-now.minute));
                     }else{
                         nextTimeLeft.setText(((now.minute==0)?(slot-now.hour)+":00"
-                                :(slot-now.hour+1)+":"+(60-now.minute)));
+                                :(slot-(now.hour+1))+":"+((60-now.minute<10)? "0"+(60-now.minute) : 60-now.minute)));
                     }
                     h.postDelayed(this,30000);
                     // update every second
