@@ -18,20 +18,25 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="yoloswagswag.swe_app.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
                 android:name=".timeSelector"
-                android:label="timeSelector"/>
+                android:label="timeSelector"
+                android:screenOrientation="portrait"/>
         <activity
                 android:name=".chillActivity"
-                android:label="chillActivity"/>
-        <activity android:name=".pollActivity"/>
+                android:label="chillActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".pollActivity"
+                android:label="pollActivity"
+                android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

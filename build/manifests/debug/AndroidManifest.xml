@@ -5,16 +5,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application android:allowBackup="true" android:debuggable="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme">
-        <activity android:label="@string/app_name" android:name="yoloswagswag.swe_app.MainActivity">
+        <activity android:label="@string/app_name" android:name="yoloswagswag.swe_app.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:label="timeSelector" android:name="yoloswagswag.swe_app.timeSelector"/>
-        <activity android:label="chillActivity" android:name="yoloswagswag.swe_app.chillActivity"/>
-        <activity android:name="yoloswagswag.swe_app.pollActivity"/>
+        <activity android:label="timeSelector" android:name="yoloswagswag.swe_app.timeSelector" android:screenOrientation="portrait"/>
+        <activity android:label="chillActivity" android:name="yoloswagswag.swe_app.chillActivity" android:screenOrientation="portrait"/>
+        <activity android:label="pollActivity" android:name="yoloswagswag.swe_app.pollActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp">
+            >
 
         <Button
                 style="?android:attr/buttonStyleSmall"
@@ -90,11 +90,17 @@
                 android:textSize="15sp"/>
     </LinearLayout>
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chosenDate"
+            android:textSize="20sp"/>
+
     <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
         <TableRow
                 android:layout_width="wrap_content"
