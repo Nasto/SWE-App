@@ -49,7 +49,7 @@ public class pollActivity extends Activity {
         pollText.setText(" "+bla);
 
         if(lastTimeSett.contains("last")){
-            pollText.setText(getString(R.id.pollText)+lastTimeSett.getString("last","XX:XX")+"Uhr?");
+            pollText.setText(getString(R.id.pollText)+lastTimeSett.getString("last","XX:XX")+" Uhr?");
         } /*else {
             pollText.setText(getString(R.string.pollFirstText));
         }*/

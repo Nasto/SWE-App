@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.content.Intent;
@@ -43,10 +44,14 @@ public class MainActivity extends Activity {
 
         code = userCodeSett.getString("userCode",null);
 
-        f= new File(Environment.getExternalStorageDirectory(), code+".csv");
+        f= new File(new File(Environment.getExternalStorageDirectory(),"PsychoTest"), code+".csv");
 
         userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
-        code = userCodeSett.getString("userCode",null);
+
+        Log.v("filename", f.toString());
+        Log.v("file",""+f.exists());
+        if (code!=null)
+            Log.v("code", code);
 
         if (f.exists() && code!=null){
             startActivity(new Intent(this, chillActivity.class));
@@ -82,8 +87,10 @@ public class MainActivity extends Activity {
         if(code.length()==5){
             startTimeSett = getSharedPreferences(START_TIME_STORAGE, 0);
             SharedPreferences.Editor timeEditor = startTimeSett.edit();
+            userCodeSett = getSharedPreferences(USER_CODE_STORAGE,0);
+            SharedPreferences.Editor codeEditor = userCodeSett.edit();
 
-            userCodeSett.edit().putString("userCode", code);
+            codeEditor.putString("userCode", code);
             timeEditor.putInt("startYear", startTime.get(Calendar.YEAR));
             timeEditor.putInt("startMonth", startTime.get(Calendar.MONTH));
             timeEditor.putInt("startDay", startTime.get(Calendar.DAY_OF_MONTH));
