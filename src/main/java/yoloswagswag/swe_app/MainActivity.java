@@ -96,16 +96,10 @@ public class MainActivity extends Activity {
                 File f = new File(dir, code+".csv");
                 f.createNewFile();
 
-
-                //OutputStreamWriter out = new OutputStreamWriter(openFileOutput(code+".csv",0));
                 FileWriter writer = new FileWriter(f ,true);
-                writer.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY) + ":" + startTime.get(Calendar.MINUTE) +
-                        " " + startTime.get(Calendar.DAY_OF_MONTH) + "." + startTime.get(Calendar.MONTH) + "." + startTime.get(Calendar.YEAR) + ".\n");
+                writer.write("Code;Datum;Alarmzeit;Antwortzeit;Abbruch;Kontakte;Stunden;Minuten\n");
                 writer.flush();
                 writer.close();
-                /*out.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY)+":"+startTime.get(Calendar.MINUTE)+
-                        " "+startTime.get(Calendar.DAY_OF_MONTH)+"."+startTime.get(Calendar.MONTH)+"."+startTime.get(Calendar.YEAR)+"./n");
-                out.close();*/
                 Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();;
             } catch (IOException e){
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
