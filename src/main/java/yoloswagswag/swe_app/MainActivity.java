@@ -19,6 +19,7 @@ import java.io.OutputStreamWriter;
 import java.lang.String;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.io.FileWriter;
 
 public class MainActivity extends Activity {
 
@@ -90,13 +91,18 @@ public class MainActivity extends Activity {
 
 
             try {
-                File dir = new File(Environment.getExternalStorageDirectory(),"dir");
+                File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
                 dir.mkdirs();
 
-                OutputStreamWriter out = new OutputStreamWriter(openFileOutput(code+".csv",0));
-                out.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY)+":"+startTime.get(Calendar.MINUTE)+
+                //OutputStreamWriter out = new OutputStreamWriter(openFileOutput(code+".csv",0));
+                FileWriter writer = new FileWriter(code+".csv" ,true);
+                writer.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY)+":"+startTime.get(Calendar.MINUTE)+
                         " "+startTime.get(Calendar.DAY_OF_MONTH)+"."+startTime.get(Calendar.MONTH)+"."+startTime.get(Calendar.YEAR)+"./n");
-                out.close();
+                writer.flush();
+                writer.close();
+                /*out.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY)+":"+startTime.get(Calendar.MINUTE)+
+                        " "+startTime.get(Calendar.DAY_OF_MONTH)+"."+startTime.get(Calendar.MONTH)+"."+startTime.get(Calendar.YEAR)+"./n");
+                out.close();*/
                 Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();;
             } catch (IOException e){
                 Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
