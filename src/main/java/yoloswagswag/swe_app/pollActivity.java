@@ -26,9 +26,9 @@ public class pollActivity extends Activity {
 
         if(lastTimeSett.contains("last")){
             pollText.setText(getString(R.id.pollText)+lastTimeSett.getString("last","XX:XX")+"Uhr?");
-        } else {
+        } /*else {
             pollText.setText(getString(R.string.pollFirstText));
-        }
+        }*/
     }
 
     public void okPoll(View view){
