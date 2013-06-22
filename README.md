@@ -10,12 +10,12 @@ ToDo:
 
 <dt>Zeiteinstellungen:</dt>
 * Admin Button zum resetten/Reset, falls keine CSV vorhanden
-* Zeiten speichern in .csv
+* ~~Zeiten speichern in .csv~~
 * ~~farbliche Unterlegung der ausgewählten Tage/Zeiten~~
 * ~~ausgewählte Zeiten in SharedPreferences speicher und laden~~
-* für gesamte Woche übernehmen vom jetzigen ausgewählten/eingestellten Tag
+* ~~für gesamte Woche übernehmen vom jetzigen ausgewählten/eingestellten Tag~~
 * ~~OK-Button übergang Chill-Screen~~
-* Keine Zeiten in der Vergangenheit wählbar
+* ~~Keine Zeiten in der Vergangenheit wählbar~~
 
 <dt>Umfragebildschirm:</dt>	
 * ~~bei der 1. Abfrage anderer Text(da keine vorherige Beantwortung der Umfrage)~~
@@ -24,6 +24,9 @@ ToDo:
 * OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)
 * Abbrechen-Button Übergang Chill-Screen (Abbruch Werte in .csv speichern)
 * falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Übergang in neuen Zeitraum
+* Alarmton
+* erster Alarm muss initialisiert werden
+* Wecker update bei Zeitenänderung
 
 <dt>Chill-Screen:</dt>		
 * Nächste Erinnerungszeit anzeigen + Zeit bis dahin
