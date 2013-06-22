@@ -117,6 +117,7 @@ public class timeSelector extends Activity {
     public void daySelect(View view){
 
         TextView date = (TextView) findViewById(R.id.chosenDate);
+        Calendar textDay = (Calendar) currentDate.clone();
 
         switch(view.getId()){
             case R.id.buttonMon:
@@ -143,6 +144,11 @@ public class timeSelector extends Activity {
             default:
                 break;
         }
+
+        while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
+            textDay.roll(Calendar.DAY_OF_MONTH,true);
+        }
+        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+textDay.get(Calendar.MONTH)+".");
 
         /* update the shown buttons */
         setButtonColors();

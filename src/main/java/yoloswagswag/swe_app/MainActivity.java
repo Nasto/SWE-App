@@ -92,7 +92,6 @@ public class MainActivity extends Activity {
             try {
                 File dir = new File(Environment.getExternalStorageDirectory(),"dir");
                 dir.mkdirs();
-                File file = new File(dir,code+".csv");
 
                 OutputStreamWriter out = new OutputStreamWriter(openFileOutput(code+".csv",0));
                 out.write("Starting Record for user " + code + " on " + startTime.get(Calendar.HOUR_OF_DAY)+":"+startTime.get(Calendar.MINUTE)+
