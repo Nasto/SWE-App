@@ -62,26 +62,22 @@ public class timeSelector extends Activity {
         weekButtons[6] = (Button) findViewById(R.id.buttonSat);
 
 
-        Calendar textDay = (Calendar) currentDate.clone();
-        TextView date = (TextView) findViewById(R.id.chosenDate);
-
-        while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
-            textDay.roll(Calendar.DAY_OF_MONTH,true);
-        }
-        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+textDay.get(Calendar.MONTH)+".");
-
         /* check for previous userCodeSett */
         if(selectedTimesSett.contains("day6slot3")){
+            Log.v("SharedPrefs","true");
             for (int i=0;i<timeSelector.length;i++){
                 for (int j=0;j<timeSelector[i].length;j++){
                     timeSelector[i][j] = selectedTimesSett.getInt("day"+i+"slot"+j,0);
                 }
             }
         }else{
+            Log.v("SharedPrefs","false");
             /* no previous userCodeSett -> initialise timeButtons */
 
             /* initialise */
             for(int i=0;i < timeSelector.length; i++){
+
+                //Log.v("test", String.valueOf(i));
                 /* default selected timeslots */
                 timeSelector[i][0] = 9;
                 timeSelector[i][1] = 13;
@@ -119,6 +115,8 @@ public class timeSelector extends Activity {
     }
 
     public void daySelect(View view){
+
+        TextView date = (TextView) findViewById(R.id.chosenDate);
         Calendar textDay = (Calendar) currentDate.clone();
 
         switch(view.getId()){
@@ -146,9 +144,6 @@ public class timeSelector extends Activity {
             default:
                 break;
         }
-
-
-        TextView date = (TextView) findViewById(R.id.chosenDate);
 
         while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
             textDay.roll(Calendar.DAY_OF_MONTH,true);
@@ -250,17 +245,17 @@ public class timeSelector extends Activity {
             /* disable timeslots which already have triggered an alarm */
             if (pastAlarmsSett.getInt("day",0)==currentDate.get(Calendar.DAY_OF_WEEK)){
                 int disableSlots=0;
-                switch (pastAlarmsSett.getInt("slot",4)){
-                    case 0:
+                switch (pastAlarmsSett.getInt("slot",0)){
+                    case 1:
                         disableSlots=3;
                         break;
-                    case 1:
+                    case 2:
                         disableSlots=6;
                         break;
-                    case 2:
+                    case 3:
                         disableSlots=10;
                         break;
-                    case 3:
+                    case 4:
                         disableSlots=14;
                         break;
                     default:
