@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 
     String code;
     public static final String USER_CODE_STORAGE ="userCodeStorage";
-    public static final String START_TIME_STORAGE = "startCodeStorage";
+    public static final String START_TIME_STORAGE = "startTimeStorage";
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     SharedPreferences userCodeSett;
     SharedPreferences startTimeSett;
