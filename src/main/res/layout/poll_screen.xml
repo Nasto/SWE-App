@@ -86,6 +86,7 @@
                 android:id="@+id/buttonOK"
                 android:textSize="30sp"
                 android:width="100dp"
+                android:onClick="okPoll"
                 />
 
         <Button
