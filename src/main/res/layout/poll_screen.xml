@@ -47,7 +47,8 @@
             android:digits="1234567890"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:singleLine="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -55,13 +56,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/pollTime"
             android:id="@+id/pollDuration"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"/>
 
-    <EditText
+    <LinearLayout
             android:layout_width="wrap_content"
-<<<<<<< HEAD
             android:layout_height="wrap_content">
 
         <EditText
@@ -89,16 +89,6 @@
                 android:inputType="time"
                 android:digits="1234567890"/>
     </LinearLayout>
-=======
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:ems="10"
-            android:id="@+id/pollTimeEdit"
-            android:textSize="25sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
->>>>>>> 62a73a0d16913fc359bbca5149f4c10be7776037
 
     <LinearLayout
             android:layout_width="fill_parent"
@@ -117,7 +107,7 @@
                 android:textSize="30sp"
                 android:width="100dp"
                 android:onClick="okPoll"
-                />
+                android:singleLine="false"/>
 
         <Button
                 android:layout_width="wrap_content"
@@ -126,7 +116,8 @@
                 android:id="@+id/buttonCancel"
                 android:textSize="30sp"
                 android:layout_gravity="right"
-                />
+                android:singleLine="false"
+                android:onClick="cancelPoll"/>
     </LinearLayout>
 
 </LinearLayout>
