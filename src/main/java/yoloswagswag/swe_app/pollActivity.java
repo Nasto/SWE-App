@@ -36,6 +36,8 @@ public class pollActivity extends Activity {
     private int nextSlot;
     private MediaPlayer mediaPlayer;
     private CountDownTimer soundTimer;
+    private CountDownTimer cancelTimer;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,20 @@ public class pollActivity extends Activity {
             pollText.setText(getString(R.string.pollText)+ ((currentDay.get(Calendar.HOUR)<lastHour) ? " gestrigen " : " ")
                 + "Signal um "+lastTimeSett.getInt("lastHour",0)+":"+lastTimeSett.getInt("lastMinute",0)+" Uhr Kontakt?");
         }
+
+        long timeDifference=nextAlarmTime.getTimeInMillis()-currentDay.getTimeInMillis()-60000;
+        cancelTimer = new CountDownTimer(timeDifference,timeDifference) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                findViewById(R.id.buttonCancel).performClick();
+            }
+        };
+        cancelTimer.start();
     }
 
     private void playSound(Context context, Uri alert){
@@ -150,6 +166,7 @@ public class pollActivity extends Activity {
     public void okPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
+        stopTimer(cancelTimer);
         SharedPreferences.Editor editor = lastTimeSett.edit();
         EditText numberText = (EditText) findViewById(R.id.pollNrEdit);
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
@@ -197,6 +214,9 @@ public class pollActivity extends Activity {
     }
 
     public void cancelPoll(View view){
+        stopTimer(soundTimer);
+        stopSound(mediaPlayer);
+        stopTimer(cancelTimer);
         SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
         String code = userCodeStorage.getString("userCode",null);
         try {
