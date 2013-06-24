@@ -22,10 +22,10 @@ ToDo:
 * ~~OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)~~
 * ~~Abbrechen-Button Schließen der App (Abbruch Werte in .csv speichern)~~
 * falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Übergang in neuen Zeitraum
-* Alarmton
-* erster Alarm muss initialisiert werden
-* Wecker update bei Zeitenänderung
-* Zeit seit letztem Klingeln, nicht seit letztem Ausfüllen
+* ~~Alarmton
+* ~~erster Alarm muss initialisiert werden
+* ~~Wecker update bei Zeitenänderung (noch zu testen)
+* ~~Zeit seit letztem Klingeln, nicht seit letztem Ausfüllen (vermutlich, bedarf Test)
 
 <dt>Chill-Screen:</dt>		
 * ~~Nächste Erinnerungszeit anzeigen + Zeit bis dahin~~

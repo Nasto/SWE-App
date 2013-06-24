@@ -59,6 +59,7 @@ public class pollActivity extends Activity {
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
         nextAlarmTime.set(Calendar.MINUTE, 0);
         nextAlarmTime.set(Calendar.SECOND, 0);
+        startNewAlarm(nextAlarmTime);
 
         TextView pollText = (TextView) findViewById(R.id.pollText);
 
@@ -138,6 +139,13 @@ public class pollActivity extends Activity {
         }
     }
 
+    public void startNewAlarm(Calendar alarmTime){
+        Intent intent = new Intent(this, pollActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
+    }
 
     public void okPoll(View view){
         stopTimer(soundTimer);
@@ -153,16 +161,16 @@ public class pollActivity extends Activity {
         if(inputTime < minDiff){
             SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
             String code = userCodeStorage.getString("userCode",null);
-            currentDay = new GregorianCalendar();
+            Calendar updatedCurrentDay = new GregorianCalendar();
 
             try {
                 File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
                 File f = new File(dir, code+".csv");
                 FileWriter writer = new FileWriter(f ,true);
                 writer.write(code+";"
-                        +currentDay.get(Calendar.DAY_OF_MONTH)+"."+currentDay.get(Calendar.MONTH)+"."+currentDay.get(Calendar.YEAR)+";"
-                        +selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+(nextSlot -1), 0)+":00;"
-                        +currentDay.get(Calendar.HOUR_OF_DAY)+":"+((currentDay.get(Calendar.MINUTE)<10) ? "0"+currentDay.get(Calendar.MINUTE) : currentDay.get(Calendar.MINUTE))+";"
+                        +updatedCurrentDay.get(Calendar.DAY_OF_MONTH)+"."+updatedCurrentDay.get(Calendar.MONTH)+"."+updatedCurrentDay.get(Calendar.YEAR)+";"
+                        +selectedTimesStorage.getInt("day"+(updatedCurrentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+(nextSlot -1), 0)+":00;"
+                        +updatedCurrentDay.get(Calendar.HOUR_OF_DAY)+":"+((updatedCurrentDay.get(Calendar.MINUTE)<10) ? "0"+updatedCurrentDay.get(Calendar.MINUTE) : updatedCurrentDay.get(Calendar.MINUTE))+";"
                         +"0;"
                         +numberText.getText()+";"
                         +hourText.getText()+";"
@@ -172,12 +180,6 @@ public class pollActivity extends Activity {
             } catch (IOException e){
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
             }
-
-            Intent intent = new Intent(this, pollActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-            AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(), pendingIntent);
 
             editor.putInt("lastHour", currentDay.get(Calendar.HOUR_OF_DAY));
             editor.putInt("lastMinute", currentDay.get(Calendar.MINUTE));
@@ -210,12 +212,6 @@ public class pollActivity extends Activity {
         } catch (IOException e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-
-        Intent intent = new Intent(this, pollActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(),pendingIntent);
 
         this.finish();
     }

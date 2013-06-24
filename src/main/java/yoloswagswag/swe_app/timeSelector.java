@@ -1,6 +1,9 @@
 package yoloswagswag.swe_app;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -95,6 +98,33 @@ public class timeSelector extends Activity {
         setButtonColors();
 
         disableButtons();
+
+
+    }
+
+    private void updateAlarm(){
+        SharedPreferences selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
+        Calendar currentDay = new GregorianCalendar();
+        int nextSlot =0;
+        int slotHour = selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+        while(slotHour<= currentDay.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
+        {
+            nextSlot++;
+            slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+        }
+        if(nextSlot ==4){
+            slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
+        }
+        Calendar nextAlarmTime = new GregorianCalendar();
+        nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
+        nextAlarmTime.set(Calendar.MINUTE, 0);
+        nextAlarmTime.set(Calendar.SECOND, 0);
+
+        Intent intent = new Intent(this, pollActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(), pendingIntent);
     }
 
     public void okTime(View view){
@@ -108,6 +138,8 @@ public class timeSelector extends Activity {
             }
         }
         editor.commit();
+
+        updateAlarm();
 
         if (!this.isTaskRoot())
             this.finish();
