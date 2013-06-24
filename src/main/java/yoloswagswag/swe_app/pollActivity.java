@@ -6,7 +6,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
@@ -29,11 +34,14 @@ public class pollActivity extends Activity {
     private Calendar nextAlarmTime;
     private Calendar currentDay;
     private int nextSlot;
+    private MediaPlayer mediaPlayer;
+    private CountDownTimer soundTimer;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poll_screen);
 
+        playSound(this, getAlarmUri());
         lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
         selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
         currentDay = new GregorianCalendar();
@@ -67,9 +75,74 @@ public class pollActivity extends Activity {
         }
     }
 
-    public void okPoll(View view){
-        SharedPreferences.Editor editor = lastTimeSett.edit();
+    private void playSound(Context context, Uri alert){
+        mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(context, alert);
+            final AudioManager audioManager = (AudioManager) context
+                    .getSystemService(Context.AUDIO_SERVICE);
+            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                mediaPlayer.setLooping(false);
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+            }
+        } catch (IOException e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+        }
+        soundTimer = new CountDownTimer(10000, 1000) {
+            @Override
+            public void onTick(long l) {
 
+            }
+
+            @Override
+            public void onFinish() {
+                stopSound(mediaPlayer);
+            }
+        };
+        soundTimer.start();
+    }
+
+    private Uri getAlarmUri() {
+        Uri alert = RingtoneManager
+                .getDefaultUri(RingtoneManager.TYPE_ALARM);
+        if (alert == null) {
+            alert = RingtoneManager
+                    .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            if (alert == null) {
+                alert = RingtoneManager
+                        .getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            }
+        }
+        return alert;
+    }
+
+    private void stopTimer(CountDownTimer timer){
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+    }
+    private void stopSound(MediaPlayer player){
+        try {
+            if (player != null) {
+                if (player.isPlaying()) {
+                    player.stop();
+                }
+                player.release();
+                player = null;
+            }
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void okPoll(View view){
+        stopTimer(soundTimer);
+        stopSound(mediaPlayer);
+        SharedPreferences.Editor editor = lastTimeSett.edit();
         EditText numberText = (EditText) findViewById(R.id.pollNrEdit);
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
