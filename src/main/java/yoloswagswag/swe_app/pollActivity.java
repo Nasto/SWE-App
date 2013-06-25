@@ -36,7 +36,6 @@ public class pollActivity extends Activity {
     private int nextSlot;
     private MediaPlayer mediaPlayer;
     private CountDownTimer soundTimer;
-    private CountDownTimer cancelTimer;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -73,23 +72,47 @@ public class pollActivity extends Activity {
         int lastHour = lastTimeSett.getInt("lastHour",25);
 
         if(lastHour != 25){
-            pollText.setText(getString(R.string.pollText)+ ((currentDay.get(Calendar.HOUR)<lastHour) ? " gestrigen " : " ")
-                + "Signal um "+lastTimeSett.getInt("lastHour",0)+":"+lastTimeSett.getInt("lastMinute",0)+" Uhr Kontakt?");
+            pollText.setText(getString(R.string.pollText)+ ((currentDay.get(Calendar.HOUR_OF_DAY)<lastHour) ? " gestrigen " : " ")
+                + "Signal um "+lastTimeSett.getInt("lastHour",0)+":00 Uhr Kontakt?");
         }
 
-        long timeDifference=nextAlarmTime.getTimeInMillis()-currentDay.getTimeInMillis()-60000;
-        cancelTimer = new CountDownTimer(timeDifference,timeDifference) {
-            @Override
-            public void onTick(long l) {
 
-            }
+    }
 
-            @Override
-            public void onFinish() {
-                findViewById(R.id.buttonCancel).performClick();
-            }
-        };
-        cancelTimer.start();
+    private boolean hasLastPollBeenFilled(){
+        //ToDo hat user auf Anfrage reagiert?
+        int lastHour = lastTimeSett.getInt("lastHour",25);
+        int lastSlot = 4;
+        switch (lastHour){
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                lastSlot=0;
+                break;
+            case 13:
+            case 14:
+            case 15:
+                lastSlot=1;
+                break;
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                lastSlot=2;
+                break;
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+                lastSlot=3;
+                break;
+            default:
+                break;
+
+        }
+
+        return false;
     }
 
     private void playSound(Context context, Uri alert){
@@ -163,11 +186,16 @@ public class pollActivity extends Activity {
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
     }
 
+    private void setLastHourAndMinuteToPreferences(){
+        SharedPreferences.Editor editor = lastTimeSett.edit();
+        editor.putInt("lastHour", currentDay.get(Calendar.HOUR_OF_DAY));
+        editor.putInt("lastMinute", currentDay.get(Calendar.MINUTE));
+        editor.commit();
+    }
+
     public void okPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
-        stopTimer(cancelTimer);
-        SharedPreferences.Editor editor = lastTimeSett.edit();
         EditText numberText = (EditText) findViewById(R.id.pollNrEdit);
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
@@ -198,9 +226,7 @@ public class pollActivity extends Activity {
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
             }
 
-            editor.putInt("lastHour", currentDay.get(Calendar.HOUR_OF_DAY));
-            editor.putInt("lastMinute", currentDay.get(Calendar.MINUTE));
-            editor.commit();
+            setLastHourAndMinuteToPreferences();
 
             if (!this.isTaskRoot()){
                 this.finish();
@@ -216,7 +242,6 @@ public class pollActivity extends Activity {
     public void cancelPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
-        stopTimer(cancelTimer);
         SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
         String code = userCodeStorage.getString("userCode",null);
         try {
@@ -232,6 +257,8 @@ public class pollActivity extends Activity {
         } catch (IOException e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
+
+        setLastHourAndMinuteToPreferences();
 
         this.finish();
     }

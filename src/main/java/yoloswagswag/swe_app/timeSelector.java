@@ -185,7 +185,7 @@ public class timeSelector extends Activity {
         while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
             textDay.roll(Calendar.DAY_OF_MONTH,true);
         }
-        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+textDay.get(Calendar.MONTH)+".");
+        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+(textDay.get(Calendar.MONTH)+1)+".");
 
         /* update the shown buttons */
         setButtonColors();
