@@ -178,7 +178,7 @@ public class pollActivity extends Activity {
             File f = new File(dir, code+".csv");
             FileWriter writer = new FileWriter(f ,true);
             writer.write(code+";"
-                    + currentDay.get(Calendar.DAY_OF_MONTH)+"."+ currentDay.get(Calendar.MONTH)+"."+ currentDay.get(Calendar.YEAR)+";"
+                    + currentDay.get(Calendar.DAY_OF_MONTH)+"."+ (currentDay.get(Calendar.MONTH)+1)+"."+ currentDay.get(Calendar.YEAR)+";"
                     + selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+(nextSlot -1), 0)+":00" +
                     ";-77;1;-77;-77;-77\n");
             writer.flush();
@@ -208,7 +208,7 @@ public class pollActivity extends Activity {
                 File f = new File(dir, code+".csv");
                 FileWriter writer = new FileWriter(f ,true);
                 writer.write(code+";"
-                        +updatedCurrentDay.get(Calendar.DAY_OF_MONTH)+"."+updatedCurrentDay.get(Calendar.MONTH)+"."+updatedCurrentDay.get(Calendar.YEAR)+";"
+                        +updatedCurrentDay.get(Calendar.DAY_OF_MONTH)+"."+(updatedCurrentDay.get(Calendar.MONTH)+1)+"."+updatedCurrentDay.get(Calendar.YEAR)+";"
                         +selectedTimesStorage.getInt("day"+(updatedCurrentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+(nextSlot -1), 0)+":00;"
                         +updatedCurrentDay.get(Calendar.HOUR_OF_DAY)+":"+((updatedCurrentDay.get(Calendar.MINUTE)<10) ? "0"+updatedCurrentDay.get(Calendar.MINUTE) : updatedCurrentDay.get(Calendar.MINUTE))+";"
                         +"0;"
