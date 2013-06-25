@@ -54,16 +54,17 @@ public class pollActivity extends Activity {
         while(slotHour<= currentDay.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
         {
             nextSlot++;
+            if(nextSlot ==4){
+                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
+            }else
             slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
         }
-        if(nextSlot ==4){
-            slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
-        }
+        
         nextAlarmTime = new GregorianCalendar();
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
         nextAlarmTime.set(Calendar.MINUTE, 0);
         nextAlarmTime.set(Calendar.SECOND, 0);
-        startNewAlarm(nextAlarmTime);
+        if(nextAlarmTime.compareTo(currentDay)==1) startNewAlarm(nextAlarmTime);
 
 
         writeCancelLineInCsv(); //ToDO testen
@@ -90,7 +91,7 @@ public class pollActivity extends Activity {
         //ToDo testen
         int lastHour = lastTimeSett.getInt("lastHour",25);
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
-        int lastAlarmHour = selectedTimesStorage.getInt("day"+pastAlarmStorage.getInt("day",0)+"slot"+pastAlarmStorage.getInt("slot",0), 0);
+        int lastAlarmHour = selectedTimesStorage.getInt("day"+(pastAlarmStorage.getInt("day",0)-1)+"slot"+pastAlarmStorage.getInt("slot",0), 0);
         if (lastHour==25) return true;
         else return lastHour==lastAlarmHour;
     }
@@ -219,9 +220,10 @@ public class pollActivity extends Activity {
                 FileWriter newWriter = new FileWriter(newF ,true);
                 BufferedReader editReader = new BufferedReader(oldReader);
                 BufferedWriter editWriter = new BufferedWriter(newWriter);
-                String line;
-                while(editReader.readLine()!=null){
+                String line="woop";
+                while(line!=null){
                     Zeilenanzahl++;
+                    line=editReader.readLine();
                 }
                 while(Zeile<=Zeilenanzahl-1){
                     line = editReader.readLine();
@@ -230,8 +232,10 @@ public class pollActivity extends Activity {
                     Zeile++;
                 }
                 editReader.close();
+                editWriter.flush();
                 editWriter.close();
                 oldReader.close();
+                newWriter.flush();
                 newWriter.close();
 
                 oldF.delete();
