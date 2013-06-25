@@ -66,7 +66,7 @@ public class pollActivity extends Activity {
         startNewAlarm(nextAlarmTime);
 
 
-        if(!hasLastPollBeenFilled()) writeCancelLineInCsv(); //ToDO testen
+        writeCancelLineInCsv(); //ToDO testen
 
 
         TextView pollText = (TextView) findViewById(R.id.pollText);
@@ -214,7 +214,8 @@ public class pollActivity extends Activity {
                 File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
                 File oldF = new File(dir,code+".csv");
                 File newF = new File(dir, "f.csv");
-                FileReader oldReader = new FileReader(code+".csv");
+                newF.createNewFile();
+                FileReader oldReader = new FileReader(oldF);
                 FileWriter newWriter = new FileWriter(newF ,true);
                 BufferedReader editReader = new BufferedReader(oldReader);
                 BufferedWriter editWriter = new BufferedWriter(newWriter);
