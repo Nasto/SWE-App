@@ -19,7 +19,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
@@ -188,12 +191,15 @@ public class pollActivity extends Activity {
         }
     }
 
+
     public void okPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
         EditText numberText = (EditText) findViewById(R.id.pollNrEdit);
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
+        int Zeilenanzahl= 0;
+        int Zeile=1;
 
         int minDiff = currentDay.get(Calendar.MINUTE)-lastTimeSett.getInt("lastMinute", 0) + (currentDay.get(Calendar.HOUR_OF_DAY)-lastTimeSett.getInt("lastHour",0))*60;
         int inputTime = (Integer.parseInt(hourText.getText().toString()))*60 + Integer.parseInt(minuteText.getText().toString());
@@ -204,7 +210,30 @@ public class pollActivity extends Activity {
             Calendar updatedCurrentDay = new GregorianCalendar();
 
             try {
+                // neue Datei erstellen -> Kopie aus alten Datei bis auf letzte Zeile
                 File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
+                File oldF = new File(dir,code+".csv");
+                File newF = new File(dir, "f.csv");
+                FileReader oldReader = new FileReader(code+".csv");
+                FileWriter newWriter = new FileWriter(newF ,true);
+                BufferedReader editReader = new BufferedReader(oldReader);
+                BufferedWriter editWriter = new BufferedWriter(newWriter);
+                String line;
+                while(editReader.readLine()!=null){
+                    Zeilenanzahl++;
+                }
+                while(Zeile<=Zeilenanzahl-1){
+                    line = editReader.readLine();
+                    editWriter.write(line);
+                    editWriter.newLine();
+                    Zeile++;
+                }
+                editReader.close();
+                editWriter.close();
+
+                oldF.delete();
+                newF.renameTo(new File(code + ".csv"));
+                //
                 File f = new File(dir, code+".csv");
                 FileWriter writer = new FileWriter(f ,true);
                 writer.write(code+";"
