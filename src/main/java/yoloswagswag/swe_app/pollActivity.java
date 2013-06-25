@@ -230,6 +230,8 @@ public class pollActivity extends Activity {
                 }
                 editReader.close();
                 editWriter.close();
+                oldReader.close();
+                newWriter.close();
 
                 oldF.delete();
                 newF.renameTo(new File(code + ".csv"));
