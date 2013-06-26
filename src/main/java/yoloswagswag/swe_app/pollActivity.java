@@ -46,6 +46,8 @@ public class pollActivity extends Activity {
         setContentView(R.layout.poll_screen);
 
         playSound(this, getAlarmUri());
+        checkForLastUserAction();
+
         lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
         selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
         currentDay = new GregorianCalendar();
@@ -59,23 +61,17 @@ public class pollActivity extends Activity {
             }else
             slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
         }
-        
+
         nextAlarmTime = new GregorianCalendar();
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
         nextAlarmTime.set(Calendar.MINUTE, 0);
         nextAlarmTime.set(Calendar.SECOND, 0);
+        if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
         if(nextAlarmTime.compareTo(currentDay)==1) startNewAlarm(nextAlarmTime);
-
-
-        writeCancelLineInCsv(); //ToDO testen
-
 
         TextView pollText = (TextView) findViewById(R.id.pollText);
 
-        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
-        SharedPreferences.Editor editor = pastAlarmStorage.edit();
-        editor.putInt("day", currentDay.get(Calendar.DAY_OF_WEEK));
-        editor.putInt("slot", nextSlot - 1);
+        updatePastAlarmsStorage();
 
         int lastHour = lastTimeSett.getInt("lastHour",25);
 
@@ -87,13 +83,34 @@ public class pollActivity extends Activity {
 
     }
 
-    private boolean hasLastPollBeenFilled(){
-        //ToDo testen
-        int lastHour = lastTimeSett.getInt("lastHour",25);
+    private void setHasUserAnsweredToPreferences(boolean hasUserAnswered){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
-        int lastAlarmHour = selectedTimesStorage.getInt("day"+(pastAlarmStorage.getInt("day",0)-1)+"slot"+pastAlarmStorage.getInt("slot",0), 0);
-        if (lastHour==25) return true;
-        else return lastHour==lastAlarmHour;
+        SharedPreferences.Editor editor = pastAlarmStorage.edit();
+        editor.putBoolean("userHasAnswered", hasUserAnswered);
+        editor.commit();
+    }
+
+    private void updatePastAlarmsStorage(){
+        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
+        SharedPreferences.Editor editor = pastAlarmStorage.edit();
+        editor.putInt("hour", currentDay.get(Calendar.HOUR_OF_DAY));
+        editor.putInt("day", currentDay.get(Calendar.DAY_OF_WEEK));
+        editor.putInt("day_of_month", currentDay.get(Calendar.DAY_OF_MONTH));
+        editor.putInt("month", currentDay.get(Calendar.MONTH));
+        editor.putInt("year", currentDay.get(Calendar.YEAR));
+        editor.putInt("slot", nextSlot - 1);
+        editor.putBoolean("userHasAnswered", false);
+        editor.commit();
+    }
+
+    private void checkForLastUserAction(){
+        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
+        if(!pastAlarmStorage.getBoolean("userHasAnswered",true)){
+            Calendar lastAlarmDate=new GregorianCalendar(pastAlarmStorage.getInt("year",2013),
+                    pastAlarmStorage.getInt("month",1),pastAlarmStorage.getInt("day_of_month",1),
+                    pastAlarmStorage.getInt("hour",12),0);
+            writeCancelLineInCsv(lastAlarmDate);
+        }
     }
 
     private void playSound(Context context, Uri alert){
@@ -174,7 +191,7 @@ public class pollActivity extends Activity {
         editor.commit();
     }
 
-    private void writeCancelLineInCsv(){
+    private void writeCancelLineInCsv(Calendar date){
         SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
         String code = userCodeStorage.getString("userCode",null);
         try {
@@ -182,8 +199,8 @@ public class pollActivity extends Activity {
             File f = new File(dir, code+".csv");
             FileWriter writer = new FileWriter(f ,true);
             writer.write(code+";"
-                    + currentDay.get(Calendar.DAY_OF_MONTH)+"."+ (currentDay.get(Calendar.MONTH)+1)+"."+ currentDay.get(Calendar.YEAR)+";"
-                    + selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+(nextSlot -1), 0)+":00" +
+                    + date.get(Calendar.DAY_OF_MONTH)+"."+ (date.get(Calendar.MONTH)+1)+"."+ date.get(Calendar.YEAR)+";"
+                    + date.get(Calendar.HOUR_OF_DAY)+":00" +
                     ";-77;1;-77;-77;-77\n");
             writer.flush();
             writer.close();
@@ -196,11 +213,10 @@ public class pollActivity extends Activity {
     public void okPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
+        setHasUserAnsweredToPreferences(true);
         EditText numberText = (EditText) findViewById(R.id.pollNrEdit);
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
-        int Zeilenanzahl= 0;
-        int Zeile=1;
 
         int minDiff = currentDay.get(Calendar.MINUTE)-lastTimeSett.getInt("lastMinute", 0) + (currentDay.get(Calendar.HOUR_OF_DAY)-lastTimeSett.getInt("lastHour",0))*60;
         int inputTime = (Integer.parseInt(hourText.getText().toString()))*60 + Integer.parseInt(minuteText.getText().toString());
@@ -211,41 +227,12 @@ public class pollActivity extends Activity {
             Calendar updatedCurrentDay = new GregorianCalendar();
 
             try {
-                // neue Datei erstellen -> Kopie aus alten Datei bis auf letzte Zeile
                 File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
-                File oldF = new File(dir,code+".csv");
-                File newF = new File(dir, "f.csv");
-                newF.createNewFile();
-                FileReader oldReader = new FileReader(oldF);
-                FileWriter newWriter = new FileWriter(newF ,true);
-                BufferedReader editReader = new BufferedReader(oldReader);
-                BufferedWriter editWriter = new BufferedWriter(newWriter);
-                String line="woop";
-                while(line!=null){
-                    Zeilenanzahl++;
-                    line=editReader.readLine();
-                }
-                while(Zeile<=Zeilenanzahl-1){
-                    line = editReader.readLine();
-                    editWriter.write(line);
-                    editWriter.newLine();
-                    Zeile++;
-                }
-                editReader.close();
-                editWriter.flush();
-                editWriter.close();
-                oldReader.close();
-                newWriter.flush();
-                newWriter.close();
-
-                oldF.delete();
-                newF.renameTo(new File(code + ".csv"));
-                //
                 File f = new File(dir, code+".csv");
                 FileWriter writer = new FileWriter(f ,true);
                 writer.write(code+";"
                         +updatedCurrentDay.get(Calendar.DAY_OF_MONTH)+"."+(updatedCurrentDay.get(Calendar.MONTH)+1)+"."+updatedCurrentDay.get(Calendar.YEAR)+";"
-                        +selectedTimesStorage.getInt("day"+(updatedCurrentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+(nextSlot -1), 0)+":00;"
+                        +currentDay.get(Calendar.HOUR_OF_DAY)+":00;"
                         +updatedCurrentDay.get(Calendar.HOUR_OF_DAY)+":"+((updatedCurrentDay.get(Calendar.MINUTE)<10) ? "0"+updatedCurrentDay.get(Calendar.MINUTE) : updatedCurrentDay.get(Calendar.MINUTE))+";"
                         +"0;"
                         +numberText.getText()+";"
@@ -273,8 +260,9 @@ public class pollActivity extends Activity {
     public void cancelPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
+        setHasUserAnsweredToPreferences(true);
 
-        writeCancelLineInCsv();
+        writeCancelLineInCsv(currentDay);
 
         setLastHourAndMinuteToPreferences();
 
