@@ -41,7 +41,6 @@ public class pollActivity extends Activity {
     private MediaPlayer mediaPlayer;
     private CountDownTimer soundTimer;
 
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poll_screen);
@@ -127,7 +126,7 @@ public class pollActivity extends Activity {
                     mediaPlayer.setVolume((float)Math.log(0),(float)Math.log(0));
                 }
                 else{
-                    mediaPlayer.setVolume((float)Math.log(2),(float)Math.log(2));// Lautstärke
+                    mediaPlayer.setVolume((float)Math.log(3),(float)Math.log(3));// Lautstärke
                 }
                 mediaPlayer.setLooping(false);
                 mediaPlayer.prepare();
@@ -140,8 +139,6 @@ public class pollActivity extends Activity {
             @Override
             public void onTick(long l) {
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-                // Vibrate for 400 milliseconds
                 v.vibrate(200);
             }
 
