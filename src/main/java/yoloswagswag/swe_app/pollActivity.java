@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -104,7 +105,7 @@ public class pollActivity extends Activity {
     }
 
     private void checkForLastUserAction(){
-        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
+        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage", 0);
         if(!pastAlarmStorage.getBoolean("userHasAnswered",true)){
             Calendar lastAlarmDate=new GregorianCalendar(pastAlarmStorage.getInt("year",2013),
                     pastAlarmStorage.getInt("month",1),pastAlarmStorage.getInt("day_of_month",1),
@@ -121,6 +122,13 @@ public class pollActivity extends Activity {
                     .getSystemService(Context.AUDIO_SERVICE);
             if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                if(audioManager.getRingerMode()==audioManager.RINGER_MODE_SILENT ||
+                        audioManager.getRingerMode()==audioManager.RINGER_MODE_VIBRATE){
+                    mediaPlayer.setVolume((float)Math.log(0),(float)Math.log(0));
+                }
+                else{
+                    mediaPlayer.setVolume((float)Math.log(2),(float)Math.log(2));// Lautstärke
+                }
                 mediaPlayer.setLooping(false);
                 mediaPlayer.prepare();
                 mediaPlayer.start();
@@ -131,7 +139,10 @@ public class pollActivity extends Activity {
         soundTimer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
+                // Vibrate for 400 milliseconds
+                v.vibrate(200);
             }
 
             @Override
