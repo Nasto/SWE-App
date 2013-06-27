@@ -219,6 +219,7 @@ public class pollActivity extends Activity {
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
 
         int minDiff = currentDay.get(Calendar.MINUTE)-lastTimeSett.getInt("lastMinute", 0) + (currentDay.get(Calendar.HOUR_OF_DAY)-lastTimeSett.getInt("lastHour",0))*60;
+        if(minDiff<0) minDiff=24*60-lastTimeSett.getInt("lastMinute",0)-lastTimeSett.getInt("lastHour",0)+currentDay.get(Calendar.MINUTE)+ currentDay.get(Calendar.HOUR_OF_DAY);
         int inputTime = (Integer.parseInt(hourText.getText().toString()))*60 + Integer.parseInt(minuteText.getText().toString());
 
         if(inputTime < minDiff){
