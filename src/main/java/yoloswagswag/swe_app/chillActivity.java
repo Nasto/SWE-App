@@ -20,8 +20,6 @@ public class chillActivity extends Activity {
 
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     SharedPreferences selectedTimesSett;
-    Calendar nextPollTime;
-    Calendar currentDate = new GregorianCalendar();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,6 @@ public class chillActivity extends Activity {
 
                     int day = now.weekDay;
                     int hour = now.hour;
-                    int minute = now.minute;
                     int slot = 0;
 
                     for (int i = 0; i<=3; i++) {
@@ -72,7 +69,7 @@ public class chillActivity extends Activity {
                                 :(slot-(now.hour+1))+":"+((60-now.minute<10)? "0"+(60-now.minute) : 60-now.minute)));
                     }
                     h.postDelayed(this,30000);
-                    // update every second
+                    // update every 30 seconds
 
                 }
 
