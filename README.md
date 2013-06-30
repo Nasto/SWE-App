@@ -33,6 +33,9 @@ ToDo:
 
 
 Bugs:
-* Absturz bei Eingabe von Kontaktzahl aber nicht Zeit
-* erste Eingabe korrekt -> zweite Eingabe klingeln hört nicht auf und schreibt ganz oft Abbruchkriterien in CSV
-* Zeit kann trotz Abfrage in einer "Zeile" nach hinten versetzt werden
+* ~~Absturz bei Eingabe von Kontaktzahl aber nicht Zeit~~
+* ~~erste Eingabe korrekt -> zweite Eingabe klingeln hört nicht auf und schreibt ganz oft Abbruchkriterien in CSV~~
+* ~~Zeit kann trotz Abfrage in einer "Zeile" nach hinten versetzt werden~~
+* Samstag auf Sonntag 0Uhr Alarm - Timeslot 4 von Samstag keine Abfrage
+* Eingabe von mehr als 59 Minuten im Pollscreen möglich
+* nicht ganz sicher: PollScreen offen -> zurückbutton gedrückt -> Chillscreen und nichts in .csv
