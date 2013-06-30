@@ -18,17 +18,19 @@ import java.util.GregorianCalendar;
 
 public class timeSelector extends Activity {
 
-    /* this is where the selected times are stored */
+    // Zeitauswahlbildschirm
+
+    // Speicher für ausgewählte Zeiten
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     public static final String PAST_ALARMS_STORAGE = "pastAlarmsStorage";
 
-    /* this is where the selected timeslots are stored */
+    // Speicher für ausgewählte Timeslots
     int[][] timeSelector = new int[7][4];
 
-    /* today */
+    // heutiges Datum
     Calendar currentDate = new GregorianCalendar();
 
-    /* always start with monday selected*/
+    // beim Öffnen ausgewählter Tag immer Montag
     int selectedDay = Calendar.MONDAY;
 
     Button[] timeButtons = new Button[15];
@@ -40,6 +42,7 @@ public class timeSelector extends Activity {
 
         SharedPreferences selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE, 0);
 
+        // Zuordnung der Buttons
         timeButtons[0] = (Button) findViewById(R.id.button09);
         timeButtons[1] = (Button) findViewById(R.id.button10);
         timeButtons[2] = (Button) findViewById(R.id.button11);
@@ -85,7 +88,7 @@ public class timeSelector extends Activity {
 
             /* initialise */
             for(int i=0;i < timeSelector.length; i++){
-                /* default selected timeslots */
+                // standardmäßig ausgewählte Zeiten
                 timeSelector[i][0] = 9;
                 timeSelector[i][1] = 13;
                 timeSelector[i][2] = 16;
@@ -249,7 +252,7 @@ public class timeSelector extends Activity {
     }
 
     public void setButtonColors(){
-        /* color all buttons in the line red and the selected one green */
+        // Farben aller Buttons auf rot und die ausgewählten Buttons grün
         for (Button timeButton : timeButtons){
             timeButton.setBackgroundColor(0xffff4444);
         }
@@ -281,7 +284,7 @@ public class timeSelector extends Activity {
                 }
             }
 
-            /* disable timeslots which already have triggered an alarm */
+            // Zeitraum in dem bereits Alarm kam auf disabled setzen
             if (pastAlarmsSett.getInt("day",0)==currentDate.get(Calendar.DAY_OF_WEEK)){
                 int disableSlots=0;
                 switch (pastAlarmsSett.getInt("slot",4)){
