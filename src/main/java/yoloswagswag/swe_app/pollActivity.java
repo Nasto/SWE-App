@@ -227,9 +227,14 @@ public class pollActivity extends Activity {
                     ";-77;1;-77;-77;-77\n");
             writer.flush();
             writer.close();
+            giveUserFeedback();
         } catch (IOException e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void giveUserFeedback(){
+        Toast.makeText(this, "Ihre Eingabe war erfolgreich.", Toast.LENGTH_LONG).show();
     }
 
     // Betätigung OK-Button
@@ -267,6 +272,7 @@ public class pollActivity extends Activity {
                         +minuteText.getText()+"\n");
                 writer.flush();
                 writer.close();
+                giveUserFeedback();
             } catch (IOException e){
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
             }
