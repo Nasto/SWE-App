@@ -39,34 +39,34 @@ public class chillActivity extends Activity {
         selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE, 0);
 
         // Variable für momentane Zeit
-        final Time now = new Time();
+        final Time currentTime = new Time();
 
         // Handler, der für das Update der Methode benötigt wird
-        final Handler h = new Handler();
+        final Handler handler = new Handler();
 
         // Mehode für das Setzen der nächsten Umfragezeit + der verbleibenden Zeit bis dahin
-        h.post(new Runnable(){
+        handler.post(new Runnable() {
 
 
             @Override
             public void run() {
-                // now auf momentane Zeit setzen
-                now.setToNow();
+                // currentTime auf momentane Zeit setzen
+                currentTime.setToNow();
 
                 // momentaner Wochentag
-                int day = now.weekDay;
+                int day = currentTime.weekDay;
 
                 // aktuelle Stunde
-                int hour = now.hour;
+                int hour = currentTime.hour;
 
                 // Time-Slot
                 int slot = 0;
 
                 // durch die Time-Slots gehen, überprüfen, ob die aktuelle Stunde kleiner ist
                 // und Slot auswählen
-                for (int i = 0; i<=3; i++) {
-                    if (hour < (selectedTimesSett.getInt("day"+day+"slot"+i,0))){
-                        slot = selectedTimesSett.getInt("day"+day+"slot"+i,0);
+                for (int i = 0; i <= 3; i++) {
+                    if (hour < (selectedTimesSett.getInt("day" + day + "slot" + i, 0))) {
+                        slot = selectedTimesSett.getInt("day" + day + "slot" + i, 0);
                         break;
                     }
                 }
@@ -75,38 +75,36 @@ public class chillActivity extends Activity {
                 // NÄCHSTE UMFRAGEZEIT BESTIMMEN & SETZEN
 
                 // falls slot nicht 0 ist, nächste Zeit auf slot setzen
-                if (slot != 0){
-                    nextTime.setText(slot+":00 Uhr");
+                if (slot != 0) {
+                    nextTime.setText(slot + ":00 Uhr");
                 }
                 // ansonsten zum nächsten Tag wechseln
-                else if (day != 6){
+                else if (day != 6) {
                     day++;
-                    nextTime.setText(Integer.toString(selectedTimesSett.getInt("day"+(day)+"slot"+slot,2))+":00 Uhr");
+                    nextTime.setText(Integer.toString(selectedTimesSett.getInt("day" + (day) + "slot" + slot, 2)) + ":00 Uhr");
                 }
                 // Wochenübergang, falls der nächste Tag Montag ist (da day nur eine range von 0 bis 6 hat)
-                else
-                {
+                else {
                     day = 0;
-                    nextTime.setText(Integer.toString(selectedTimesSett.getInt("day"+(day)+"slot"+slot,2))+":00 Uhr");
+                    nextTime.setText(Integer.toString(selectedTimesSett.getInt("day" + (day) + "slot" + slot, 2)) + ":00 Uhr");
                 }
 
 
                 // VERBLEIBENDE ZEIT BIS ZU NÄCHSTER UMFRAGE BERECHNEN
 
                 // falls der nächste Slot nicht mehr im heutigen Tag liegt
-                if (slot == 0){
-                    nextTimeLeft.setText((now.minute==0) ? (selectedTimesSett.getInt("day"+day+"slot"+slot,0))+(Math.abs(0-now.hour))+":00"
-                            : selectedTimesSett.getInt("day"+day+"slot"+slot,0)+(Math.abs(24-now.hour-1))+":"+((60-now.minute<10)? "0"+(60-now.minute) : 60-now.minute));
+                if (slot == 0) {
+                    nextTimeLeft.setText((currentTime.minute == 0) ? (selectedTimesSett.getInt("day" + day + "slot" + slot, 0)) + (Math.abs(0 - currentTime.hour)) + ":00"
+                            : selectedTimesSett.getInt("day" + day + "slot" + slot, 0) + (Math.abs(24 - currentTime.hour - 1)) + ":" + ((60 - currentTime.minute < 10) ? "0" + (60 - currentTime.minute) : 60 - currentTime.minute));
                 }
                 // falls nächster Slot doch heute ist
-                else
-                {
-                    nextTimeLeft.setText(((now.minute==0)?(slot-now.hour)+":00"
-                            :(slot-(now.hour+1))+":"+((60-now.minute<10)? "0"+(60-now.minute) : 60-now.minute)));
+                else {
+                    nextTimeLeft.setText(((currentTime.minute == 0) ? (slot - currentTime.hour) + ":00"
+                            : (slot - (currentTime.hour + 1)) + ":" + ((60 - currentTime.minute < 10) ? "0" + (60 - currentTime.minute) : 60 - currentTime.minute)));
                 }
 
                 // Update alle 30 Sekunden (wichtig für verbleibende Zeit)
-                h.postDelayed(this,30000);
+                handler.postDelayed(this, 30000);
             }
         });
     }
