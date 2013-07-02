@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
@@ -73,11 +74,11 @@ public class pollActivity extends Activity {
         // ...?
         if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
         // ...?
+
+        updatePastAlarmsStorage();
         if(nextAlarmTime.compareTo(currentDay)==1) startNewAlarm(nextAlarmTime);
 
         TextView pollText = (TextView) findViewById(R.id.pollText);
-
-        updatePastAlarmsStorage();
 
         int lastHour = lastTimeSett.getInt("lastHour",25);
 
@@ -87,8 +88,77 @@ public class pollActivity extends Activity {
                     + "Signal um "+lastTimeSett.getInt("lastHour",0)+":00 Uhr Kontakt?");
         }
 
-
     }
+
+    /*private void updateTime(){
+        // Handler, der für das Update der Methode benötigt wird
+        final Handler handler = new Handler();
+
+        // Mehode für das Setzen der nächsten Umfragezeit + der verbleibenden Zeit bis dahin
+        handler.post(new Runnable() {
+
+
+            @Override
+            public void run() {
+                // currentTime auf momentane Zeit setzen
+                Calendar thisTime=new GregorianCalendar();
+
+                // momentaner Wochentag
+                int day = thisTime.get(Calendar.DAY_OF_WEEK);
+
+                // aktuelle Stunde
+                int hour = thisTime.get(Calendar.HOUR_OF_DAY);
+
+                // Time-Slot
+                int slot = 0;
+
+                // durch die Time-Slots gehen, überprüfen, ob die aktuelle Stunde kleiner ist
+                // und Slot auswählen
+                for (int i = 0; i <= 3; i++) {
+                    if (hour < (selectedTimesStorage.getInt("day" + day + "slot" + i, 0))) {
+                        slot = selectedTimesStorage.getInt("day" + day + "slot" + i, 0);
+                        break;
+                    }
+                }
+
+
+                // NÄCHSTE UMFRAGEZEIT BESTIMMEN & SETZEN
+
+                // falls slot nicht 0 ist, nächste Zeit auf slot setzen
+                if (slot != 0) {
+                    nextTime.setText(slot + ":00 Uhr");
+                }
+                // ansonsten zum nächsten Tag wechseln
+                else if (day != 6) {
+                    day++;
+                    nextTime.setText(Integer.toString(selectedTimesSett.getInt("day" + (day) + "slot" + slot, 2)) + ":00 Uhr");
+                }
+                // Wochenübergang, falls der nächste Tag Montag ist (da day nur eine range von 0 bis 6 hat)
+                else {
+                    day = 0;
+                    nextTime.setText(Integer.toString(selectedTimesSett.getInt("day" + (day) + "slot" + slot, 2)) + ":00 Uhr");
+                }
+
+
+                // VERBLEIBENDE ZEIT BIS ZU NÄCHSTER UMFRAGE BERECHNEN
+
+                // falls der nächste Slot nicht mehr im heutigen Tag liegt
+                if (slot == 0) {
+                    nextTimeLeft.setText((currentTime.minute == 0) ? (selectedTimesSett.getInt("day" + day + "slot" + slot, 0)) + (Math.abs(0 - currentTime.hour)) + ":00"
+                            : selectedTimesSett.getInt("day" + day + "slot" + slot, 0) + (Math.abs(24 - currentTime.hour - 1)) + ":" + ((60 - currentTime.minute < 10) ? "0" + (60 - currentTime.minute) : 60 - currentTime.minute));
+                }
+                // falls nächster Slot doch heute ist
+                else {
+                    nextTimeLeft.setText(((currentTime.minute == 0) ? (slot - currentTime.hour) + ":00"
+                            : (slot - (currentTime.hour + 1)) + ":" + ((60 - currentTime.minute < 10) ? "0" + (60 - currentTime.minute) : 60 - currentTime.minute)));
+                }
+
+                // Update alle 30 Sekunden (wichtig für verbleibende Zeit)
+                handler.postDelayed(this, 30000);
+            }
+        });
+    }*/
+
     // ...?
     private void setHasUserAnsweredToPreferences(boolean hasUserAnswered){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
@@ -107,6 +177,7 @@ public class pollActivity extends Activity {
         editor.putInt("year", currentDay.get(Calendar.YEAR));
         editor.putInt("slot", nextSlot - 1);
         editor.putBoolean("userHasAnswered", false);
+        editor.putInt("alarmID", pastAlarmStorage.getInt("alarmID",0)+1);
         editor.commit();
     }
     // ...?
@@ -199,8 +270,9 @@ public class pollActivity extends Activity {
 
     // ...?
     public void startNewAlarm(Calendar alarmTime){
+        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         Intent intent = new Intent(this, pollActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, pastAlarmStorage.getInt("alarmID",0), intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
