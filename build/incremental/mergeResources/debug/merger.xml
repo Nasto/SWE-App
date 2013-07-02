@@ -157,11 +157,6 @@
                 qualifiers=""
                 type="layout" />
             <file
-                name="umfragebildschirm"
-                path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/umfragebildschirm.xml"
-                qualifiers=""
-                type="layout" />
-            <file
                 name="chill_screen"
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/layout/chill_screen.xml"
                 qualifiers=""

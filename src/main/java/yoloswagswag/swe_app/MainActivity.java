@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 
         userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
 
+
         if (f.exists() && code!=null){
             startActivity(new Intent(this, chillActivity.class));
             finish();
