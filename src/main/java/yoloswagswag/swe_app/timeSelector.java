@@ -1,6 +1,9 @@
 package yoloswagswag.swe_app;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -15,17 +18,19 @@ import java.util.GregorianCalendar;
 
 public class timeSelector extends Activity {
 
-    /* this is where the selected times are stored */
+    // Zeitauswahlbildschirm
+
+    // Speicher für ausgewählte Zeiten
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     public static final String PAST_ALARMS_STORAGE = "pastAlarmsStorage";
 
-    /* this is where the selected timeslots are stored */
+    // Speicher für ausgewählte Timeslots
     int[][] timeSelector = new int[7][4];
 
-    /* today */
+    // heutiges Datum
     Calendar currentDate = new GregorianCalendar();
 
-    /* always start with monday selected*/
+    // beim Öffnen ausgewählter Tag immer Montag
     int selectedDay = Calendar.MONDAY;
 
     Button[] timeButtons = new Button[15];
@@ -37,6 +42,7 @@ public class timeSelector extends Activity {
 
         SharedPreferences selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE, 0);
 
+        // Zuordnung der Buttons
         timeButtons[0] = (Button) findViewById(R.id.button09);
         timeButtons[1] = (Button) findViewById(R.id.button10);
         timeButtons[2] = (Button) findViewById(R.id.button11);
@@ -68,7 +74,7 @@ public class timeSelector extends Activity {
         while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
             textDay.roll(Calendar.DAY_OF_MONTH,true);
         }
-        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+textDay.get(Calendar.MONTH)+".");
+        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+(textDay.get(Calendar.MONTH)+1)+".");
 
         /* check for previous userCodeSett */
         if(selectedTimesSett.contains("day6slot3")){
@@ -82,7 +88,7 @@ public class timeSelector extends Activity {
 
             /* initialise */
             for(int i=0;i < timeSelector.length; i++){
-                /* default selected timeslots */
+                // standardmäßig ausgewählte Zeiten
                 timeSelector[i][0] = 9;
                 timeSelector[i][1] = 13;
                 timeSelector[i][2] = 16;
@@ -95,6 +101,35 @@ public class timeSelector extends Activity {
         setButtonColors();
 
         disableButtons();
+
+
+    }
+
+    private void updateAlarm(){
+        SharedPreferences selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
+        Calendar currentDay = new GregorianCalendar();
+        int nextSlot =0;
+        int slotHour = selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+        while(slotHour<= currentDay.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
+        {
+            nextSlot++;
+            if(nextSlot ==4){
+                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
+            }else
+                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+        }
+
+        Calendar nextAlarmTime = new GregorianCalendar();
+        nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
+        nextAlarmTime.set(Calendar.MINUTE, 0);
+        nextAlarmTime.set(Calendar.SECOND, 0);
+        if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
+        if(nextAlarmTime.compareTo(currentDay)==1){
+            Intent intent = new Intent(this, pollActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(), pendingIntent);
+        }
     }
 
     public void okTime(View view){
@@ -108,6 +143,8 @@ public class timeSelector extends Activity {
             }
         }
         editor.commit();
+
+        updateAlarm();
 
         if (!this.isTaskRoot())
             this.finish();
@@ -153,7 +190,7 @@ public class timeSelector extends Activity {
         while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
             textDay.roll(Calendar.DAY_OF_MONTH,true);
         }
-        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+textDay.get(Calendar.MONTH)+".");
+        date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+(textDay.get(Calendar.MONTH)+1)+".");
 
         /* update the shown buttons */
         setButtonColors();
@@ -215,7 +252,7 @@ public class timeSelector extends Activity {
     }
 
     public void setButtonColors(){
-        /* color all buttons in the line red and the selected one green */
+        // Farben aller Buttons auf rot und die ausgewählten Buttons grün
         for (Button timeButton : timeButtons){
             timeButton.setBackgroundColor(0xffff4444);
         }
@@ -247,7 +284,7 @@ public class timeSelector extends Activity {
                 }
             }
 
-            /* disable timeslots which already have triggered an alarm */
+            // Zeitraum in dem bereits Alarm kam auf disabled setzen
             if (pastAlarmsSett.getInt("day",0)==currentDate.get(Calendar.DAY_OF_WEEK)){
                 int disableSlots=0;
                 switch (pastAlarmsSett.getInt("slot",4)){

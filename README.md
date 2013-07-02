@@ -21,11 +21,18 @@ ToDo:
 * ~~Kontaktzeit überprüfen mit Zeitraum der letzten Umfrage (ggf. Fehlermeldung)~~
 * ~~OK-Button Übergang Chill-Screen (Eingaben in .csv speichern)~~
 * ~~Abbrechen-Button Schließen der App (Abbruch Werte in .csv speichern)~~
-* falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Übergang in neuen Zeitraum
-* Alarmton
-* erster Alarm muss initialisiert werden
-* Wecker update bei Zeitenänderung
+* falls keine Reaktion in Zeitraum -> Speicherung von Abbruch-Werten und Übergang in neuen Zeitraum -> Testen!
+* ~~Alarmton~~
+* ~~erster Alarm muss initialisiert werden~~
+* ~~Wecker update bei Zeitenänderung~~
+* ~~Zeit seit letztem Klingeln, nicht seit letztem Ausfüllen~~
 
 <dt>Chill-Screen:</dt>		
 * ~~Nächste Erinnerungszeit anzeigen + Zeit bis dahin~~
 * ~~Zeitplan ändern-Button Übergang Zeiteinstellungen~~
+
+
+Bugs:
+* Absturz bei Eingabe von Kontaktzahl aber nicht Zeit
+* erste Eingabe korrekt -> zweite Eingabe klingeln hört nicht auf und schreibt ganz oft Abbruchkriterien in CSV
+* Zeit kann trotz Abfrage in einer "Zeile" nach hinten versetzt werden

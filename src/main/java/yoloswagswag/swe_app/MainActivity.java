@@ -29,6 +29,9 @@ public class MainActivity extends Activity {
     File f;
     Calendar startTime;
 
+    // Probandencodescreen
+    // wird nur beim ersten Aufruf der App aufgerufen und dann erst wieder wenn .csv gelöscht oder
+    // umbenannt wurde
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,7 @@ public class MainActivity extends Activity {
 
     }
 
-
+    // ...?
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -69,7 +72,8 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    /* Called when the user clicks the Send button */
+    // Bei Betätigung des OK-Buttons
+    // ...?
     public void okMain(View view) {
 
         TextView error = (TextView) findViewById(R.id.errorMessage);
@@ -84,17 +88,19 @@ public class MainActivity extends Activity {
             codeEditor.commit();
 
 
-
+            // erstellt Ordner Psychotest und darin die .csv Datei auf der SD-Karte
             try {
                 File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
                 dir.mkdirs();
                 File f = new File(dir, code+".csv");
                 f.createNewFile();
 
+                //Tabellenkopf erstellen
                 FileWriter writer = new FileWriter(f ,true);
                 writer.write("Code;Datum;Alarmzeit;Antwortzeit;Abbruch;Kontakte;Stunden;Minuten\n");
                 writer.flush();
                 writer.close();
+                // gibt Rückmeldung ob .csv Datei erfolgreich erstellt wurde
                 Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();
             } catch (IOException e){
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
@@ -103,10 +109,10 @@ public class MainActivity extends Activity {
             startActivity(new Intent(this, timeSelector.class));
             finish();
         }
-
+        // Rückmeldung falls Codeeingabe zu kurz
         else
             Toast.makeText(this, "Ihr Code muss aus 5 Zeichen bestehen!", Toast.LENGTH_LONG).show();
 
     }
-    
+
 }

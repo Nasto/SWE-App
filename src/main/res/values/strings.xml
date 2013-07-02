@@ -30,7 +30,7 @@
     <string name="btnChangeTimes">Zeitplan ändern</string>
     <string name="timeSelectText">Bitte vier verschiedene Uhrzeiten auswählen. Pro Zeile kann nur eine Uhrzeit ausgewählt werden!</string>
     <string name="pollFirstText">Mit wie vielen Interaktionspartnern hatten Sie heute schon Kontakt?</string>
-    <string name="pollText">Wieviele Kontakte hatten Sie seit dem letzten Ausfüllen der Umfrage um </string>
+    <string name="pollText">Mit wie vielen Interaktionspartnern hatten Sie seit dem letzten </string>
     <string name="pollTimeText">Schätzen Sie außerdem die Dauer der Kontakte!</string>
     <string name="pollNumber">Anzahl</string>
     <string name="pollTime">Dauer</string>
