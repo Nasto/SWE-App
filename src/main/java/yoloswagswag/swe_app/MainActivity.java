@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
     Calendar startTime;
 
     // Probandencodescreen
-    // wird nur beim ersten Aufruf der App aufgerufen und dann erst wieder wenn .csv gelöscht oder
+    // wird nur beim ersten Aufruf der App aufgerufen und dann erst wieder wenn .csv geloescht oder
     // umbenannt wurde
 
     @Override
@@ -46,16 +46,14 @@ public class MainActivity extends Activity {
 
         f= new File(new File(Environment.getExternalStorageDirectory(),"PsychoTest"), code+".csv");
 
-        userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
-
-
+        // falls ein Probandencode gepeichert ist und die .csv vorhanden ist, wird diese Activity uebersprungen
         if (f.exists() && code!=null){
             startActivity(new Intent(this, chillActivity.class));
             finish();
         } else {
-
             setContentView(R.layout.activity_main);
 
+            //neuen User anlegen -> alle alten gespeicherten Werte loeschen
             userCodeSett.edit().clear();
             userCodeSett.edit().commit();
             selectedTimesSett.edit().clear();
@@ -70,20 +68,18 @@ public class MainActivity extends Activity {
 
     }
 
-    // ...?
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+    */
 
-    // Bei Betätigung des OK-Buttons
-    // ...?
+    // Bei Betaetigung des OK-Buttons
     public void okMain(View view) {
-
-        TextView error = (TextView) findViewById(R.id.errorMessage);
-
+        //String aus dem Eingabefeld holen
         code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
@@ -94,7 +90,7 @@ public class MainActivity extends Activity {
             codeEditor.commit();
 
 
-            // erstellt Ordner Psychotest und darin die .csv Datei auf der SD-Karte
+            // erstellt Ordner Psychotest und darin die [Code].csv Datei auf der SD-Karte
             try {
                 File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
                 dir.mkdirs();
@@ -106,19 +102,17 @@ public class MainActivity extends Activity {
                 writer.write("Code;Datum;Alarmzeit;Antwortzeit;Abbruch;Kontakte;Stunden;Minuten\n");
                 writer.flush();
                 writer.close();
-                // gibt Rückmeldung ob .csv Datei erfolgreich erstellt wurde
-                Toast.makeText(this,"created "+code+".csv successfull!", Toast.LENGTH_SHORT).show();
             } catch (IOException e){
+                // falls es Fehler bei Erstellen gibt,kommt die Exception in den Toast
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
             }
 
             startActivity(new Intent(this, timeSelector.class));
             finish();
         }
-        // Rückmeldung falls Codeeingabe zu kurz
+        // Rueckmeldung, falls Codeeingabe zu kurz
         else
             Toast.makeText(this, "Ihr Code muss aus 5 Zeichen bestehen!", Toast.LENGTH_LONG).show();
-
     }
 
 }

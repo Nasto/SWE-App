@@ -67,28 +67,29 @@ public class timeSelector extends Activity {
         weekButtons[5] = (Button) findViewById(R.id.buttonFri);
         weekButtons[6] = (Button) findViewById(R.id.buttonSat);
 
-
+        // Datum, fuer den aktuell ausgewaehlten tag
         Calendar textDay = (Calendar) currentDate.clone();
+        // Text, der ausgewaehltes Datum zeigt
         TextView date = (TextView) findViewById(R.id.chosenDate);
 
+        // geht so lange einen Tag weiter, bis der gewaehlte Tag erreicht wird
         while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
             textDay.roll(Calendar.DAY_OF_MONTH,true);
         }
+
+        // schreibt des gewaehlte Datum
         date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+(textDay.get(Calendar.MONTH)+1)+".");
 
-        /* check for previous userCodeSett */
         if(selectedTimesSett.contains("day6slot3")){
+            // wenn es eine alte Zeitauswahl gibt, wird sie geladen
             for (int i=0;i<timeSelector.length;i++){
                 for (int j=0;j<timeSelector[i].length;j++){
                     timeSelector[i][j] = selectedTimesSett.getInt("day"+i+"slot"+j,0);
                 }
             }
         }else{
-            /* no previous userCodeSett -> initialise timeButtons */
-
-            /* initialise */
+            // wenn es keine alte Zeitauswahl gibt, wird sie in jedem Slot auf den ersten Eintrag initialisiert
             for(int i=0;i < timeSelector.length; i++){
-                // standardmäßig ausgewählte Zeiten
                 timeSelector[i][0] = 9;
                 timeSelector[i][1] = 13;
                 timeSelector[i][2] = 16;
@@ -97,45 +98,53 @@ public class timeSelector extends Activity {
 
         }
 
-        /* and apply the selected times to the view */
+        // einfaerben der Buttons
         setButtonColors();
 
+        // unwaehlbare Buttons ausgrauen und unklickbar machen
         disableButtons();
-
-
     }
 
     private void updateAlarm(){
+        // gespeicherte Werte (eingestellte Zeiten und letzter Alarm) laden
         SharedPreferences selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
-        Calendar currentDay = new GregorianCalendar();
+
         int nextSlot =0;
-        int slotHour = selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
-        while(slotHour<= currentDay.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
+        int slotHour = selectedTimesStorage.getInt("day"+(currentDate.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+
+        // geht durch die gespeicherten Zeiten, bis die erste nach der aktuellen Zeit gefunden wurde
+        while(slotHour<= currentDate.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
         {
             nextSlot++;
             if(nextSlot ==4){
-                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
+                // keiner der heutigen Slots -> nimm den ersten von morgen
+                slotHour=selectedTimesStorage.getInt("day"+(currentDate.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
             }else
-                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+                slotHour=selectedTimesStorage.getInt("day"+(currentDate.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
         }
 
+        // neues Calendar-Objekt mit den Alarm-Zeiten
         Calendar nextAlarmTime = new GregorianCalendar();
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
         nextAlarmTime.set(Calendar.MINUTE, 0);
         nextAlarmTime.set(Calendar.SECOND, 0);
         if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
-        if(nextAlarmTime.compareTo(currentDay)==1){
-            Intent intent = new Intent(this, pollActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, pastAlarmStorage.getInt("alarmID",0), intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // nochmal sichergehen, dass der Alarm nicht in der Vergangenheit liegt
+        if(nextAlarmTime.compareTo(currentDate)==1){
+            // (pending)Intent erstellen, der dann von dem Alarm gestartet wird
+            PendingIntent alarmIntent = PendingIntent.getActivity(this, pastAlarmStorage.getInt("alarmID",0), new Intent(this, pollActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
+            // Alarm setzen
             AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(), pendingIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(), alarmIntent);
         }
     }
 
+    // Bei Betaetigung des OK-Buttons
     public void okTime(View view){
 
-        /* store chosen times in userCodeSett */
+        // Gewaehlte Zeiten abspeichern
         SharedPreferences settings = getSharedPreferences(SELECTED_TIMES_STORAGE, 0);
         SharedPreferences.Editor editor = settings.edit();
         for(int i=0;i<timeSelector.length;i++){
@@ -145,8 +154,11 @@ public class timeSelector extends Activity {
         }
         editor.commit();
 
+        //naechsten Alarm einstellen
         updateAlarm();
 
+
+        // Uebergang in den Chillscreen
         if (!this.isTaskRoot())
             this.finish();
         else {
@@ -156,9 +168,11 @@ public class timeSelector extends Activity {
 
     }
 
+    // bei betaetigen eines Tages-Buttons
     public void daySelect(View view){
         Calendar textDay = (Calendar) currentDate.clone();
 
+        // richtigen Tag auswaehlen
         switch(view.getId()){
             case R.id.buttonMon:
                 selectedDay = Calendar.MONDAY;
@@ -185,7 +199,7 @@ public class timeSelector extends Activity {
                 break;
         }
 
-
+        // Datum-Text setzen
         TextView date = (TextView) findViewById(R.id.chosenDate);
 
         while(textDay.get(Calendar.DAY_OF_WEEK)!=selectedDay){
@@ -193,13 +207,15 @@ public class timeSelector extends Activity {
         }
         date.setText(textDay.get(Calendar.DAY_OF_MONTH)+"."+(textDay.get(Calendar.MONTH)+1)+".");
 
-        /* update the shown buttons */
+        // Farbe und Klickbarkeit der Buttons setzen
         setButtonColors();
         disableButtons();
     }
 
+    // Bei betaetigen eines Zeit(-Slot)-Buttons
     public void timeSelect(View view){
 
+        // richtige Zeit setzen
         switch(view.getId()){
             case R.id.button09:
                 timeSelector[selectedDay-1][0] = 9;
@@ -249,6 +265,7 @@ public class timeSelector extends Activity {
             default:
                 break;
         }
+        // farben neu setzen
         setButtonColors();
     }
 
@@ -268,13 +285,14 @@ public class timeSelector extends Activity {
         weekButtons[selectedDay-1].setBackgroundColor(0xff99cc00);
     }
 
+    // sperre die zu sperrenden Buttons
     private void disableButtons() {
 
         SharedPreferences pastAlarmsSett = getSharedPreferences(PAST_ALARMS_STORAGE,0);
 
-        /* disable Buttons */
+        // nur die Buttons fuer heute muessen gesperrt werden
         if(selectedDay == currentDate.get(Calendar.DAY_OF_WEEK)){
-            /* disable times in the past */
+            // alle Buttons in der Vergangenheit sperren
             for(int i=0;i<timeButtons.length;i++){
                 if (i+9 <= currentDate.get(Calendar.HOUR_OF_DAY)){
                     timeButtons[i].setTextColor(Color.GRAY);
@@ -285,7 +303,7 @@ public class timeSelector extends Activity {
                 }
             }
 
-            // Zeitraum in dem bereits Alarm kam auf disabled setzen
+            // Alle Buttons eines Slots, der schon einen Alarm gefeuert hat, sperren
             if (pastAlarmsSett.getInt("day",0)==currentDate.get(Calendar.DAY_OF_WEEK)){
                 int disableSlots=0;
                 switch (pastAlarmsSett.getInt("slot",4)){
@@ -317,6 +335,7 @@ public class timeSelector extends Activity {
         }
     }
 
+    // kein normales Verhalten fuer Back-Button
     @Override
     public void onBackPressed() {
         if (!this.isTaskRoot())
