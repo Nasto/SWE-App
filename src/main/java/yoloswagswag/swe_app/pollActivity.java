@@ -57,7 +57,7 @@ public class pollActivity extends Activity {
         currentDay = new GregorianCalendar();
         nextSlot =0;
         int slotHour = selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
-        // ...?
+        // Bestimmt die nächste Alarmzeit aus Shared Preferences, wenn nextSlot=4 ist Alarm am nächsten Tag
         while(slotHour<= currentDay.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
         {
             nextSlot++;
@@ -66,14 +66,13 @@ public class pollActivity extends Activity {
             }else
                 slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
         }
-        // ...?
+        // Wandelt Alarmstunde in konkrete Zeit um
         nextAlarmTime = new GregorianCalendar();
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
         nextAlarmTime.set(Calendar.MINUTE, 0);
         nextAlarmTime.set(Calendar.SECOND, 0);
-        // ...?
+        // Nächster Alarm ist Morgen --> Tag um 1 erhöhen
         if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
-        // ...?
 
         updatePastAlarmsStorage();
         if(nextAlarmTime.compareTo(currentDay)==1) startNewAlarm(nextAlarmTime);
@@ -159,7 +158,7 @@ public class pollActivity extends Activity {
         });
     }*/
 
-    // ...?
+    // Boolean zur Überprüfung ob User Anfrage beantwortet hat wird gesetzt
     private void setHasUserAnsweredToPreferences(boolean hasUserAnswered){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         SharedPreferences.Editor editor = pastAlarmStorage.edit();
@@ -180,7 +179,7 @@ public class pollActivity extends Activity {
         editor.putInt("alarmID", pastAlarmStorage.getInt("alarmID",0)+1);
         editor.commit();
     }
-    // ...?
+    // Wenn User keine ANgbe im letzten Alarm gemacht hat wird Fehlerzeile in Csv geschrieben
     private void checkForLastUserAction(){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage", 0);
         if(!pastAlarmStorage.getBoolean("userHasAnswered",true)){
@@ -231,7 +230,7 @@ public class pollActivity extends Activity {
         };
         soundTimer.start();
     }
-    // ...?
+    // Methode zum bestimmen des Alarmtones
     private Uri getAlarmUri() {
         Uri alert = RingtoneManager
                 .getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -246,7 +245,7 @@ public class pollActivity extends Activity {
         return alert;
     }
 
-    // ...?
+    // stoppt gegebenen Timer
     private void stopTimer(CountDownTimer timer){
         if (timer != null) {
             timer.cancel();
@@ -268,7 +267,7 @@ public class pollActivity extends Activity {
         }
     }
 
-    // ...?
+    // neuer Alarm wird initiert
     public void startNewAlarm(Calendar alarmTime){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         Intent intent = new Intent(this, pollActivity.class);
@@ -277,7 +276,7 @@ public class pollActivity extends Activity {
         AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
     }
-    // ...?
+    // Update des lastTimeStorage in Shared Preferences
     private void setLastHourAndMinuteToPreferences(){
         SharedPreferences.Editor editor = lastTimeSett.edit();
         editor.putInt("lastHour", currentDay.get(Calendar.HOUR_OF_DAY));
@@ -305,6 +304,7 @@ public class pollActivity extends Activity {
         }
     }
 
+    // Toast erscheint mit UserRückmeldung
     private void giveUserFeedback(){
         Toast.makeText(this, "Ihre Eingabe war erfolgreich.", Toast.LENGTH_LONG).show();
     }
@@ -324,7 +324,7 @@ public class pollActivity extends Activity {
         int inputTime = (Integer.parseInt(hourText.getText().toString()))*60 + Integer.parseInt(minuteText.getText().toString());
 
         // Eingabe von möglichen Zeit Speicherung der Daten
-        if(inputTime < minDiff){
+        if(inputTime <= minDiff){
             SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
             String code = userCodeStorage.getString("userCode",null);
             Calendar updatedCurrentDay = new GregorianCalendar();
