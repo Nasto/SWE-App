@@ -107,6 +107,7 @@ public class timeSelector extends Activity {
 
     private void updateAlarm(){
         SharedPreferences selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
+        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         Calendar currentDay = new GregorianCalendar();
         int nextSlot =0;
         int slotHour = selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
@@ -126,7 +127,7 @@ public class timeSelector extends Activity {
         if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
         if(nextAlarmTime.compareTo(currentDay)==1){
             Intent intent = new Intent(this, pollActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 10000, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, pastAlarmStorage.getInt("alarmID",0), intent, PendingIntent.FLAG_CANCEL_CURRENT);
             AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, nextAlarmTime.getTimeInMillis(), pendingIntent);
         }

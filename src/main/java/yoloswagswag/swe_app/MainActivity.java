@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
     String code;
     public static final String USER_CODE_STORAGE ="userCodeStorage";
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
+    public static final String LAST_TIME_STORAGE = "lastTimeStorage";
     SharedPreferences userCodeSett;
     SharedPreferences selectedTimesSett;
     File f;
@@ -38,6 +39,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
         selectedTimesSett = getSharedPreferences(SELECTED_TIMES_STORAGE,0);
+        SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
+        SharedPreferences lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
 
         code = userCodeSett.getString("userCode",null);
 
@@ -57,6 +60,10 @@ public class MainActivity extends Activity {
             userCodeSett.edit().commit();
             selectedTimesSett.edit().clear();
             selectedTimesSett.edit().commit();
+            pastAlarmStorage.edit().clear();
+            pastAlarmStorage.edit().commit();
+            lastTimeSett.edit().clear();
+            lastTimeSett.edit().commit();
 
             startTime = new GregorianCalendar();
         }

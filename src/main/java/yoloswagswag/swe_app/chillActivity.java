@@ -94,8 +94,8 @@ public class chillActivity extends Activity {
 
                 // falls der nächste Slot nicht mehr im heutigen Tag liegt
                 if (slot == 0) {
-                    nextTimeLeft.setText((currentTime.minute == 0) ? (selectedTimesSett.getInt("day" + day + "slot" + slot, 0)) + (Math.abs(0 - currentTime.hour)) + ":00"
-                            : selectedTimesSett.getInt("day" + day + "slot" + slot, 0) + (Math.abs(24 - currentTime.hour - 1)) + ":" + ((60 - currentTime.minute < 10) ? "0" + (60 - currentTime.minute) : 60 - currentTime.minute));
+                    nextTimeLeft.setText((currentTime.minute == 0) ? (selectedTimesSett.getInt("day" + day + "slot" + slot, 0)) + (Math.abs(24 - currentTime.hour)) + ":00"
+                            : selectedTimesSett.getInt("day" + day + "slot" + slot, 0) + (Math.abs(24 - (currentTime.hour - 1))) + ":" + ((60 - currentTime.minute < 10) ? "0" + (60 - currentTime.minute) : 60 - currentTime.minute));
                 }
                 // falls nächster Slot doch heute ist
                 else {
