@@ -38,7 +38,7 @@
     <string name="nextRemind">Die nächste Erinnerung erfolgt um:</string>
     <string name="pollFirstText">Mit wie vielen Interaktionspartnern hatten Sie heute schon Kontakt?</string>
     <string name="pollNumber">Anzahl</string>
-    <string name="pollText">Wieviele Kontakte hatten Sie seit dem letzten Ausfüllen der Umfrage um </string>
+    <string name="pollText">Mit wie vielen Interaktionspartnern hatten Sie seit dem letzten </string>
     <string name="pollTime">Dauer</string>
     <string name="pollTimeText">Schätzen Sie außerdem die Dauer der Kontakte!</string>
     <string name="secondChar">2. Ziffer: Dritter Buchstabe des Vornamens des Vaters</string>
