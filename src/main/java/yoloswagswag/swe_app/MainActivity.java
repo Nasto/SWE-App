@@ -18,18 +18,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class MainActivity extends Activity {
-
-    String code;
-    public static final String USER_CODE_STORAGE ="userCodeStorage";
-    public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
-    public static final String LAST_TIME_STORAGE = "lastTimeStorage";
-    SharedPreferences userCodeSett;
-    SharedPreferences selectedTimesSett;
-    File f;
-    Calendar startTime;
-
-    /* @mainpage Android App Soziale Intelligenz
+ /* @mainpage Android App Soziale Intelligenz
     *
     * @section sec1 Beschreibung
     * Diese App wurde entwickelt um soziale Kontakte zu protokollieren und damit die soziale
@@ -52,6 +41,19 @@ public class MainActivity extends Activity {
     *  App aufgerufen.
     *  @file MainActivity.java
     */
+
+public class MainActivity extends Activity {
+
+    String code;
+    public static final String USER_CODE_STORAGE ="userCodeStorage";
+    public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
+    public static final String LAST_TIME_STORAGE = "lastTimeStorage";
+    SharedPreferences userCodeSett;
+    SharedPreferences selectedTimesSett;
+    File f;
+    Calendar startTime;
+
+
 
 
     /*
