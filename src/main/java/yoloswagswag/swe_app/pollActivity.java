@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-    /*
+    /**
      * @class pollActivity
      * @brief Diese Klasse wird bei Aktivierung eines Alarms geöffnet und dient zur Usereingabe der
      * Kontakte.
@@ -48,7 +48,7 @@ public class pollActivity extends Activity {
     private MediaPlayer mediaPlayer;
     private CountDownTimer soundTimer;
 
-    /*
+    /**
      * @brief Erstellung der Umfrage bei Alarm
      */
 
@@ -165,7 +165,7 @@ public class pollActivity extends Activity {
             }
         });
     }*/
-    /*
+    /**
      *@brief Boolean, zur Überprüfung ob User Anfrage beantwortet hat, wird gesetzt.
      * @param boolean hasUserAnswered
      */
@@ -175,7 +175,7 @@ public class pollActivity extends Activity {
         editor.putBoolean("userHasAnswered", hasUserAnswered);
         editor.commit();
     }
-    /*
+    /**
      * @brief Update des Speichers für letzten Alarm.
      */
     private void updatePastAlarmsStorage(){
@@ -191,7 +191,7 @@ public class pollActivity extends Activity {
         editor.putInt("alarmID", pastAlarmStorage.getInt("alarmID",0)+1);
         editor.commit();
     }
-    /*
+    /**
       * @brief Wenn User keine Angabe im letzten Alarm gemacht hat, wird Fehlerzeile in .csv geschrieben.
       */
     private void checkForLastUserAction(){
@@ -203,7 +203,7 @@ public class pollActivity extends Activity {
             writeCancelLineInCsv(lastAlarmDate);
         }
     }
-    /*
+    /**
      * @brief Sound wird abgespielt
       */
     private void playSound(Context context, Uri alert){
@@ -231,7 +231,7 @@ public class pollActivity extends Activity {
         } catch (IOException e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        /*
+        /**
          * @brief startet/ beendet Sound und startet Vibration
          */
         soundTimer = new CountDownTimer(10000, 1000) {
@@ -248,7 +248,7 @@ public class pollActivity extends Activity {
         };
         soundTimer.start();
     }
-    /*
+    /**
      * @brief Alarmton wird bestimmt
       */
     private Uri getAlarmUri() {
@@ -265,7 +265,7 @@ public class pollActivity extends Activity {
         return alert;
     }
 
-    /*
+    /**
      * @brief stoppt gegebenen Timer
       */
     private void stopTimer(CountDownTimer timer){
@@ -274,7 +274,7 @@ public class pollActivity extends Activity {
             timer = null;
         }
     }
-    /*
+    /**
      * @brief stoppt Sound
       */
     private void stopSound(MediaPlayer player){
@@ -291,7 +291,7 @@ public class pollActivity extends Activity {
         }
     }
 
-    /*
+    /**
      * @brief neuer Alarm wird initiert
       */
     public void startNewAlarm(Calendar alarmTime){
@@ -302,7 +302,7 @@ public class pollActivity extends Activity {
         AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
     }
-    /*
+    /**
      * @brief Update des lastTimeStorage in Shared Preferences
       */
     private void setLastHourAndMinuteToPreferences(){
@@ -312,7 +312,7 @@ public class pollActivity extends Activity {
         editor.commit();
     }
 
-    /*
+    /**
      * @brief schreibt Abbruchzeile in .csv
       */
     private void writeCancelLineInCsv(Calendar date){
@@ -334,14 +334,14 @@ public class pollActivity extends Activity {
         }
     }
 
-    /*
+    /**
      * @brief Toast erscheint mit UserRückmeldung
       */
     private void giveUserFeedback(){
         Toast.makeText(this, "Ihre Eingabe war erfolgreich.", Toast.LENGTH_LONG).show();
     }
 
-    /*
+    /**
      * @brief Betätigung OK-Button -> testet ob Eingabezeit möglich ist im akuellen Zeitraum
      * Wenn Eingabezeit möglich werden Daten in .csv gespeichert. Bei zu größer Zeiteingabe kommt
      * Rückmeldung an User.
@@ -399,7 +399,7 @@ public class pollActivity extends Activity {
         }
     }
 
-    /*
+    /**
      * @brief Betätigung Abbruch-Button stoppt Sound und setzt Abfrage als beantwortet
       */
     public void cancelPoll(View view){

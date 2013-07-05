@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
- /* @mainpage Android App Soziale Intelligenz
+ /** @mainpage Android App Soziale Intelligenz
     *
     * @section sec1 Beschreibung
     * Diese App wurde entwickelt um soziale Kontakte zu protokollieren und damit die soziale
@@ -36,7 +36,7 @@ import java.util.GregorianCalendar;
     */
 
 
-    /* @class MainActivity
+    /* *@class MainActivity
     *  @brief Diese Klasse ist zur Erstellung des Probandencodes und wird nur beim ersten Start der
     *  App aufgerufen.
     *  @file MainActivity.java
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
 
 
-    /*
+    /**
      * @brief Userdaten werden überprüft
      * <ul>
      *     <li> Wenn Probandencode bereits existiert --> Aufruf {@link chillActivity}</li>
@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
     }
     */
 
-    /*
+    /**
      * @brief Bei Betaetigung des OK-Buttons, wird geprüft ob Codelänge = 5. Nach erfolgreicher Abfrage
      * wird die Probandencode.csv Datei im Psychotest Ordner erstellt. Bei falscher Eingabe kommt
      * Rückmeldung an User über falsche Eingabe.

@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-    /*
+    /**
      * @class timeSelector
      * @brief Dies ist der Zeitauswahlbildschirm. Dem User wird die Konfiguration der Alarmzeiten
      * ermöglicht.
@@ -44,7 +44,7 @@ public class timeSelector extends Activity {
     Button[] timeButtons = new Button[15];
     Button[] weekButtons = new Button[7];
 
-    /*
+    /**
      * @brief Zeitauswahlbildschirm
      */
     public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class timeSelector extends Activity {
         // unwaehlbare Buttons ausgrauen und unklickbar machen
         disableButtons();
     }
-    /*
+    /**
      * @brief Alarmzeit updaten
      */
     private void updateAlarm(){
@@ -154,7 +154,7 @@ public class timeSelector extends Activity {
         }
     }
 
-    /*
+    /**
      * @brief Bei Betaetigung des OK-Buttons werden ausgewählten Zeiten in ShardedPreferences gespeichert.
       */
     public void okTime(View view){
@@ -183,7 +183,7 @@ public class timeSelector extends Activity {
 
     }
 
-    /*
+    /**
      * @brief Bei Betätigung eines Tages-Buttons werden Zeitslots zum entsprechenden Tag geladen.
      * Außerdem werden die Buttons umgefärbt.
       */
@@ -230,7 +230,7 @@ public class timeSelector extends Activity {
         disableButtons();
     }
 
-    /*
+    /**
      * @brief Bei Betätigung eines Zeit(-Slot)-Buttons wird Zeit übernommen und Buttons umgefärbt.
       */
     public void timeSelect(View view){
@@ -288,7 +288,7 @@ public class timeSelector extends Activity {
         // farben neu setzen
         setButtonColors();
     }
-    /*
+    /**
      * @brief Umfärben der Buttons
      */
     public void setButtonColors(){
@@ -307,7 +307,7 @@ public class timeSelector extends Activity {
         weekButtons[selectedDay-1].setBackgroundColor(0xff99cc00);
     }
 
-    /*
+    /**
      * @brief Vergangene Zeitslots sperren. Wenn Alarm in dieser Zeitreihe bereits ausgeführt
      * worden ist, restlichen Zeitslots dieser Zeitreihe sperren.
      */
@@ -360,7 +360,7 @@ public class timeSelector extends Activity {
         }
     }
 
-    /*
+    /**
      * @brief  Verhalten fuer Back-Button
       */
     @Override
