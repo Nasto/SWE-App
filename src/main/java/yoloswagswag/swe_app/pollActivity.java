@@ -30,6 +30,12 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+    /*
+     * @class pollActivity
+     * @brief Diese Klasse wird bei Aktivierung eines Alarms geöffnet und dient zur Usereingabe der
+     * Kontakte.
+     * @file pollActivity.java
+     */
 
 public class pollActivity extends Activity {
 
@@ -42,7 +48,9 @@ public class pollActivity extends Activity {
     private MediaPlayer mediaPlayer;
     private CountDownTimer soundTimer;
 
-    // Umfragebildschirm
+    /*
+     * @brief Erstellung der Umfrage bei Alarm
+     */
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,15 +165,19 @@ public class pollActivity extends Activity {
             }
         });
     }*/
-
-    // Boolean zur Überprüfung ob User Anfrage beantwortet hat wird gesetzt
+    /*
+     *@brief Boolean, zur Überprüfung ob User Anfrage beantwortet hat, wird gesetzt.
+     * @param boolean hasUserAnswered
+     */
     private void setHasUserAnsweredToPreferences(boolean hasUserAnswered){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         SharedPreferences.Editor editor = pastAlarmStorage.edit();
         editor.putBoolean("userHasAnswered", hasUserAnswered);
         editor.commit();
     }
-    // Update des Speichers für letzten Alarm
+    /*
+     * @brief Update des Speichers für letzten Alarm.
+     */
     private void updatePastAlarmsStorage(){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         SharedPreferences.Editor editor = pastAlarmStorage.edit();
@@ -179,7 +191,9 @@ public class pollActivity extends Activity {
         editor.putInt("alarmID", pastAlarmStorage.getInt("alarmID",0)+1);
         editor.commit();
     }
-    // Wenn User keine ANgbe im letzten Alarm gemacht hat wird Fehlerzeile in Csv geschrieben
+    /*
+      * @brief Wenn User keine Angabe im letzten Alarm gemacht hat, wird Fehlerzeile in .csv geschrieben.
+      */
     private void checkForLastUserAction(){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage", 0);
         if(!pastAlarmStorage.getBoolean("userHasAnswered",true)){
@@ -189,7 +203,9 @@ public class pollActivity extends Activity {
             writeCancelLineInCsv(lastAlarmDate);
         }
     }
-    // Sound abspielen
+    /*
+     * @brief Sound wird abgespielt
+      */
     private void playSound(Context context, Uri alert){
         mediaPlayer = new MediaPlayer();
         try {
@@ -215,7 +231,9 @@ public class pollActivity extends Activity {
         } catch (IOException e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        // startet/ beendet Sound und startet Vibration
+        /*
+         * @brief startet/ beendet Sound und startet Vibration
+         */
         soundTimer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
@@ -230,7 +248,9 @@ public class pollActivity extends Activity {
         };
         soundTimer.start();
     }
-    // Methode zum bestimmen des Alarmtones
+    /*
+     * @brief Alarmton wird bestimmt
+      */
     private Uri getAlarmUri() {
         Uri alert = RingtoneManager
                 .getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -245,14 +265,18 @@ public class pollActivity extends Activity {
         return alert;
     }
 
-    // stoppt gegebenen Timer
+    /*
+     * @brief stoppt gegebenen Timer
+      */
     private void stopTimer(CountDownTimer timer){
         if (timer != null) {
             timer.cancel();
             timer = null;
         }
     }
-    // stoppt Sound
+    /*
+     * @brief stoppt Sound
+      */
     private void stopSound(MediaPlayer player){
         try {
             if (player != null) {
@@ -267,7 +291,9 @@ public class pollActivity extends Activity {
         }
     }
 
-    // neuer Alarm wird initiert
+    /*
+     * @brief neuer Alarm wird initiert
+      */
     public void startNewAlarm(Calendar alarmTime){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         Intent intent = new Intent(this, pollActivity.class);
@@ -276,7 +302,9 @@ public class pollActivity extends Activity {
         AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
     }
-    // Update des lastTimeStorage in Shared Preferences
+    /*
+     * @brief Update des lastTimeStorage in Shared Preferences
+      */
     private void setLastHourAndMinuteToPreferences(){
         SharedPreferences.Editor editor = lastTimeSett.edit();
         editor.putInt("lastHour", currentDay.get(Calendar.HOUR_OF_DAY));
@@ -284,7 +312,9 @@ public class pollActivity extends Activity {
         editor.commit();
     }
 
-    // schreibt Abbruchzeile in .csv
+    /*
+     * @brief schreibt Abbruchzeile in .csv
+      */
     private void writeCancelLineInCsv(Calendar date){
         SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
         String code = userCodeStorage.getString("userCode",null);
@@ -304,12 +334,18 @@ public class pollActivity extends Activity {
         }
     }
 
-    // Toast erscheint mit UserRückmeldung
+    /*
+     * @brief Toast erscheint mit UserRückmeldung
+      */
     private void giveUserFeedback(){
         Toast.makeText(this, "Ihre Eingabe war erfolgreich.", Toast.LENGTH_LONG).show();
     }
 
-    // Betätigung OK-Button
+    /*
+     * @brief Betätigung OK-Button -> testet ob Eingabezeit möglich ist im akuellen Zeitraum
+     * Wenn Eingabezeit möglich werden Daten in .csv gespeichert. Bei zu größer Zeiteingabe kommt
+     * Rückmeldung an User.
+      */
     public void okPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);
@@ -363,7 +399,9 @@ public class pollActivity extends Activity {
         }
     }
 
-    // Betätigung Abbruch-Button
+    /*
+     * @brief Betätigung Abbruch-Button stoppt Sound und setzt Abfrage als beantwortet
+      */
     public void cancelPoll(View view){
         stopTimer(soundTimer);
         stopSound(mediaPlayer);

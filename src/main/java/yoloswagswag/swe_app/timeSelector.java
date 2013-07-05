@@ -16,6 +16,14 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+
+    /*
+     * @class timeSelector
+     * @brief Dies ist der Zeitauswahlbildschirm. Dem User wird die Konfiguration der Alarmzeiten
+     * ermöglicht.
+     * @file timeSelector.java
+     */
+
 public class timeSelector extends Activity {
 
     // Zeitauswahlbildschirm
@@ -36,6 +44,9 @@ public class timeSelector extends Activity {
     Button[] timeButtons = new Button[15];
     Button[] weekButtons = new Button[7];
 
+    /*
+     * @brief Zeitauswahlbildschirm
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_selector);
@@ -104,7 +115,9 @@ public class timeSelector extends Activity {
         // unwaehlbare Buttons ausgrauen und unklickbar machen
         disableButtons();
     }
-
+    /*
+     * @brief Alarmzeit updaten
+     */
     private void updateAlarm(){
         // gespeicherte Werte (eingestellte Zeiten und letzter Alarm) laden
         SharedPreferences selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
@@ -141,7 +154,9 @@ public class timeSelector extends Activity {
         }
     }
 
-    // Bei Betaetigung des OK-Buttons
+    /*
+     * @brief Bei Betaetigung des OK-Buttons werden ausgewählten Zeiten in ShardedPreferences gespeichert.
+      */
     public void okTime(View view){
 
         // Gewaehlte Zeiten abspeichern
@@ -168,7 +183,10 @@ public class timeSelector extends Activity {
 
     }
 
-    // bei betaetigen eines Tages-Buttons
+    /*
+     * @brief Bei Betätigung eines Tages-Buttons werden Zeitslots zum entsprechenden Tag geladen.
+     * Außerdem werden die Buttons umgefärbt.
+      */
     public void daySelect(View view){
         Calendar textDay = (Calendar) currentDate.clone();
 
@@ -212,7 +230,9 @@ public class timeSelector extends Activity {
         disableButtons();
     }
 
-    // Bei betaetigen eines Zeit(-Slot)-Buttons
+    /*
+     * @brief Bei Betätigung eines Zeit(-Slot)-Buttons wird Zeit übernommen und Buttons umgefärbt.
+      */
     public void timeSelect(View view){
 
         // richtige Zeit setzen
@@ -268,7 +288,9 @@ public class timeSelector extends Activity {
         // farben neu setzen
         setButtonColors();
     }
-
+    /*
+     * @brief Umfärben der Buttons
+     */
     public void setButtonColors(){
         // Farben aller Buttons auf rot und die ausgewählten Buttons grün
         for (Button timeButton : timeButtons){
@@ -285,7 +307,10 @@ public class timeSelector extends Activity {
         weekButtons[selectedDay-1].setBackgroundColor(0xff99cc00);
     }
 
-    // sperre die zu sperrenden Buttons
+    /*
+     * @brief Vergangene Zeitslots sperren. Wenn Alarm in dieser Zeitreihe bereits ausgeführt
+     * worden ist, restlichen Zeitslots dieser Zeitreihe sperren.
+     */
     private void disableButtons() {
 
         SharedPreferences pastAlarmsSett = getSharedPreferences(PAST_ALARMS_STORAGE,0);
@@ -335,7 +360,9 @@ public class timeSelector extends Activity {
         }
     }
 
-    // kein normales Verhalten fuer Back-Button
+    /*
+     * @brief  Verhalten fuer Back-Button
+      */
     @Override
     public void onBackPressed() {
         if (!this.isTaskRoot())

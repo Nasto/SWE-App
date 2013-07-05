@@ -29,10 +29,38 @@ public class MainActivity extends Activity {
     File f;
     Calendar startTime;
 
-    // Probandencodescreen
-    // wird nur beim ersten Aufruf der App aufgerufen und dann erst wieder wenn .csv geloescht oder
-    // umbenannt wurde
+    /* @mainpage Android App Soziale Intelligenz
+    *
+    * @section sec1 Beschreibung
+    * Diese App wurde entwickelt um soziale Kontakte zu protokollieren und damit die soziale
+    * Intelligenz zu berechnen.
+    *
+    * @subsection subsec1 Vorrausetzung
+    * Android Version 2.1 oder aufwärts
+    *
+    * @subsection subsec2 Entwickler
+    *
+    * Stephan Dörfler
+    * Florian Heinrich
+    * Sebastian Wagner
+    * Sebastian Rohde
+    */
 
+
+    /* @class MainActivity
+    *  @brief Diese Klasse ist zur Erstellung des Probandencodes und wird nur beim ersten Start der
+    *  App aufgerufen.
+    *  @file MainActivity.java
+    */
+
+
+    /*
+     * @brief Userdaten werden überprüft
+     * <ul>
+     *     <li> Wenn Probandencode bereits existiert --> Aufruf {@link chillActivity}</li>
+     *     <li> ansonsten Eingabe des Probandencodes</li>
+     * </ul>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +105,12 @@ public class MainActivity extends Activity {
     }
     */
 
-    // Bei Betaetigung des OK-Buttons
+    /*
+     * @brief Bei Betaetigung des OK-Buttons, wird geprüft ob Codelänge = 5. Nach erfolgreicher Abfrage
+     * wird die Probandencode.csv Datei im Psychotest Ordner erstellt. Bei falscher Eingabe kommt
+     * Rückmeldung an User über falsche Eingabe.
+     * @param View view
+     */
     public void okMain(View view) {
         //String aus dem Eingabefeld holen
         code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();

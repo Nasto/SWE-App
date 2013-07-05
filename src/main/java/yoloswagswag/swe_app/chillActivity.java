@@ -16,14 +16,21 @@ import java.util.TimerTask;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+    /*
+    * @class chillActivity
+    * @brief Bildschirm zwischen den Abfragen. Gibt Auskunft über nächste Alarmzeit und Zeitraum bis
+    * dahin. Ebenso Möglichkeit zum Zeitauswahlbildschirm zu springen.
+    * @file chillActivity.java
+    */
 
 public class chillActivity extends Activity {
 
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     SharedPreferences selectedTimesSett;
 
-    // Chill-Screen - Anzeigefenster bis zum nächsten Alarm
-    // Möglichkeit Zeitslots zu ändern über Button
+    /*
+     * @brief Anzeige nächste Alarmzeit und Zeit bis dahin.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +116,9 @@ public class chillActivity extends Activity {
         });
     }
 
-    // Aufruf der timeSelector-Klasse bei drücken des Buttons um Zeiteinstellungen zu verwalten
+    /*
+     * @brief Aufruf des Zeitauswahlbildschirm bei Betätigung des Buttons
+      */
     public void timeChange(View view){
         startActivity(new Intent(this, timeSelector.class));
         finish();
