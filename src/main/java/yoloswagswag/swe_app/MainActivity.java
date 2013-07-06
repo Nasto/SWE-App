@@ -62,13 +62,13 @@ import java.util.GregorianCalendar;
     * Zeitauswahlbildschirm. Hier können die Zeiten für die einzelnen Wochentage definiert werden.
     * Mithilfe des OK-Buttons wird der Chill-Screen geöffnet, auf welchem die nächste Alarmzeit
     * und die Zeit bis dahin angezeigt werden. Zusätzlich hat der Benutzer die Möglichkeit auf den
-    * Zeitauswahlbildschirm zu gelangen um die Alarmzeiten zu verändern. Sobald eine Alarmzeit
+    * Zeitauswahlbildschirm zu gelangen um die Alarmzeiten zu verändern.<br></br> Sobald eine Alarmzeit
     * erreicht wird, klingelt und vibriert das Gerät je nach Handyeinstellungen. Der Poll-Screen wird
     * geöffnet und der Benutzer wird aufgefordert seine Angaben zu machen. Nach der Eingabe und
     * Betätigung des OK-Buttons werden die Daten gespeichert. Er hat zusätzlich die Möglichkeit
-    * mit dem Home-Button die App zu minimieren und die Umfrage später auszufüllen. Durch Betätigung
+    * mit dem Home-Button die App zu minimieren und die Umfrage später auszufüllen.<br></br> Durch Betätigung
     * des Abbruch-Buttons oder des Back-Buttons wird die aktuelle Umfrage geschlossen und eine
-    * Abbruchzeile wird in die .csv Datei geschrieben. Die App kann nach Abschluss eines
+    * Abbruchzeile wird in die .csv Datei geschrieben.<br></br> Die App kann nach Abschluss eines
     * Experiments durch Entfernen der .csv Datei zurückgesetzt werden. Ausserdem sollte der
     * Benutzer darauf hingewiesen werden, dass er nach Beendigung des Experiments bis zur Abgabe
     * des Gerätes das Handy ausschalten soll um weitere Abfragen zu verhindern.
