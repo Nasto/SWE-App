@@ -69,7 +69,7 @@ public class pollActivity extends Activity {
         {
             nextSlot++;
             if(nextSlot ==4){
-                slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK)==7 ?"1" : currentDay.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
+                slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK)==7 ?"0" : currentDay.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
             }else
                 slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK) - 1) + "slot" + nextSlot, 0);
         }

@@ -133,7 +133,7 @@ public class timeSelector extends Activity {
             nextSlot++;
             if(nextSlot ==4){
                 // keiner der heutigen Slots -> nimm den ersten von morgen
-                slotHour= selectedTimesStorage.getInt("day" + (currentDate.get(Calendar.DAY_OF_WEEK)==7 ?"1" : currentDate.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
+                slotHour= selectedTimesStorage.getInt("day" + (currentDate.get(Calendar.DAY_OF_WEEK)==7 ?"0" : currentDate.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
             }else
                 slotHour=selectedTimesStorage.getInt("day"+(currentDate.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
         }
