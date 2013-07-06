@@ -286,7 +286,7 @@ public class pollActivity extends Activity {
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
 
-        if(numberText.getText().toString() != "" && hourText.getText().toString() != "" && minuteText.getText().toString() != ""){
+        if(numberText.getText().toString().length() > 0 && hourText.getText().toString().length() > 0 && minuteText.getText().toString().length() > 0){
 
             // maximal mögliche Zeiteingabe berechnen
             int minDiff = currentDay.get(Calendar.MINUTE)-lastTimeSett.getInt("lastMinute", 0) + (currentDay.get(Calendar.HOUR_OF_DAY)-lastTimeSett.getInt("lastHour",0))*60;
@@ -348,6 +348,7 @@ public class pollActivity extends Activity {
 
         setLastHourAndMinuteToPreferences();
 
+        startActivity(new Intent(this, chillActivity.class));
         this.finish();
     }
 }
