@@ -52,7 +52,7 @@ public class chillActivity extends Activity {
         // Handler, der für das Update der Methode benötigt wird
         final Handler handler = new Handler();
 
-        // Mehode für das Setzen der nächsten Umfragezeit + der verbleibenden Zeit bis dahin
+        // Methode für das Setzen der nächsten Umfragezeit + der verbleibenden Zeit bis dahin
         handler.post(new Runnable() {
 
 
