@@ -354,48 +354,53 @@ public class pollActivity extends Activity {
         EditText hourText = (EditText) findViewById(R.id.pollHourEdit);
         EditText minuteText = (EditText) findViewById(R.id.pollMinuteEdit);
 
-        // maximal mögliche Zeiteingabe berechnen
-        int minDiff = currentDay.get(Calendar.MINUTE)-lastTimeSett.getInt("lastMinute", 0) + (currentDay.get(Calendar.HOUR_OF_DAY)-lastTimeSett.getInt("lastHour",0))*60;
-        if(minDiff<0) minDiff=24*60-lastTimeSett.getInt("lastMinute",0)-lastTimeSett.getInt("lastHour",0)+currentDay.get(Calendar.MINUTE)+ currentDay.get(Calendar.HOUR_OF_DAY);
-        int inputTime = (Integer.parseInt(hourText.getText().toString()))*60 + Integer.parseInt(minuteText.getText().toString());
+        if(numberText.getText().toString() != "" && hourText.getText().toString() != "" && minuteText.getText().toString() != ""){
 
-        // Eingabe von möglichen Zeit Speicherung der Daten
-        if(inputTime <= minDiff){
-            SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
-            String code = userCodeStorage.getString("userCode",null);
-            Calendar updatedCurrentDay = new GregorianCalendar();
+            // maximal mögliche Zeiteingabe berechnen
+            int minDiff = currentDay.get(Calendar.MINUTE)-lastTimeSett.getInt("lastMinute", 0) + (currentDay.get(Calendar.HOUR_OF_DAY)-lastTimeSett.getInt("lastHour",0))*60;
+            if(minDiff<0) minDiff=24*60-lastTimeSett.getInt("lastMinute",0)-lastTimeSett.getInt("lastHour",0)+currentDay.get(Calendar.MINUTE)+ currentDay.get(Calendar.HOUR_OF_DAY);
+            int inputTime = (Integer.parseInt(hourText.getText().toString()))*60 + Integer.parseInt(minuteText.getText().toString());
 
-            // schreibt Eingabedaten in .csv
-            try {
-                File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
-                File f = new File(dir, code+".csv");
-                FileWriter writer = new FileWriter(f ,true);
-                writer.write(code+";"
-                        +updatedCurrentDay.get(Calendar.DAY_OF_MONTH)+"."+(updatedCurrentDay.get(Calendar.MONTH)+1)+"."+updatedCurrentDay.get(Calendar.YEAR)+";"
-                        +currentDay.get(Calendar.HOUR_OF_DAY)+":00;"
-                        +updatedCurrentDay.get(Calendar.HOUR_OF_DAY)+":"+((updatedCurrentDay.get(Calendar.MINUTE)<10) ? "0"+updatedCurrentDay.get(Calendar.MINUTE) : updatedCurrentDay.get(Calendar.MINUTE))+";"
-                        +"0;"
-                        +numberText.getText()+";"
-                        +hourText.getText()+";"
-                        +minuteText.getText()+"\n");
-                writer.flush();
-                writer.close();
-                giveUserFeedback();
-            } catch (IOException e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-            }
+            // Eingabe von möglichen Zeit Speicherung der Daten
+            if(inputTime <= minDiff){
+                SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
+                String code = userCodeStorage.getString("userCode",null);
+                Calendar updatedCurrentDay = new GregorianCalendar();
 
-            setLastHourAndMinuteToPreferences();
+                // schreibt Eingabedaten in .csv
+                try {
+                    File dir = new File(Environment.getExternalStorageDirectory(),"PsychoTest");
+                    File f = new File(dir, code+".csv");
+                    FileWriter writer = new FileWriter(f ,true);
+                    writer.write(code+";"
+                            +updatedCurrentDay.get(Calendar.DAY_OF_MONTH)+"."+(updatedCurrentDay.get(Calendar.MONTH)+1)+"."+updatedCurrentDay.get(Calendar.YEAR)+";"
+                            +currentDay.get(Calendar.HOUR_OF_DAY)+":00;"
+                            +updatedCurrentDay.get(Calendar.HOUR_OF_DAY)+":"+((updatedCurrentDay.get(Calendar.MINUTE)<10) ? "0"+updatedCurrentDay.get(Calendar.MINUTE) : updatedCurrentDay.get(Calendar.MINUTE))+";"
+                            +"0;"
+                            +numberText.getText()+";"
+                            +hourText.getText()+";"
+                            +minuteText.getText()+"\n");
+                    writer.flush();
+                    writer.close();
+                    giveUserFeedback();
+                } catch (IOException e){
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+                }
 
-            if (!this.isTaskRoot()){
-                this.finish();
+                setLastHourAndMinuteToPreferences();
+
+                if (!this.isTaskRoot()){
+                    this.finish();
+                } else {
+                    startActivity(new Intent(this, chillActivity.class));
+                    this.finish();
+                }
             } else {
-                startActivity(new Intent(this, chillActivity.class));
-                this.finish();
+                // Zeiteingabe zu groß - Meldung
+                Toast.makeText(this, "So viel Zeit ist seit der letzten Umfrage nicht vergangen!", Toast.LENGTH_LONG).show();
             }
         } else {
-            // Zeiteingabe zu groß - Meldung
-            Toast.makeText(this, "So viel Zeit ist seit der letzten Umfrage nicht vergangen!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Alle Felder müssen ausgefüllt werden!", Toast.LENGTH_LONG).show();
         }
     }
 
