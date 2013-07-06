@@ -121,6 +121,7 @@ public class MainActivity extends Activity {
         String code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
+            boolean flag=true;
             userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
             SharedPreferences.Editor codeEditor = userCodeSett.edit();
 
@@ -143,10 +144,13 @@ public class MainActivity extends Activity {
             } catch (IOException e){
                 // falls es Fehler bei Erstellen gibt,kommt die Exception in den Toast
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+                flag=false;
             }
 
-            startActivity(new Intent(this, timeSelector.class));
-            finish();
+            if(flag){
+                startActivity(new Intent(this, timeSelector.class));
+                finish();
+            }
         }
         // Rueckmeldung, falls Codeeingabe zu kurz
         else
