@@ -31,9 +31,9 @@ import java.util.GregorianCalendar;
     *
     * @subsection subsec2 Entwickler
     *
-    * Stephan Dörfler
-    * Florian Heinrich
-    * Sebastian Wagner
+    * Stephan Dörfler<br></br>
+    * Florian Heinrich<br></br>
+    * Sebastian Wagner<br></br>
     * Sebastian Rohde
     *
     * @subsection subsec3 Screenshots
