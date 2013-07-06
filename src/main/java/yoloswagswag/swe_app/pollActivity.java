@@ -41,8 +41,6 @@ public class pollActivity extends Activity {
 
     public static final String LAST_TIME_STORAGE = "lastTimeStorage";
     private SharedPreferences lastTimeSett;
-    private SharedPreferences selectedTimesStorage;
-    private Calendar nextAlarmTime;
     private Calendar currentDay;
     private int nextSlot;
     private MediaPlayer mediaPlayer;
@@ -61,26 +59,26 @@ public class pollActivity extends Activity {
         // liest letzte Abfragezeit aus shared preferences
         lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
         // liest nächste gesetzte Abfragezeit aus shared preferences
-        selectedTimesStorage = getSharedPreferences("selectedTimesStorage",0);
+        SharedPreferences selectedTimesStorage = getSharedPreferences("selectedTimesStorage", 0);
         currentDay = new GregorianCalendar();
         nextSlot =0;
-        int slotHour = selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+        int slotHour = selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK) - 1) + "slot" + nextSlot, 0);
         // Bestimmt die nächste Alarmzeit aus Shared Preferences, wenn nextSlot=4 ist Alarm am nächsten Tag
         while(slotHour<= currentDay.get(Calendar.HOUR_OF_DAY)&& nextSlot <4)
         {
             nextSlot++;
             if(nextSlot ==4){
-                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
+                slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
             }else
-                slotHour=selectedTimesStorage.getInt("day"+(currentDay.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
+                slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK) - 1) + "slot" + nextSlot, 0);
         }
         // Wandelt Alarmstunde in konkrete Zeit um
-        nextAlarmTime = new GregorianCalendar();
+        Calendar nextAlarmTime = new GregorianCalendar();
         nextAlarmTime.set(Calendar.HOUR_OF_DAY, slotHour);
         nextAlarmTime.set(Calendar.MINUTE, 0);
         nextAlarmTime.set(Calendar.SECOND, 0);
         // Nächster Alarm ist Morgen --> Tag um 1 erhöhen
-        if(nextSlot==4) nextAlarmTime.add(Calendar.DATE,1);
+        if(nextSlot==4) nextAlarmTime.add(Calendar.DATE, 1);
 
         updatePastAlarmsStorage();
         if(nextAlarmTime.compareTo(currentDay)==1) startNewAlarm(nextAlarmTime);
