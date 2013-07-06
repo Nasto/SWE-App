@@ -123,9 +123,4 @@ public class chillActivity extends Activity {
         startActivity(new Intent(this, timeSelector.class));
         finish();
     }
-    // Aufruf der Umfrage
-    public void simulate(View view){
-        startActivity(new Intent(this, pollActivity.class));
-        finish();
-    }
 }

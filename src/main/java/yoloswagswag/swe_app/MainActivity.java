@@ -18,7 +18,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
- /** @mainpage Android App Soziale Intelligenz
+   /**
+    * @mainpage Android App Soziale Intelligenz
     *
     * @section sec1 Beschreibung
     * Diese App wurde entwickelt um soziale Kontakte zu protokollieren und damit die soziale
@@ -36,7 +37,8 @@ import java.util.GregorianCalendar;
     */
 
 
-    /* *@class MainActivity
+    /**
+     * @class MainActivity
     *  @brief Diese Klasse ist zur Erstellung des Probandencodes und wird nur beim ersten Start der
     *  App aufgerufen.
     *  @file MainActivity.java
