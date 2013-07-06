@@ -63,7 +63,7 @@ import java.util.GregorianCalendar;
     * Mithilfe des OK-Buttons wird der Chill-Screen geöffnet, auf welchem die nächste Alarmzeit
     * und die Zeit bis dahin angezeigt werden. Zusätzlich hat der Benutzer die Möglichkeit auf den
     * Zeitauswahlbildschirm zu gelangen um die Alarmzeiten zu verändern. Sobald eine Alarmzeit
-    * erreicht wird, klingelt und vibriert die App je nach Handyeinstellungen. Der Poll-Screen wird
+    * erreicht wird, klingelt und vibriert das Gerät je nach Handyeinstellungen. Der Poll-Screen wird
     * geöffnet und der Benutzer wird aufgefordert seine Angaben zu machen. Nach der Eingabe und
     * Betätigung des OK-Buttons werden die Daten gespeichert. Er hat zusätzlich die Möglichkeit
     * mit dem Home-Button die App zu minimieren und die Umfrage später auszufüllen. Durch Betätigung
