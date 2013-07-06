@@ -67,17 +67,11 @@ import java.util.GregorianCalendar;
 
 public class MainActivity extends Activity {
 
-    String code;
     public static final String USER_CODE_STORAGE ="userCodeStorage";
     public static final String SELECTED_TIMES_STORAGE = "selectedTimesStorage";
     public static final String LAST_TIME_STORAGE = "lastTimeStorage";
     SharedPreferences userCodeSett;
     SharedPreferences selectedTimesSett;
-    File f;
-    Calendar startTime;
-
-
-
 
     /**
      * @brief Userdaten werden überprüft
@@ -95,9 +89,9 @@ public class MainActivity extends Activity {
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
         SharedPreferences lastTimeSett = getSharedPreferences(LAST_TIME_STORAGE, 0);
 
-        code = userCodeSett.getString("userCode",null);
+        String code = userCodeSett.getString("userCode",null);
 
-        f= new File(new File(Environment.getExternalStorageDirectory(),"PsychoTest"), code+".csv");
+        File f= new File(new File(Environment.getExternalStorageDirectory(),"PsychoTest"), code+".csv");
 
         // falls ein Probandencode gepeichert ist und die .csv vorhanden ist, wird diese Activity uebersprungen
         if (f.exists() && code!=null){
@@ -111,20 +105,9 @@ public class MainActivity extends Activity {
             selectedTimesSett.edit().clear().commit();
             pastAlarmStorage.edit().clear().commit();
             lastTimeSett.edit().clear().commit();
-
-            startTime = new GregorianCalendar();
         }
 
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    */
 
     /**
      * @brief Bei Betaetigung des OK-Buttons, wird geprüft ob Codelänge = 5. Nach erfolgreicher Abfrage
@@ -134,7 +117,7 @@ public class MainActivity extends Activity {
      */
     public void okMain(View view) {
         //String aus dem Eingabefeld holen
-        code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
+        String code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
             userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);

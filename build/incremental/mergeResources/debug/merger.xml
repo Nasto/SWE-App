@@ -63,9 +63,9 @@
             <file
                 path="/home/stephan/AndroidStudioProjects/SWE-AppProject/SWE-App/src/main/res/values/strings.xml"
                 qualifiers="" >
-                <string name="action_settings" >Settings
-                </string>
                 <string name="btnSun" >So
+                </string>
+                <string name="action_settings" >Settings
                 </string>
                 <string name="enterCode" >Bitte Probandencode eingeben:
                 </string>
@@ -117,33 +117,33 @@
                 </string>
                 <string name="btn15" >15:00
                 </string>
-                <string name="btn18" >18:00
-                </string>
                 <string name="btn10" >10:00
                 </string>
-                <string name="btn17" >17:00
+                <string name="btn18" >18:00
                 </string>
                 <string name="btnSat" >Sa
                 </string>
+                <string name="btn17" >17:00
+                </string>
                 <string name="btn12" >12:00
-                </string>
-                <string name="btn19" >19:00
-                </string>
-                <string name="btn11" >11:00
-                </string>
-                <string name="app_name" >Umfrage
                 </string>
                 <string name="btnThu" >Do
                 </string>
-                <string name="firstChar" >1. Ziffer: Dritter Buchstabe des Vornamens der Mutter
+                <string name="app_name" >Umfrage
                 </string>
-                <string name="pollTimeText" >Schätzen Sie außerdem die Dauer der Kontakte!
+                <string name="btn11" >11:00
+                </string>
+                <string name="btn19" >19:00
+                </string>
+                <string name="firstChar" >1. Ziffer: Dritter Buchstabe des Vornamens der Mutter
                 </string>
                 <string name="pollNumber" >Anzahl
                 </string>
-                <string name="btnOK" >OK
+                <string name="pollTimeText" >Schätzen Sie außerdem die Dauer der Kontakte!
                 </string>
                 <string name="btnChangeTimes" >Zeitplan ändern
+                </string>
+                <string name="btnOK" >OK
                 </string>
             </file>
             <file
