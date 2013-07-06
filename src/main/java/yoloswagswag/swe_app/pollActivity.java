@@ -94,6 +94,8 @@ public class pollActivity extends Activity {
                     + "Signal um "+lastTimeSett.getInt("lastHour",0)+":00 Uhr Kontakt?");
         }
 
+        setLastHourAndMinuteToPreferences();
+
     }
 
 
@@ -335,8 +337,6 @@ public class pollActivity extends Activity {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
                 }
 
-                setLastHourAndMinuteToPreferences();
-
                 if (!this.isTaskRoot()){
                     this.finish();
                 } else {
@@ -362,8 +362,6 @@ public class pollActivity extends Activity {
 
         setHasUserAnsweredToPreferences(true);
         writeCancelLineInCsv(currentDay);
-
-        setLastHourAndMinuteToPreferences();
 
         this.finish();
     }
