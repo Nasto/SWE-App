@@ -43,16 +43,16 @@ import java.util.GregorianCalendar;
    <th>timeSelector</th>
    </tr>
    <tr>
-   <td><img src="Bilder/codescreen.jpg" alt="Bilder/codescreen.jpg" width="300" height="500"></td>
-   <td><img src="Bilder/timeselector.jpg" alt="Bilder/timeselector.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/codescreen.png" alt="Bilder/codescreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/timeselector.png" alt="Bilder/timeselector.jpg" width="300" height="500"></td>
    </tr>
    <tr>
    <th>chillActivity</th>
    <th>pollActivity</th>
    </tr>
    <tr>
-   <td><img src="Bilder/chillscreen.jpg" alt="Bilder/chillscreen.jpg" width="300" height="500"></td>
-   <td><img src="Bilder/pollscreen.jpg" alt="Bilder/pollscreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/chillscreen.png" alt="Bilder/chillscreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/pollscreen.png" alt="Bilder/pollscreen.jpg" width="300" height="500"></td>
    </tr>
    </table>
     */
