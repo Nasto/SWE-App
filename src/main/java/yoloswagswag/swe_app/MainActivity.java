@@ -69,7 +69,9 @@ import java.util.GregorianCalendar;
     * mit dem Home-Button die App zu minimieren und die Umfrage später auszufüllen. Durch Betätigung
     * des Abbruch-Buttons oder des Back-Buttons wird die aktuelle Umfrage geschlossen und eine
     * Abbruchzeile wird in die .csv Datei geschrieben. Die App kann nach Abschluss eines
-    * Experiments durch Entfernen der .csv Datei zurückgesetzt werden.
+    * Experiments durch Entfernen der .csv Datei zurückgesetzt werden. Ausserdem sollte der
+    * Benutzer darauf hingewiesen werden, dass er nach Beendigung des Experiments bis zur Abgabe
+    * des Gerätes das Handy ausschalten soll um weitere Abfragen zu verhindern.
     */
 
 
