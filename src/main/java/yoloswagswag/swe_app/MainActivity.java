@@ -86,14 +86,10 @@ public class MainActivity extends Activity {
             setContentView(R.layout.activity_main);
 
             //neuen User anlegen -> alle alten gespeicherten Werte loeschen
-            userCodeSett.edit().clear();
-            userCodeSett.edit().commit();
-            selectedTimesSett.edit().clear();
-            selectedTimesSett.edit().commit();
-            pastAlarmStorage.edit().clear();
-            pastAlarmStorage.edit().commit();
-            lastTimeSett.edit().clear();
-            lastTimeSett.edit().commit();
+            userCodeSett.edit().clear().commit();
+            selectedTimesSett.edit().clear().commit();
+            pastAlarmStorage.edit().clear().commit();
+            lastTimeSett.edit().clear().commit();
 
             startTime = new GregorianCalendar();
         }
