@@ -46,6 +46,7 @@ public class timeSelector extends Activity {
 
     /**
      * @brief Zeitauswahlbildschirm
+     * @param Bundle savedInstanceState
      */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +133,7 @@ public class timeSelector extends Activity {
             nextSlot++;
             if(nextSlot ==4){
                 // keiner der heutigen Slots -> nimm den ersten von morgen
-                slotHour=selectedTimesStorage.getInt("day"+(currentDate.get(Calendar.DAY_OF_WEEK))+"slot"+0, 0);
+                slotHour= selectedTimesStorage.getInt("day" + (currentDate.get(Calendar.DAY_OF_WEEK)==7 ?"0" : currentDate.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
             }else
                 slotHour=selectedTimesStorage.getInt("day"+(currentDate.get(Calendar.DAY_OF_WEEK)-1)+"slot"+ nextSlot, 0);
         }
@@ -156,6 +157,7 @@ public class timeSelector extends Activity {
 
     /**
      * @brief Bei Betaetigung des OK-Buttons werden ausgewählten Zeiten in ShardedPreferences gespeichert.
+     * @param View view
       */
     public void okTime(View view){
 
@@ -186,6 +188,7 @@ public class timeSelector extends Activity {
     /**
      * @brief Bei Betätigung eines Tages-Buttons werden Zeitslots zum entsprechenden Tag geladen.
      * Außerdem werden die Buttons umgefärbt.
+     * @param View view
       */
     public void daySelect(View view){
         Calendar textDay = (Calendar) currentDate.clone();
@@ -232,6 +235,7 @@ public class timeSelector extends Activity {
 
     /**
      * @brief Bei Betätigung eines Zeit(-Slot)-Buttons wird Zeit übernommen und Buttons umgefärbt.
+     * @param View view
       */
     public void timeSelect(View view){
 
@@ -362,6 +366,10 @@ public class timeSelector extends Activity {
 
     /**
      * @brief  Verhalten fuer Back-Button
+     * <ul>
+     *     <li> Wenn vorher {@link MainActivity} dann wird App geschlossen,</li>
+     *     <li> ansonsten Rückkehr zur {@link chillActivity}.</li>
+     * </ul>
       */
     @Override
     public void onBackPressed() {

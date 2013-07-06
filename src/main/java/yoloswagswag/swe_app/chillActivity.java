@@ -30,6 +30,7 @@ public class chillActivity extends Activity {
 
     /**
      * @brief Anzeige nächste Alarmzeit und Zeit bis dahin.
+     * @param Bundle savedInstanceState
      */
 
     @Override
@@ -118,6 +119,7 @@ public class chillActivity extends Activity {
 
     /**
      * @brief Aufruf des Zeitauswahlbildschirm bei Betätigung des Buttons
+     * @param View view
       */
     public void timeChange(View view){
         startActivity(new Intent(this, timeSelector.class));

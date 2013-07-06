@@ -48,6 +48,7 @@ public class pollActivity extends Activity {
 
     /**
      * @brief Erstellung der Umfrage bei Alarm
+     * @param Bundle savedInstanceState
      */
 
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class pollActivity extends Activity {
         {
             nextSlot++;
             if(nextSlot ==4){
-                slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
+                slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK)==7 ?"0" : currentDay.get(Calendar.DAY_OF_WEEK)) + "slot" + 0, 0);
             }else
                 slotHour= selectedTimesStorage.getInt("day" + (currentDay.get(Calendar.DAY_OF_WEEK) - 1) + "slot" + nextSlot, 0);
         }
@@ -137,6 +138,8 @@ public class pollActivity extends Activity {
     }
     /**
      * @brief Sound wird abgespielt
+     * @param Context context
+     * @param Uri alert
       */
     private void playSound(Context context, Uri alert){
         mediaPlayer = new MediaPlayer();
@@ -167,12 +170,20 @@ public class pollActivity extends Activity {
          * @brief startet/ beendet Sound und startet Vibration
          */
         soundTimer = new CountDownTimer(10000, 1000) {
+            /**
+             * @brief startet Vibration und steuert Sound
+             * @param long l
+             */
+
             @Override
             public void onTick(long l) {
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 v.vibrate(200);
             }
 
+            /**
+             * @brief beendet Sound
+             */
             @Override
             public void onFinish() {
                 stopSound(mediaPlayer);
@@ -199,6 +210,7 @@ public class pollActivity extends Activity {
 
     /**
      * @brief stoppt gegebenen Timer
+     * @param CountDownTimer timer
       */
     private void stopTimer(CountDownTimer timer){
         if (timer != null) {
@@ -208,6 +220,7 @@ public class pollActivity extends Activity {
     }
     /**
      * @brief stoppt Sound
+     * @param MediaPlayer player
       */
     private void stopSound(MediaPlayer player){
         try {
@@ -225,6 +238,7 @@ public class pollActivity extends Activity {
 
     /**
      * @brief neuer Alarm wird initiert
+     * @param Calender alarmTime
       */
     public void startNewAlarm(Calendar alarmTime){
         SharedPreferences pastAlarmStorage=getSharedPreferences("pastAlarmsStorage",0);
@@ -246,6 +260,7 @@ public class pollActivity extends Activity {
 
     /**
      * @brief schreibt Abbruchzeile in .csv
+     * @param Calendar date
       */
     private void writeCancelLineInCsv(Calendar date){
         SharedPreferences userCodeStorage=getSharedPreferences("userCodeStorage",0);
@@ -277,6 +292,7 @@ public class pollActivity extends Activity {
      * @brief Betätigung OK-Button -> testet ob Eingabezeit möglich ist im akuellen Zeitraum
      * Wenn Eingabezeit möglich werden Daten in .csv gespeichert. Bei zu größer Zeiteingabe kommt
      * Rückmeldung an User.
+     * @param View view
       */
     public void okPoll(View view){
         stopTimer(soundTimer);
@@ -338,6 +354,7 @@ public class pollActivity extends Activity {
 
     /**
      * @brief Betätigung Abbruch-Button stoppt Sound und setzt Abfrage als beantwortet
+     * @param View view
       */
     public void cancelPoll(View view){
         stopTimer(soundTimer);
@@ -347,7 +364,6 @@ public class pollActivity extends Activity {
         writeCancelLineInCsv(currentDay);
 
         setLastHourAndMinuteToPreferences();
-
         startActivity(new Intent(this, chillActivity.class));
         this.finish();
     }

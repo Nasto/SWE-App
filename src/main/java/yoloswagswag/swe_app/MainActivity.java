@@ -31,9 +31,9 @@ import java.util.GregorianCalendar;
     *
     * @subsection subsec2 Entwickler
     *
-    * Stephan Dörfler
-    * Florian Heinrich
-    * Sebastian Wagner
+    * Stephan Dörfler<br></br>
+    * Florian Heinrich<br></br>
+    * Sebastian Wagner<br></br>
     * Sebastian Rohde
     *
     * @subsection subsec3 Screenshots
@@ -43,18 +43,35 @@ import java.util.GregorianCalendar;
    <th>timeSelector</th>
    </tr>
    <tr>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1_main_activity.html"><img src="Bilder/codescreen.png" alt="Bilder/codescreen.jpg" width="300" height="500"></a></td>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1time_selector.html"><img src="Bilder/timeselector.png" alt="Bilder/timeselector.jpg" width="300" height="500"></a></td>
+   <td><img src="Bilder/codescreen.png" alt="Bilder/codescreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/timeselector.png" alt="Bilder/timeselector.jpg" width="300" height="500"></td>
    </tr>
    <tr>
    <th>chillActivity</th>
    <th>pollActivity</th>
    </tr>
    <tr>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1chill_activity.html"><img src="Bilder/chillscreen.png" alt="Bilder/chillscreen.jpg" width="300" height="500"></a></td>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1poll_activity.html"><img src="Bilder/pollscreen.png" alt="Bilder/pollscreen.jpg" width="300" height="500"></a></td>
+   <td><img src="Bilder/chillscreen.png" alt="Bilder/chillscreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/pollscreen.png" alt="Bilder/pollscreen.jpg" width="300" height="500"></td>
    </tr>
    </table>
+
+    * @subsection subsec4 Handhabung
+    * Beim ersten Start der App wird der Benutzer aufgefordert seinen Probandencode zu generieren.
+    * Mithilfe dieses Codes wird die .csv Datei erstellt und die App springt auf den
+    * Zeitauswahlbildschirm. Hier können die Zeiten für die einzelnen Wochentage definiert werden.
+    * Mithilfe des OK-Buttons wird der Chill-Screen geöffnet, auf welchem die nächste Alarmzeit
+    * und die Zeit bis dahin angezeigt werden. Zusätzlich hat der Benutzer die Möglichkeit auf den
+    * Zeitauswahlbildschirm zu gelangen um die Alarmzeiten zu verändern. Sobald eine Alarmzeit
+    * erreicht wird, klingelt und vibriert das Gerät je nach Handyeinstellungen. Der Poll-Screen wird
+    * geöffnet und der Benutzer wird aufgefordert seine Angaben zu machen. Nach der Eingabe und
+    * Betätigung des OK-Buttons werden die Daten gespeichert. Er hat zusätzlich die Möglichkeit
+    * mit dem Home-Button die App zu minimieren und die Umfrage später auszufüllen. Durch Betätigung
+    * des Abbruch-Buttons oder des Back-Buttons wird die aktuelle Umfrage geschlossen und eine
+    * Abbruchzeile wird in die .csv Datei geschrieben. Die App kann nach Abschluss eines
+    * Experiments durch Entfernen der .csv Datei zurückgesetzt werden. Ausserdem sollte der
+    * Benutzer darauf hingewiesen werden, dass er nach Beendigung des Experiments bis zur Abgabe
+    * des Gerätes das Handy ausschalten soll um weitere Abfragen zu verhindern.
     */
 
 
@@ -79,6 +96,7 @@ public class MainActivity extends Activity {
      *     <li> Wenn Probandencode bereits existiert --> Aufruf {@link chillActivity}</li>
      *     <li> ansonsten Eingabe des Probandencodes</li>
      * </ul>
+     * @param Bundle savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +138,7 @@ public class MainActivity extends Activity {
         String code = ((EditText) findViewById(R.id.codeEdit)).getText().toString();
 
         if(code.length()==5){
+            boolean flag=true;
             userCodeSett = getSharedPreferences(USER_CODE_STORAGE, 0);
             SharedPreferences.Editor codeEditor = userCodeSett.edit();
 
@@ -142,10 +161,13 @@ public class MainActivity extends Activity {
             } catch (IOException e){
                 // falls es Fehler bei Erstellen gibt,kommt die Exception in den Toast
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+                flag=false;
             }
 
-            startActivity(new Intent(this, timeSelector.class));
-            finish();
+            if(flag){
+                startActivity(new Intent(this, timeSelector.class));
+                finish();
+            }
         }
         // Rueckmeldung, falls Codeeingabe zu kurz
         else
