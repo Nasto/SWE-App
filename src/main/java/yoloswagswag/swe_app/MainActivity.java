@@ -43,16 +43,16 @@ import java.util.GregorianCalendar;
    <th>timeSelector</th>
    </tr>
    <tr>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1_main_activity.html"><img src="Bilder/codescreen.png" alt="Bilder/codescreen.jpg" width="300" height="500"></a></td>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1time_selector.html"><img src="Bilder/timeselector.png" alt="Bilder/timeselector.jpg" width="300" height="500"></a></td>
+   <td><img src="Bilder/codescreen.png" alt="Bilder/codescreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/timeselector.png" alt="Bilder/timeselector.jpg" width="300" height="500"></td>
    </tr>
    <tr>
    <th>chillActivity</th>
    <th>pollActivity</th>
    </tr>
    <tr>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1chill_activity.html"><img src="Bilder/chillscreen.png" alt="Bilder/chillscreen.jpg" width="300" height="500"></a></td>
-   <td><a href="classyoloswagswag_1_1swe__app_1_1poll_activity.html"><img src="Bilder/pollscreen.png" alt="Bilder/pollscreen.jpg" width="300" height="500"></a></td>
+   <td><img src="Bilder/chillscreen.png" alt="Bilder/chillscreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/pollscreen.png" alt="Bilder/pollscreen.jpg" width="300" height="500"></td>
    </tr>
    </table>
     */
@@ -79,6 +79,7 @@ public class MainActivity extends Activity {
      *     <li> Wenn Probandencode bereits existiert --> Aufruf {@link chillActivity}</li>
      *     <li> ansonsten Eingabe des Probandencodes</li>
      * </ul>
+     * @param Bundle savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
