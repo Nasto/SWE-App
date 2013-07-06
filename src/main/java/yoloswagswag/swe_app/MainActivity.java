@@ -23,7 +23,8 @@ import java.util.GregorianCalendar;
     *
     * @section sec1 Beschreibung
     * Diese App wurde entwickelt um soziale Kontakte zu protokollieren und damit die soziale
-    * Intelligenz zu berechnen.
+    * Intelligenz zu berechnen. Die App wurde im Zusammenhang mit dem Modul "Softwareengineering" im
+    * Sommersemester 2013 erstellt.
     *
     * @subsection subsec1 Vorrausetzung
     * Android Version 2.1 oder aufwärts
@@ -34,6 +35,26 @@ import java.util.GregorianCalendar;
     * Florian Heinrich
     * Sebastian Wagner
     * Sebastian Rohde
+    *
+    * @subsection subsec3 Screenshots
+    *  * <table border="1">
+   <tr>
+   <th>MainActivity</th>
+   <th>timeSelector</th>
+   </tr>
+   <tr>
+   <td><img src="Bilder/codescreen.jpg" alt="Bilder/codescreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/timeselector.jpg" alt="Bilder/timeselector.jpg" width="300" height="500"></td>
+   </tr>
+   <tr>
+   <th>chillActivity</th>
+   <th>pollActivity</th>
+   </tr>
+   <tr>
+   <td><img src="Bilder/chillscreen.jpg" alt="Bilder/chillscreen.jpg" width="300" height="500"></td>
+   <td><img src="Bilder/pollscreen.jpg" alt="Bilder/pollscreen.jpg" width="300" height="500"></td>
+   </tr>
+   </table>
     */
 
 
